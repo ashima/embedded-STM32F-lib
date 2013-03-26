@@ -1,0 +1,50 @@
+<!--
+Figure 16. STM32F40x memory map in DM00037051.pdf
+Bigbanding
+and from DM00037051.pdf Table 9.STM32F40x register boundary addresses.
+-->
+<memory1 chip="stm32f407vg">
+  <block name="Root" offset="0x00000000" >
+    <block name="Block0"   offset="0x00000000" >
+      <block name="Boot"     offset="0x00000000" />
+      <block name="Flash"    offset="0x08000000" />
+      <block name="CCM"      offset="0x10000000" />
+      <block name="Sys"      offset="0x1fff0000" />
+      <block name="Opt"      offset="0x1fffc000" />
+    </block>
+    <block name="Block1"   offset="0x20000000" >
+      <block name="SRAM"     offset="0x0000000" bb_offset="0x02000000">
+        <block name="SRAM1"    offset="0x00000000" />
+        <block name="SRAM2"    offset="0x0001c000" />
+        <block name="SRAM3"    offset="0x00020000" />
+      </block>
+    </block>
+    <block name="Block2"   offset="0x40000000" >
+      <block name="Bus1"     offset="0x00000000" bb_offset="0x02000000">
+        <block name="APB1"     offset="0x00000000" />
+        <block name="APB2"     offset="0x00010000" />
+        <block name="AHB1"     offset="0x00020000" />
+        <block name="SRAMB"    offset="0x00024000" />
+      </block>
+      <block name="Bus2"     offset="0x10000000" >
+        <block name="AHB2"     offset="0x00000000" />
+      </block>
+    </block>
+    <block name="Block345" offset="0x60000000" >
+      <block name="Bus3"     offset="0x00000000" >
+        <block name="AHB3"     offset="0x00000000" >
+          <block name="FSMC1"    offset="0x00000000" />
+          <block name="FSMC2"    offset="0x10000000" />
+          <block name="FSMC3"    offset="0x20000000" />
+          <block name="FSMC4"    offset="0x30000000" />
+          <block name="FSMCR"    offset="0x40000000" />
+        </block>
+      </block>
+    </block>
+    <block name="Block6"   offset="0xc0000000" />
+    <block name="Block7"   offset="0xe0000000" >
+      <block name="CortexM4" offset="0x00000000" />
+    </block>
+  </block>
+</memory1>
+

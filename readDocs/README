@@ -1,0 +1,6 @@
+This directory contains all the documents and utilites used to generate the
+raw information base used to build the rest of the libray.
+
+The goal is to provide clear tracability of information encoded in the library
+to the documentation.
+
