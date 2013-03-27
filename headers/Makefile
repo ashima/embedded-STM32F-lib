@@ -1,4 +1,6 @@
 
+TARGETS = memory.h instances.h mToCtest mToCtest.out mToCtest.c
+
 all: memory.h instances.h mToCtest.out
 
 INFOBASE=../readDocs/infobase/
@@ -21,4 +23,4 @@ mToCtest.out: mToCtest
 	diff $@ mToCtest.good
 
 clean:
-	rm memory.h instances.h mToCtest.out
+	rm $(TARGETS)

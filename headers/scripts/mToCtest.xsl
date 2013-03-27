@@ -6,7 +6,7 @@
 
   <xsl:output method="text" omit-xml-declaration="yes" indent="no" />
 
-  <xsl:template match="/memory">
+  <xsl:template match="/">
 /* Memory map for <xsl:value-of select="@name"/>.
    Auto generated, do not edit.
  */
@@ -15,7 +15,7 @@
 
 int main()
   {
-<xsl:apply-templates select="block">
+<xsl:apply-templates select="/all/memory-map/block">
   <xsl:with-param name="indent" select="'      '"/>
   <xsl:with-param name="bb" select="0"/>
 </xsl:apply-templates>
@@ -32,10 +32,10 @@ select="$indent"/>","<xsl:value-of select="@name"/><xsl:if
   <xsl:with-param name="indent" select="concat('  ',$indent)"/>
   <xsl:with-param name="bb" select="$bb"/>
 </xsl:apply-templates>
-<xsl:if test="@bb_offset">
+<xsl:if test="@bb">
 <!--<xsl:value-of select="$indent"/><xsl:value-of select="@name"/>_BB = <xsl:if 
   test="../@name"><xsl:value-of select="../@name"/> + </xsl:if><xsl:value-of
-  select="@bb_offset"/><xsl:text>,
+  select="@bb"/><xsl:text>,
 </xsl:text> > -->
 <xsl:apply-templates select="block|instance">
   <xsl:with-param name="indent" select="concat('  ',$indent)"/>

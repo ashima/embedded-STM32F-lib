@@ -39,7 +39,7 @@
   <xsl:variable name="l">
 <!--if h == 0 and i = 3 or 7 then stop.-->
 
-    <xsl:if test="not ( $h = 0 and ( $i mod 4 = 3)) ">
+    <xsl:if test="$i &lt; 16 and not ( $h = 0 and ( $i mod 4 = 3)) ">
       <xsl:value-of select="u:toHex($h,$i+1)"/>
     </xsl:if>
   </xsl:variable>

@@ -1,0 +1,25 @@
+
+
+<guide>
+  <section name="memory">
+    <memory name="memory-overview">
+      <memory name="memory-boundries">
+<!-- Note this cleanup is currently done in the python
+     script for expediancy. 'rename' and 'remove' tags
+     are currently ignored.
+-->
+        <remove starts="Reserved"/>
+        <rename starts="Flash" value="FIR"/>
+        <rename starts="Cortex-M4" value="CIP"/>
+        <rename starts="FSMC control" value="FSMC_CR"/>
+        <rename starts="ETHER" value="ETH_Bus"/>
+        <rename starts="ADC" value="ADC_Bus"/>
+
+        <memory name="memory-adc" anchor="ADC_Bus" >
+          <rename starts="Common" value="ADC_CR"/>
+        </memory>
+        <memory name="memory-ethernet" anchor="ETH_Bus" />
+      </memory>
+    </memory>
+  </section>
+</guide>

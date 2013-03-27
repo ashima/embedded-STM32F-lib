@@ -6,7 +6,7 @@
 
   <xsl:output method="text" omit-xml-declaration="yes" indent="no" />
 
-  <xsl:template match="/memory">
+  <xsl:template match="/">
 /* Memory map for <xsl:value-of select="@name"/>.
    Auto generated, do not edit.
  */
@@ -20,7 +20,7 @@
   const NAME##_t &amp;NAME = *(NAME##_t*)(NAME##_t::offset) ;
 
 
-<xsl:apply-templates select="block">
+<xsl:apply-templates select="/all/memory-map/block">
   <xsl:with-param name="indent" select="'      '"/>
   <xsl:with-param name="bb" select="0"/>
 </xsl:apply-templates>
@@ -29,7 +29,7 @@
   <xsl:template match="block"><xsl:param 
     name="bb"/><xsl:apply-templates select="block|instance">
       <xsl:with-param name="bb" select="$bb"/>
-    </xsl:apply-templates><xsl:if test="@bb_offset"><xsl:apply-templates 
+    </xsl:apply-templates><xsl:if test="@bb"><xsl:apply-templates 
       select="block|instance">
       <xsl:with-param name="bb" select="1"/>
     </xsl:apply-templates></xsl:if></xsl:template>

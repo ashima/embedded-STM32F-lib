@@ -55,18 +55,22 @@ for line in lines:
       i = 'CIP'
     elif i.startswith('RTC') :
       i = 'RTC'
-    elif i.startswith('SPI') :
-      i = i.split('/')[0]
-    elif i.startswith('ADC') :
-      i = i.split('-')[0]
+#    elif i.startswith('SPI') :
+#      i = i.split('/')[0]
+#    elif i.startswith('ADC') :
+#      i = i.split('-')[0]
     elif i.startswith('ETHERNET') :
-      i = 'ETH'
+      i = 'ETH_Bus'
     elif i.startswith('FSMCcontrol') :
       i = 'FSMC_CR'
     elif i=='Commonregisters' :
       i = 'ADC_CR'
+    elif i.startswith('ADC1-ADC') :
+      i = 'ADC_Bus'
 
-    if i == '':
+    i = i.split('/')
+
+    if i[0] == '':
       if p == 0 :
         p = 1
         tmp = []       
@@ -90,20 +94,21 @@ if tagname == None :
 with (sys.stdout if a.outf==None or a.outf=='-' else open(a.outf,'w')) as o:
   o.write("<%s>\n" % tagname )
   for (x,y,i) in blocks:
-    if i == "Reserved" :
+    if i[0] == "Reserved" :
       continue
-    c = re.sub(r'\d+$', "", i)
+    c = re.sub(r'\d+$', "", i[0])
     if c.startswith("GPIO") :
         c = "GPIO"
     elif c.startswith("I2S") :
       c = "SPI"
-    elif c.startswith("FSMCb") or c.startswith("ETH") :
+    elif c.startswith("FSMCb") or c.startswith("ETH") or c.startswith("ADC_Bus"):
       c =  ""
-    s = "  <block name='%s' " % i
-    if c != "" :
-      s += "class='%s' " % c
-    s += "first='0x%08x' last='0x%08x' size='0x%08x' />\n" % (x,y,y-x+1)
-    o.write( s )
+    for j in i:
+      s = "  <block name='%s' " % j
+      if c != "" :
+        s += "class='%s' " % c
+      s += "first='0x%08x' last='0x%08x' size='0x%08x' />\n" % (x,y,y-x+1)
+      o.write( s )
   o.write("</%s>\n" % tagname )
 
 

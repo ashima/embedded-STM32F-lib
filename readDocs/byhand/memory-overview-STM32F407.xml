@@ -20,7 +20,7 @@ organization more closely resembles how ST designed the underlying structure
 of the chip. Could be wrong though!!
 -->
 
-<memory1 chip="stm32f407vg">
+<memory-overview chip="stm32f407vg">
   <block name="Root" offset="0x00000000" size="4Gb">
     <block name="Block0"   offset="0x00000000" size="512Mb" >
       <block name="Boot"     offset="0x00000000" />
@@ -64,5 +64,5 @@ of the chip. Could be wrong though!!
       <block name="CortexM4" offset="0x00000000" />
     </block>
   </block>
-</memory1>
+</memory-overview>
 
