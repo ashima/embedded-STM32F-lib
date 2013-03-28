@@ -1,5 +1,11 @@
 <!--
 Table 170. From Ethernet register maps and reset values
+
+ENR has :
+  ETH MACTP EN
+  ETH MACRX EN
+  ETH MACTX EN
+  ETH MAC EN
 -->
 
 <memory-ethernet>

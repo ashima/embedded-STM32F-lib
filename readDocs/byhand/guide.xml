@@ -15,10 +15,10 @@
         <rename starts="ETHER" value="ETH_Bus"/>
         <rename starts="ADC" value="ADC_Bus"/>
 
-        <memory name="memory-adc" anchor="ADC_Bus" >
+        <memory name="memory-adc" anchor="ADC_Bus" width="0x0100">
           <rename starts="Common" value="ADC_CR"/>
         </memory>
-        <memory name="memory-ethernet" anchor="ETH_Bus" />
+        <memory name="memory-ethernet" anchor="ETH_Bus" width="0x0100" />
       </memory>
     </memory>
   </section>

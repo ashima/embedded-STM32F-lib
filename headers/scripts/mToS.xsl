@@ -19,7 +19,6 @@
     };
   const NAME##_t &amp;NAME = *(NAME##_t*)(NAME##_t::offset) ;
 
-
 <xsl:apply-templates select="/all/memory-map/block">
   <xsl:with-param name="indent" select="'      '"/>
   <xsl:with-param name="bb" select="0"/>
@@ -34,11 +33,11 @@
       <xsl:with-param name="bb" select="1"/>
     </xsl:apply-templates></xsl:if></xsl:template>
 
-  <xsl:template match="instance"><xsl:param 
+  <xsl:template match="block[@class]"><xsl:param 
     name="bb"/>DECLARE_PERIPH(<xsl:value-of 
 select="@class"/><xsl:if test="$bb=1">_BB</xsl:if>_t, <xsl:value-of 
 select="@name"/><xsl:if test="$bb=1">_BB</xsl:if>, <xsl:value-of 
-select="@bus"/>);<xsl:text>
+select="../@name"/>);<xsl:text>
 </xsl:text></xsl:template>
   
 </xsl:stylesheet>

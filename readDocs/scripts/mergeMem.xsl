@@ -29,8 +29,13 @@
   <xsl:template match="block">
     <xsl:param name="coff"/>
     <xsl:param name="inst"/>
+    <xsl:param name="width"/>
     <xsl:variable name="n" select="@name"/>
-<xsl:message>[ me = <xsl:value-of select="$n" /> atts = <xsl:value-of select="@*" /> ]</xsl:message>
+    <xsl:variable name="w"><xsl:choose>
+      <xsl:when test= "@width"><xsl:value-of select="u:toNum(@width)"/></xsl:when>
+      <xsl:otherwise><xsl:value-of select="$width"/></xsl:otherwise>
+    </xsl:choose></xsl:variable>
+ 
     <xsl:variable name="start"><xsl:choose>
         <xsl:when test="@offset"><xsl:value-of select="($coff+u:toNum(@offset))"/></xsl:when>
         <xsl:when test="@first"><xsl:value-of select="u:toNum(@first)"/></xsl:when>
@@ -58,12 +63,14 @@
          <xsl:attribute name="size">0x<xsl:value-of select="u:toHex($size)"/></xsl:attribute>
          <xsl:attribute name="last">0x<xsl:value-of select="u:toHex(($end -1))"/></xsl:attribute>
       </xsl:if>
-      <xsl:if test="@class"><xsl:attribute name="sect"><xsl:value-of select="$o div $size"/></xsl:attribute></xsl:if>
+      <xsl:if test="$width>0"><xsl:attribute name="sect"><xsl:value-of select="$o div $width"/></xsl:attribute></xsl:if>
 
       <xsl:variable name='nodes'>
       <xsl:apply-templates select="block">
+          <xsl:sort select="@first"/>
         <xsl:with-param name="coff" select="$start"/>
         <xsl:with-param name="inst" select="$inst"/>
+        <xsl:with-param name="width" select="$w"/>
       </xsl:apply-templates>
       </xsl:variable>
       <xsl:copy-of select="$nodes"/>
@@ -72,8 +79,10 @@
       <xsl:for-each select="exsl:node-set($inst)/memory" >
         <xsl:variable name="mn" select="@name"/>
         <xsl:variable name="ma" select="@anchor"/>
-
-<xsl:message>[ me = <xsl:value-of select="$n" /> looking = <xsl:value-of select="$mn" /> anchors = <xsl:value-of select="$ma" /> coff= <xsl:value-of select="u:toHex($start)"/> ]</xsl:message>
+        <xsl:variable name="w2"><xsl:choose>
+          <xsl:when test= "@width"><xsl:value-of select="u:toNum(@width)"/></xsl:when>
+          <xsl:otherwise><xsl:value-of select="$w"/></xsl:otherwise>
+        </xsl:choose></xsl:variable> 
 <!-- blocks that match on location -->
         <xsl:apply-templates select="/all/*[name()=$mn]/block[
           @name != $n and
@@ -83,6 +92,7 @@
           <xsl:sort select="@first"/>
           <xsl:with-param name="coff" select="$start"/>
           <xsl:with-param name="inst" select="."/>
+          <xsl:with-param name="width" select="$w2"/>
         </xsl:apply-templates>
 <!-- blocks that match by anchor -->
         <xsl:if test="$n = $ma">
@@ -90,6 +100,7 @@
             <xsl:with-param name="coff" select="0"/>
             <!--<xsl:with-param name="coff" select="$start"/>-->
             <xsl:with-param name="inst" select="."/>
+          <xsl:with-param name="width" select="$w2"/>
           </xsl:apply-templates>
         </xsl:if>
       </xsl:for-each>

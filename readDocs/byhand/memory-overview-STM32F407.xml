@@ -37,31 +37,29 @@ of the chip. Could be wrong though!!
       </block>
     </block>
     <block name="Block2"   offset="0x40000000" size="512Mb" >
-      <block name="Bus1"     offset="0x00000000" bb="0x02000000" size="1Mb" >
-        <block name="APB1"     offset="0x00000000" size="64kb" />
-        <block name="APB2"     offset="0x00010000" size="64kb" />
-        <block name="AHB1"     offset="0x00020000" size="896kb" />
-        <!-- <block name="SRAMB"    offset="0x00024000" size="4kb" /> -->
+      <block name="Bus1"     offset="0x00000000" bb="0x02000000" size="1Mb" width="64kb" >
+        <block name="APB1"     offset="0x00000000" size="64kb" width="1kb" />
+        <block name="APB2"     offset="0x00010000" size="64kb" width="1kb"/>
+        <block name="AHB1"     offset="0x00020000" size="896kb" width="1kb" >
+          <block name="SRAM1_R"   offset="0x4000" size="1kb" class="CR"/>
+          <block name="SRAM2_R"   offset="0x4400" size="1kb" class="CR"/>
+          <block name="BKPSRAM_R" offset="0x4800" size="1kb" class="CR"/>
+          <block name="SRAM3_R"   offset="0x4c00" size="1kb" class="CR"/>
+          <block name="CCM_R"     offset="0x5000" size="1kb" class="CR"/>
+        </block>
       </block>
       <block name="Bus2"     offset="0x10000000" size="256Mb">
-        <block name="AHB2"     offset="0x00000000" />
+        <block name="AHB2"     offset="0x00000000" size="256Mb"/>
       </block>
     </block>
     <block name="Block345" offset="0x60000000" size="1536Mb" >
-      <block name="Bus3"     offset="0x00000000" >
-        <block name="AHB3"     offset="0x00000000" >
-<!--          <block name="FSMC1"    offset="0x00000000" size="256Mb" />
-          <block name="FSMC2"    offset="0x10000000" size="256Mb" />
-          <block name="FSMC3"    offset="0x20000000" size="256Mb" />
-          <block name="FSMC4"    offset="0x30000000" size="256Mb" />
-          <block name="FSMCR"    offset="0x40000000" size="256Mb" />
--->
-        </block>
+      <block name="Bus3"     offset="0x00000000" size="1536Mb" >
+        <block name="AHB3"     offset="0x00000000" size="1536Mb"/>
       </block>
     </block>
     <block name="Block6"   offset="0xc0000000" size="512Mb" />
     <block name="Block7"   offset="0xe0000000" size="512Mb" >
-      <block name="CortexM4" offset="0x00000000" />
+      <block name="CortexM4" offset="0x00000000" size="512Mb" />
     </block>
   </block>
 </memory-overview>
