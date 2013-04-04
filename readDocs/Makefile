@@ -9,7 +9,12 @@ all: infobase/memory.xml \
   intermediates/DM00031020_0307-0307.txt \
   intermediates/memory-boundries.xml \
   intermediates/memory-adc.xml \
-  intermediates/registers1.xml
+  intermediates/registers1.xml\
+  intermediates/reg-RCC.xml \
+  intermediates/reg-GPIO.xml \
+  intermediates/reg-SYSCFG.xml \
+  intermediates/reg-DMA.xml
+
 
 MEMMERGELST = guide.xml \
               memory-overview-STM32F407.xml  \
@@ -19,8 +24,12 @@ MEMMERGELST = guide.xml \
 
 WRAP=scripts/wrap.sh
 VPATH=intermediates byhand docs
+EXT=$(PY) scripts/extracttable.py
+EXTARGS=-r 200 -t cells_xml -w none
 
-#memory
+intermediates/reg-%.xml: byhand/%.tab
+	$(EXT) $(EXTARGS) -o $@ -name $* `cat $^`
+
 intermediates/memory-boundries.xml:  DM00037051_0064-0067.txt
 	$(PY) scripts/memOftab.py -i $^ -o $@ -t memory-boundries
 
