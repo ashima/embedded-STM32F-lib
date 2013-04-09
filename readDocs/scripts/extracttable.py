@@ -18,7 +18,7 @@ def procargs() :
   p.add_argument("-i", dest='infile',  help="input file" )
   p.add_argument("-o", dest='outfile', help="output file", default=sys.stdout,
      type=argparse.FileType('w') )
-  p.add_argument("-p", dest='page', required=True, action="append",
+  p.add_argument("-p", type=str, dest='page', required=True, action="append",
      help="a page in the PDF to process, as page[:firstrow:lastrow]." )
   p.add_argument("-g", help="grayscale threshold (%%)", type=int, default=25 )
   p.add_argument("-l", type=float, default=0.17 ,
@@ -396,7 +396,8 @@ def o_cells_xml(cells,pgs) :
   doc = getDOMImplementation().createDocument(None,"table", None)
   root = doc.documentElement;
   root.setAttribute("src",args.infile)
-  root.setAttribute("name",args.name)
+  if args.name :
+    root.setAttribute("name",args.name)
   for cl in cells :
     x = doc.createElement("cell")
     map(lambda(a): x.setAttribute(*a), zip("xywhp",map(str,cl)))
@@ -430,8 +431,9 @@ def o_table_html(cells,pgs) :
     (i,j,u,v,pg,value) = cells[k]
     if j > oj or pg > opg:
       if pg > opg:
-        root.appendChild( doc.createComment(
-          "Name: %s, Source: %s page %d." % (args.name,args.infile, pg) ));
+        s = "Name: " + args.name + ", " if args.name else ""
+        root.appendChild( doc.createComment( s + 
+          ("Source: %s page %d." % (args.infile, pg) )));
       if tr :
         root.appendChild(tr)
       tr = doc.createElement("tr")
