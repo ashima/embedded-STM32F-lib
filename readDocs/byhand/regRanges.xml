@@ -1,0 +1,8 @@
+<regranges>
+  <range reg="RCC" sub="PLLN" min="192" max="432"/>
+  <range reg="RCC" sub="PLLM" min="2" max="63"/>
+  <range reg="RCC" sub="PLLQ" min="2" max="15"/>
+  <range reg="RCC" sub="SW" min="0" max="2"/>
+  <range reg="RCC" sub="PLLI2SN" min="192" max="432"/>
+  <range reg="RCC" sub="PLLI2SR" min="2" max="7"/>
+</regranges>
