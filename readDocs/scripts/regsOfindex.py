@@ -15,7 +15,11 @@ with open (a.inxfile, 'r' ) as l :
 
 l.close()
 #   '     1.3     Peripheral availability. . . . . . . . 48'
-rse = re.compile( r'(\d+.*?\s+\.\s+\d+)', re.MULTILINE | re.DOTALL )
+#rse = re.compile( r'(\d+.*?\s+\.\s+\d+)', re.MULTILINE | re.DOTALL )
+rse = re.compile( r'(\d+.*?\s+\d+$)', re.MULTILINE | re.DOTALL )
+
+inx = re.sub( r'\n\s+(?=[A-Za-z\(])'," ",inx )
+print inx
 rs = rse.findall( inx )
 
 inxrow = re.compile( r'(\d+.*?)\s+(.*?)(\d+)$' )
@@ -42,7 +46,7 @@ for reg in rs :
   t = re.sub( r'<', '&lt;', t)
   t = re.sub( r'>', '&gt;', t)
 
-  regline = re.compile( r'register.*\(([A-Z0-9_]+)\)' )
+  regline = re.compile( r'register.*\(([A-Za-z0-9_]+)\)' )
 
   m = regline.search(t)
   if m == None :

@@ -1,7 +1,8 @@
+.SECONDARY:
 
-TARGETS = memory.h instances.h mToCtest mToCtest.out mToCtest.c
+TARGETS = memory.h instances.h structures.h mToCtest mToCtest.out mToCtest.c
 
-all: memory.h instances.h mToCtest.out
+all: $(TARGETS)
 
 INFOBASE=../readDocs/infobase/
 VPATH=$(INFOBASE)
@@ -9,8 +10,11 @@ VPATH=$(INFOBASE)
 memory.h: memory.xml
 	xsltproc -o $@ scripts/mToC.xsl $^
 
-instances.h: memory.xml
+instances.h: memory.xml 
 	xsltproc -o $@ scripts/mToS.xsl $^
+
+structures.h: peripherals.xml
+	xsltproc -o $@ scripts/periphToH.xsl $^
 
 mToCtest.c: memory.xml
 	xsltproc -o $@ scripts/mToCtest.xsl $^

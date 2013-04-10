@@ -19,6 +19,8 @@
           <rename starts="Common" value="ADC_CR"/>
         </memory>
         <memory name="memory-ethernet" anchor="ETH_Bus" width="0x0100" />
+        <memory name="memory-dma" anchor="DMA1_Bus" inst="1" width="0x0100" />
+        <memory name="memory-dma" anchor="DMA2_Bus" inst="2" width="0x0100" />
       </memory>
     </memory>
   </section>

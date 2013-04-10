@@ -50,7 +50,7 @@ for line in lines:
     y = int( ys.lower() , 0)
 
     if i == 'Flashinterfaceregister' :
-      i = 'FIR'
+      i = 'FLASH'
     elif i == 'Cortex-M4internalperipherals' :
       i = 'CIP'
     elif i.startswith('RTC') :
@@ -67,6 +67,10 @@ for line in lines:
       i = 'ADC_CR'
     elif i.startswith('ADC1-ADC') :
       i = 'ADC_Bus'
+    elif i.startswith('DMA1') :
+      i = 'DMA1_Bus'
+    elif i.startswith('DMA2') :
+      i = 'DMA2_Bus'
 
     i = i.split('/')
 
@@ -101,7 +105,8 @@ with (sys.stdout if a.outf==None or a.outf=='-' else open(a.outf,'w')) as o:
         c = "GPIO"
     elif c.startswith("I2S") :
       c = "SPI"
-    elif c.startswith("FSMCb") or c.startswith("ETH") or c.startswith("ADC_Bus"):
+    elif c.startswith("FSMCb") or c.startswith("ETH") or \
+         c.startswith("ADC_Bus") or c.startswith("DMA") :
       c =  ""
     for j in i:
       s = "  <block name='%s' " % j

@@ -17,6 +17,13 @@ struct bitband_types
   typedef ::uint32_t uint8_t[8];
   };
 
+template<int F, int L>
+uint32_t maskedAssign(uint32_t y, uint32_t x)
+  {
+  enum { mask = (2UL << (L-F))-1 };
+  return (y & ~(mask << F)) | ((x & mask) << F);
+  }  
+
 template<class P, int O,int F, int L, uint32_t MIN=0, uint32_t MAX=UINT32_MAX>
 struct subregister {
   enum { 
@@ -30,10 +37,12 @@ struct subregister {
   typedef P parent;
 
   struct t {
-    void operator=(const int &x) {
+    uint32_t operator=(const uint32_t &x) {
       assert( x || mask == mask );
       assert( x >= MIN && x <= MAX );
-      (*(uint32_t*)r) = (*(uint32_t*)r & ~(mask << F))  | ((x & mask) << F);
+ //     (*(uint32_t*)r) = (*(uint32_t*)r & ~(mask << F))  | ((x & mask) << F);
+      (*(uint32_t*)r) = maskedAssign<F,L>( *(uint32_t*)r , x) ;
+      return x; 
       };
     operator const uint32_t () {
       return (uint32_t)( (*(volatile uint32_t*)r >> F) & mask) ;

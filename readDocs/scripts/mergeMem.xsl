@@ -29,8 +29,14 @@
   <xsl:template match="block">
     <xsl:param name="coff"/>
     <xsl:param name="inst"/>
+    <xsl:param name="num"/>
     <xsl:param name="width"/>
-    <xsl:variable name="n" select="@name"/>
+    <xsl:variable name="n"><xsl:choose>
+      <xsl:when test="contains(@name,'x') and $num" ><xsl:value-of 
+        select="concat( substring-before(@name,'x'), $num , substring-after(@name,'x') )"/></xsl:when>
+      <xsl:otherwise><xsl:value-of select="@name"/></xsl:otherwise> 
+    </xsl:choose></xsl:variable>
+
     <xsl:variable name="w"><xsl:choose>
       <xsl:when test= "@width"><xsl:value-of select="u:toNum(@width)"/></xsl:when>
       <xsl:otherwise><xsl:value-of select="$width"/></xsl:otherwise>
@@ -55,8 +61,8 @@
     </xsl:choose></xsl:variable>
 
     <xsl:variable name="end"   select="($start+$size)"/> 
-    <block>
-      <xsl:copy-of select="@name|@class|@bb"/>
+    <block name="{$n}">
+      <xsl:copy-of select="@class|@bb"/>
       <xsl:attribute name="offset">0x<xsl:value-of select="u:toHex($o)"/></xsl:attribute>
       <xsl:attribute name="first">0x<xsl:value-of select="u:toHex($start)"/></xsl:attribute>
       <xsl:if test="@size">
@@ -77,14 +83,15 @@
 
 
       <xsl:for-each select="exsl:node-set($inst)/memory" >
-        <xsl:variable name="mn" select="@name"/>
-        <xsl:variable name="ma" select="@anchor"/>
+        <xsl:variable name="guidename" select="@name"/>
+        <xsl:variable name="guideanchor" select="@anchor"/>
+        <xsl:variable name="guideinst" select="@inst"/>
         <xsl:variable name="w2"><xsl:choose>
           <xsl:when test= "@width"><xsl:value-of select="u:toNum(@width)"/></xsl:when>
           <xsl:otherwise><xsl:value-of select="$w"/></xsl:otherwise>
         </xsl:choose></xsl:variable> 
 <!-- blocks that match on location -->
-        <xsl:apply-templates select="/all/*[name()=$mn]/block[
+        <xsl:apply-templates select="/all/*[name()=$guidename]/block[
           @name != $n and
           u:toNum(@first) &gt;= $start and 
           u:toNum(@last) &lt; $end and
@@ -95,11 +102,12 @@
           <xsl:with-param name="width" select="$w2"/>
         </xsl:apply-templates>
 <!-- blocks that match by anchor -->
-        <xsl:if test="$n = $ma">
-          <xsl:apply-templates select="/all/*[name()=$mn]/block" >
+        <xsl:if test="$n = $guideanchor">
+          <xsl:apply-templates select="/all/*[name()=$guidename]/block" >
             <xsl:with-param name="coff" select="0"/>
             <!--<xsl:with-param name="coff" select="$start"/>-->
             <xsl:with-param name="inst" select="."/>
+            <xsl:with-param name="num" select="$guideinst"/>
           <xsl:with-param name="width" select="$w2"/>
           </xsl:apply-templates>
         </xsl:if>
