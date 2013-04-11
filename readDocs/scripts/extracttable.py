@@ -456,6 +456,10 @@ def o_table_html(cells,pgs) :
       if tr :
         root.appendChild(tr)
       tr = doc.createElement("tr")
+      if args.t == "table_chtml" :
+        th = doc.createElement("th")
+        th.appendChild( doc.createTextNode( "L%d P%d" % (j,pg) ))
+        tr.appendChild(th)
       oj = j
       opg = pg
     td = doc.createElement("td")
