@@ -1,0 +1,53 @@
+<errata>
+  <replace p="308" x="7"  y="9" ><was></was             ><to>SMP18</to></replace>
+  <replace p="308" x="10" y="9" ><was></was             ><to>SMP17</to></replace>
+  <replace p="308" x="13" y="9" ><was>Samp</was         ><to>SMP16</to></replace>
+  <replace p="308" x="16" y="9" ><was>ple time bits</was><to>SMP15</to></replace>
+  <replace p="308" x="19" y="9" ><was>s SMPx_x</was     ><to>SMP14</to></replace>
+  <replace p="308" x="22" y="9" ><was></was             ><to>SMP13</to></replace>
+  <replace p="308" x="25" y="9" ><was></was             ><to>SMP12</to></replace>
+  <replace p="308" x="28" y="9" ><was></was             ><to>SMP11</to></replace>
+  <replace p="308" x="31" y="9" ><was></was             ><to>SMP10</to></replace>
+
+  <replace p="308" x="4"  y="11"><was></was             ><to>SMP9</to></replace>
+  <replace p="308" x="7"  y="11"><was></was             ><to>SMP8</to></replace>
+  <replace p="308" x="10" y="11"><was></was             ><to>SMP7</to></replace>
+  <replace p="308" x="13" y="11"><was>Samp</was         ><to>SMP6</to></replace>
+  <replace p="308" x="16" y="11"><was>ple time bits</was><to>SMP5</to></replace>
+  <replace p="308" x="19" y="11"><was>s SMPx_x</was     ><to>SMP4</to></replace>
+  <replace p="308" x="22" y="11"><was></was             ><to>SMP3</to></replace>
+  <replace p="308" x="25" y="11"><was></was             ><to>SMP2</to></replace>
+  <replace p="308" x="28" y="11"><was></was             ><to>SMP1</to></replace>
+  <replace p="308" x="31" y="11"><was></was             ><to>SMP0</to></replace>
+
+  <replace p="308" x="14" y="25"><was>R</was>                 <to>SQ16</to></replace>
+  <replace p="308" x="19" y="25"><was>Regular channel se</was><to>SQ15</to></replace>
+  <replace p="308" x="24" y="25"><was>equence SQx_x bits</was><to>SQ14</to></replace>
+  <replace p="308" x="29" y="25"><was>s</was>                 <to>SQ13</to></replace>
+
+  <replace p="308" x="4" y="27"><was></was>                   <to>SQ12</to></replace>
+  <replace p="308" x="9" y="27"><was>R</was>                  <to>SQ11</to></replace>
+  <replace p="308" x="14" y="27"><was>Regular channel se</was><to>SQ10</to></replace>
+  <replace p="308" x="19" y="27"><was>equence SQx_x bits</was><to>SQ9</to></replace>
+  <replace p="308" x="24" y="27"><was>s</was>                 <to>SQ8</to></replace>
+  <replace p="308" x="29" y="27"><was></was>                  <to>SQ7</to></replace>
+
+  <replace p="308" x="4" y="29"><was></was>                   <to>SQ6</to></replace>
+  <replace p="308" x="9" y="29"><was>R</was>                  <to>SQ5</to></replace>
+  <replace p="308" x="14" y="29"><was>Regular channel se</was><to>SQ4</to></replace>
+  <replace p="308" x="19" y="29"><was>equence SQx_x bits</was><to>SQ3</to></replace>
+  <replace p="308" x="24" y="29"><was>s</was>                 <to>SQ2</to></replace>
+  <replace p="308" x="29" y="29"><was></was>                  <to>SQ1</to></replace>
+
+  <replace p="308" x="14" y="31"><was>In</was>                 <to>JQS4</to></replace>
+  <replace p="308" x="19" y="31"><was>njected channel seq</was><to>JQS3</to></replace>
+  <replace p="308" x="24" y="31"><was>quence JSQx_x bit</was>  <to>JQS2</to></replace>
+  <replace p="308" x="29" y="31"><was>s</was>                  <to>JQS1</to></replace>
+
+  <replace p="308" x="18" y="33"><was>JDATA[15:0]</was>   <to>JDATA1</to></replace>
+  <replace p="308" x="18" y="35"><was>JDATA[15:0]</was>   <to>JDATA2</to></replace>
+  <replace p="308" x="18" y="37"><was>JDATA[15:0]</was>   <to>JDATA3</to></replace>
+  <replace p="308" x="18" y="39"><was>JDATA[15:0]</was>   <to>JDATA4</to></replace>
+	
+  <replace p="308" x="18" y="41"><was>Regular DATA[15:0]</was>   <to>DATA</to></replace>
+</errata>

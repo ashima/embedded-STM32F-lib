@@ -1,0 +1,15 @@
+<errata>
+  <replace p="329" x="22" y="5"><was>DACC1DHR[11:0]</was><to>DACC1DHR12R1</to></replace>
+  <replace p="329" x="18" y="6" ><was>DACC1DHR[11:0]</was><to>DACC1DHR12L</to></replace>
+  <replace p="329" x="26" y="7" ><was>DACC1DHR[7:0]</was ><to>DACC1DHR8R</to></replace>
+  <replace p="329" x="22" y="8" ><was>DACC2DHR[11:0]</was><to>DACC2DHR12R</to></replace>
+  <replace p="329" x="18" y="9" ><was>DACC2DHR[11:0]</was><to>DACC2DHR12L</to></replace>
+  <replace p="329" x="26" y="10"><was>DACC2DHR[7:0]</was ><to>DACC2DHR8R</to></replace>
+  <replace p="329" x="6"  y="11"><was>DACC2DHR[11:0]</was><to>DACC2DHR12RD</to></replace>
+  <replace p="329" x="22" y="11"><was>DACC1DHR[11:0]</was><to>DACC1DHR12RD</to></replace>
+  <replace p="329" x="2"  y="12"><was>DACC2DHR[11:0]</was><to>DACC2DHR12LD</to></replace>
+  <replace p="329" x="18" y="12"><was>DACC1DHR[11:0]</was><to>DACC1DHR12LD</to></replace>
+  <replace p="329" x="18" y="13"><was>DACC2DHR[7:0]</was ><to>DACC2DHR8RD</to></replace>
+  <replace p="329" x="26" y="13"><was>DACC1DHR[7:0]</was ><to>DACC1DHR8RD</to></replace>
+</errata>
+

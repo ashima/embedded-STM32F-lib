@@ -33,14 +33,23 @@
       <xsl:with-param name="bb" select="1"/>
     </xsl:apply-templates></xsl:if></xsl:template>
 
-  <xsl:template match="block[@class='RCC' or @class='DMA' or @class='DMA_S' or @class='GPIO' or @class='FLASH']"><xsl:param 
-    name="bb"/>DECLARE_PERIPH(<xsl:value-of 
+  <xsl:template match="block[@class]"><xsl:param 
+    name="bb"/><xsl:choose>
+<xsl:when test="@class='RCC'  or @class='DMA'   or @class='DMA_S' or
+                @class='GPIO' or @class='FLASH' or @class='DAC'   or 
+                @class='ADC'  or @class='WWDG'  or @class='SPI' "
+>DECLARE_PERIPH(<xsl:value-of 
 select="@name"/><xsl:if test="$bb=1">_BB</xsl:if>, <xsl:value-of 
 select="@class"/>, <xsl:choose>
 <xsl:when test="$bb=1">bitband_types</xsl:when>
 <xsl:otherwise>normal_types</xsl:otherwise>
 </xsl:choose>, <xsl:value-of 
 select="../@name"/>);<xsl:text>
-</xsl:text></xsl:template>
-  
+</xsl:text></xsl:when>
+<xsl:otherwise>// <xsl:value-of select="@class" />,<xsl:value-of select="@name"/>
+<xsl:text>
+</xsl:text>
+</xsl:otherwise>
+</xsl:choose></xsl:template>
+ 
 </xsl:stylesheet>

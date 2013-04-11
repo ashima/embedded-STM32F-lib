@@ -9,7 +9,7 @@ REGOFINX=$I/regsFromIndex.xml
 
 # what goes into the outbound database.
 MERGELST = guide.xml \
-           regRanges.xml \
+           reg-Ranges.xml \
               memory-overview-STM32F407.xml  \
               memory-boundries.xml \
               memory-adc.xml  \
@@ -21,7 +21,12 @@ MERGELST = guide.xml \
   $I/periph-SYSCFG.xml \
   $I/periph-FLASH.xml \
   $I/periph-DMA.xml \
-  $I/irq.xml
+  $I/periph-ADC.xml \
+  $I/periph-DAC.xml \
+  $I/periph-DCMI.xml \
+  $I/periph-WWDG.xml \
+  $I/periph-SPI.xml \
+  $I/IRQ-branchtable.xml
 
 all: infobase/memory.xml \
      infobase/peripherals.xml
@@ -35,6 +40,7 @@ all: infobase/memory.xml \
 #  $(MERGELST)
 
 WRAP=$(PY) scripts/wrap.py
+MINC=$(PY) scripts/mkinc.py
 VPATH=$I byhand docs
 EXT=$(PY) scripts/extracttable.py
 EXTARGS=-r 200 -t cells_xml
@@ -56,7 +62,9 @@ $I/DM00031020_0307-0307.txt: DM00031020.pdf
 	pdftotext -y 462 -H 128 -x 0 -W 600 -layout -f 307 -l 307 -nopgbrk $^ $@
 
 $I/all.xml: $(MERGELST) 
-	$(WRAP) -o $@ $^ 
+	$(MINC) $^ | xsltproc -xinclude -o $@ scripts/nop.xsl -
+
+#	$(WRAP) -o $@ $^ 
 
 infobase/memory.xml: intermediates/all.xml
 	xsltproc -o $@ scripts/mergeMem.xsl $^
@@ -67,15 +75,25 @@ infobase/peripherals.xml: $I/all.xml
 # registers
 $(REGOFINX): DM00031020_0002-0032.txt
 	$(PY) scripts/regsOfindex.py -i $^ -o $@ 
+# table stuff...
 
 $I/table-%.xml: byhand/%.tab
-	$(EXT) $(EXTARGS) -o $@ -name $* `cat $^`
+	$(EXT) $(EXTARGS) -o $@ `cat $^`
+	if [ -e byhand/$*.errata ] ; then mv $@ $@.raw ; \
+	$(MINC) $@.raw byhand/$*.errata |\
+	xsltproc -xinclude -o $@ scripts/editTab.xsl - ; fi
 
-$I/periph-%.xml: $I/table-reg-%.xml $(REGOFINX)
-	$(PY) scripts/periphOfTab.py -c $(REGOFINX) -i $< -o $@
 
-$I/irq.xml: $I/table-IRQ.xml
-	echo $^
+
+
+#$I/table-%.xml: table-%.rawxml byhand/%.errata
+	#$(MINC) $^ | xsltproc -xinclude -o $@ scripts/editTab.xsl
+
+$I/periph-%.xml: $I/table-reg-%.xml
+	$(PY) scripts/periphOfTab.py -i $< -o $@
+
+$I/IRQ-branchtable.xml: $I/table-IRQ.xml
+	xsltproc -o $@ scripts/btOfTab.xsl $^
 
 clean:
 	rm intermediates/*.xml intermediates/*.txt infobase/*.xml

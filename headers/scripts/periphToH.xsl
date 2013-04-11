@@ -28,10 +28,10 @@ struct <xsl:value-of select="@name"/>_rt {
   };
 <xsl:text>
 </xsl:text>
-template &lt;typename T,uint32_t L&gt;
+template &lt;typename TYP,uint32_t LOC&gt;
 struct <xsl:value-of select="@name"/>_st {
-  typedef T inttypes;
-  enum { loc = L } ;
+  typedef TYP inttypes;
+  enum { loc = LOC } ;
 <xsl:apply-templates select="subregister"/>
   };
   </xsl:template>
