@@ -98,7 +98,8 @@
         <xsl:value-of select="1024*1024*1024 * u:toNum($h)" />
       </xsl:when>
       <xsl:when test="starts-with($s,'0x')">
-        <xsl:value-of select="u:hex( substring-after($s,'0x'))" />
+        <xsl:variable name="s1" select="substring-after($s,'0x')" />
+        <xsl:value-of select="u:hex( (str:tokenize($s1,concat(' ', translate($s1,'0123456789aAbBcCdDeEfF','')))[1]/text() ))" />
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="number($s)" />
@@ -120,5 +121,21 @@
     </xsl:choose>
     </fn:result>
   </fn:function>
-  
+ 
+
+  <xsl:template match="table" mode="group-to-row">
+    <head>
+      <xsl:copy-of select="cell[ generate-id() = generate-id(key('rows',@p*10000+@y)[1]) and position()=1]"/>
+    </head>
+    <body>
+    <xsl:for-each select="cell[ generate-id() = generate-id(key('rows',@p*10000+@y)[1]) and position()>1]">
+      <xsl:sort select="@p*10000+@y"/>
+      <xsl:variable name="i" select="@p*10000+@y"/>
+      <row p="{@p}" y="{@y}" >
+        <xsl:copy-of select="key('rows',$i)" />
+      </row>
+    </xsl:for-each>
+    </body>
+  </xsl:template>
+ 
 </xsl:stylesheet>
