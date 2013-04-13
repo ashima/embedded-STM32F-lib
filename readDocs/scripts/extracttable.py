@@ -157,6 +157,38 @@ def process_page(pgs) :
   img[:,:,1] = bmp*255
   img[:,:,2] = bmp*255
 
+
+  def boxOfString(x,p) :
+    s = x.split(":")
+    if len(s) < 4 :
+      raise Exception("boxes have format left:top:right:bottom[:page]")
+    return ([args.r * float(x) + args.pad for x in s[0:4] ]
+                + [ p if len(s)<5 else int(s[4]) ] ) 
+
+
+# translate crop to paint white.
+  whites = []
+  if args.crop :
+    (l,t,r,b,p) = boxOfString(args.crop,pg) 
+    whites.extend( [ (0,0,l,height,p), (0,0,width,t,p),
+                     (r,0,width,height,p), (0,b,width,height,p) ] )
+
+# paint white ...
+  if args.white :
+    whites.extend( [ boxOfString(b, pg) for b in args.white ] )
+
+  for (l,t,r,b,p) in whites :
+    if p == pg :
+      bmp[ t:b+1,l:r+1 ] = 1
+      img[ t:b+1,l:r+1 ] = [255,255,255]
+  
+# paint black ...
+  if args.black :
+    for b in args.black :
+      (l,t,r,b) = [args.r * float(x) + args.pad for x in b.split(":") ]
+      bmp[ t:b+1,l:r+1 ] = 0
+      img[ t:b+1,l:r+1 ] = [0,0,0]
+
 #-----------------------------------------------------------------------
 # Find bounding box.
 
@@ -189,37 +221,6 @@ def process_page(pgs) :
   bmp[b,:] = 0
   bmp[:,l] = 0
   bmp[:,r] = 0
-
-  def boxOfString(x,p) :
-    s = x.split(":")
-    if len(s) < 4 :
-      raise Exception("boxes have format left:top:right:bottom[:page]")
-    return ([args.r * float(x) + args.pad for x in s[0:4] ]
-                + [ p if len(s)<5 else int(s[4]) ] ) 
-
-
-# translate crop to paint white.
-  whites = []
-  if args.crop :
-    (l,t,r,b,p) = boxOfString(args.crop,pg) 
-    whites.extend( [ (0,0,l,height,p), (0,0,width,t,p),
-                     (r,0,width,height,p), (0,b,width,height,p) ] )
-
-# paint white ...
-  if args.white :
-    whites.extend( [ boxOfString(b, pg) for b in args.white ] )
-
-  for (l,t,r,b,p) in whites :
-    if p == pg :
-      bmp[ t:b+1,l:r+1 ] = 1
-      img[ t:b+1,l:r+1 ] = [255,255,255]
-  
-# paint black ...
-  if args.black :
-    for b in args.black :
-      (l,t,r,b) = [args.r * float(x) + args.pad for x in b.split(":") ]
-      bmp[ t:b+1,l:r+1 ] = 0
-      img[ t:b+1,l:r+1 ] = [0,0,0]
 
   if args.checkcrop :
     dumpImage(args,bmp,img)
