@@ -15,6 +15,8 @@ MERGELST = guide.xml \
               memory-adc.xml  \
               memory-dma.xml  \
               memory-ethernet.xml \
+  $I/table-memory-Blk12.xml \
+  $I/table-memory-ADC.xml \
   regsFromIndex.xml\
   $I/periph-RCC.xml \
   $I/periph-GPIO.xml \
@@ -26,6 +28,7 @@ MERGELST = guide.xml \
   $I/periph-DCMI.xml \
   $I/periph-WWDG.xml \
   $I/periph-SPI.xml \
+  $I/parts.xml \
   $I/IRQ-branchtable.xml
 
 all: infobase/memory.xml \
@@ -45,6 +48,9 @@ VPATH=$I byhand docs
 EXT=$(PY) scripts/extracttable.py
 EXTARGS=-r 200 -t cells_xml
 # -w none
+
+$I/parts.xml: docs/STM-partlisttable.html
+	xsltproc --html -o $@ scripts/partsFromXHtml.xsl $^
 
 $I/memory-boundries.xml:  DM00037051_0064-0067.txt
 	$(PY) scripts/memOftab.py -i $^ -o $@ -t memory-boundries
