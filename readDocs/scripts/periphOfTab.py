@@ -75,7 +75,7 @@ root = ET.Element('permap',table.attrib)
 
 #should get the special cases out somewhere!
 n1 = re.compile( r'^(MCO2PRE|MCO1PRE|.*\s+)(\d+)$' )
-print sorted(ks)
+#print sorted(ks)
 
 for k in sorted(ks) :
   r = inx[k]
