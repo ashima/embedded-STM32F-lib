@@ -10,12 +10,13 @@
 
 <xsl:import href="utils.xsl"/>
 <xsl:output method="xml" omit-xml-declaration="yes" indent="yes" />
+<!--
   <xsl:template match="all">
 <peripherals>
     <xsl:apply-templates select="permap"/>
 </peripherals>
   </xsl:template>
-
+-->
 
   <xsl:template match="permap[@name='GPIO']">
     <peripheral page="{reg/@p}">

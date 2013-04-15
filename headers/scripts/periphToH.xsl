@@ -7,7 +7,7 @@
   <xsl:output method="text" omit-xml-declaration="no" indent="no" />
 
   <xsl:template match="/">
-  <xsl:apply-templates select="peripherals"/>
+  <xsl:apply-templates select="infobase/peripherals"/>
   </xsl:template>
 
   <xsl:template match="peripherals">

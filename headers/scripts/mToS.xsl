@@ -19,7 +19,7 @@
   typedef CLASS##_rt&lt;INTS, memMap::NAME&gt; NAME##_t ; \
   NAME##_t &amp;NAME##_s = *(NAME##_t*)(NAME##_t::loc) ;
 
-<xsl:apply-templates select="/all/memory-map/block">
+<xsl:apply-templates select="/infobase/memory-map/block">
   <xsl:with-param name="indent" select="'      '"/>
   <xsl:with-param name="bb" select="0"/>
 </xsl:apply-templates>

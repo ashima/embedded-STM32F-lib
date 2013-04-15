@@ -21,45 +21,40 @@ of the chip. Could be wrong though!!
 -->
 
 <memory-overview chip="stm32f407vg">
-  <block name="Root" offset="0x00000000" size="4Gb">
-    <block name="Block0"   offset="0x00000000" size="512Mb" >
-      <block name="Boot"     offset="0x00000000" />
-      <block name="Flash"    offset="0x08000000" />
-      <block name="CCM"      offset="0x10000000" />
-      <block name="Sys"      offset="0x1fff0000" />
-      <block name="Opt"      offset="0x1fffc000" />
+  <block name="root" offset="0x00000000" size="4Gb">
+    <block name="block0"    offset="0x00000000" size="512Mb" >
+      <block name="bootalias" offset="0x00000000" size="1Mb" />
+      <block name="flash"     offset="0x08000000" size="1Mb" />
+      <block name="ccm"       offset="0x10000000" size="64Kb" />
+      <block name="system"    offset="0x1fff0000" size="30Kb" />
+      <block name="options"   offset="0x1fffc000" />
     </block>
-    <block name="Block1"   offset="0x20000000" size="512Mb" >
-      <block name="SRAM"     offset="0x0000000" bb="0x02000000" size="1Mb">
-        <block name="SRAM1"    offset="0x00000000" />
-        <block name="SRAM2"    offset="0x0001c000" />
-        <block name="SRAM3"    offset="0x00020000" />
+    <block name="block1"   offset="0x20000000" size="512Mb" >
+      <block name="sram"     offset="0x0000000" bb="0x02000000" size="1Mb">
+        <block name="sram1"    offset="0x00000000" size="112Kb" />
+        <block name="sram2"    offset="0x0001c000" size="16Kb" />
+        <block name="sram3"    offset="0x00020000" size="64Kb" />
       </block>
     </block>
-    <block name="Block2"   offset="0x40000000" size="512Mb" >
-      <block name="Bus1"     offset="0x00000000" bb="0x02000000" size="1Mb" width="64kb" >
-        <block name="APB1"     offset="0x00000000" size="64kb" width="1kb" />
-        <block name="APB2"     offset="0x00010000" size="64kb" width="1kb"/>
-        <block name="AHB1"     offset="0x00020000" size="896kb" width="1kb" >
-          <block name="SRAM1_R"   offset="0x4000" size="1kb" class="CR"/>
-          <block name="SRAM2_R"   offset="0x4400" size="1kb" class="CR"/>
-          <block name="BKPSRAM_R" offset="0x4800" size="1kb" class="CR"/>
-          <block name="SRAM3_R"   offset="0x4c00" size="1kb" class="CR"/>
-          <block name="CCM_R"     offset="0x5000" size="1kb" class="CR"/>
+    <block name="block2"   offset="0x40000000" size="512Mb" >
+      <block name="bus1"     offset="0x00000000" bb="0x02000000" size="1Mb" width="64kb" >
+        <block name="apb1"     offset="0x00000000" size="64kb" width="1kb" />
+        <block name="apb2"     offset="0x00010000" size="64kb" width="1kb"/>
+        <block name="ahb1"     offset="0x00020000" size="896kb" width="1kb" >
         </block>
       </block>
-      <block name="Bus2"     offset="0x10000000" size="256Mb">
-        <block name="AHB2"     offset="0x00000000" size="256Mb"/>
+      <block name="bus2"     offset="0x10000000" size="256Mb">
+        <block name="ahb2"     offset="0x00000000" size="256Mb"/>
       </block>
     </block>
-    <block name="Block345" offset="0x60000000" size="1536Mb" >
-      <block name="Bus3"     offset="0x00000000" size="1536Mb" >
-        <block name="AHB3"     offset="0x00000000" size="1536Mb"/>
+    <block name="block345" offset="0x60000000" size="1536Mb" >
+      <block name="bus3"     offset="0x00000000" size="1536Mb" >
+        <block name="ahb3"     offset="0x00000000" size="1536Mb"/>
       </block>
     </block>
-    <block name="Block6"   offset="0xc0000000" size="512Mb" />
-    <block name="Block7"   offset="0xe0000000" size="512Mb" >
-      <block name="CortexM4" offset="0x00000000" size="512Mb" />
+    <block name="block6"   offset="0xc0000000" size="512Mb" />
+    <block name="block7"   offset="0xe0000000" size="512Mb" >
+      <block name="cortexM4" offset="0x00000000" size="512Mb" />
     </block>
   </block>
 </memory-overview>

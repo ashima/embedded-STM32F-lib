@@ -3,7 +3,7 @@ Table 44, p245.
 
 -->
 
-<memory-dma>
+<memory name="memory-dma">
   <block name='DMAx' class='DMA' offset="0x0000" size="0x010" />
   <block name='DMAx_S0' class='DMA_S' offset="0x0010" size="0x018" />
   <block name='DMAx_S1' class='DMA_S' offset="0x0028" size="0x018" />
@@ -13,5 +13,5 @@ Table 44, p245.
   <block name='DMAx_S5' class='DMA_S' offset="0x0088" size="0x018" />
   <block name='DMAx_S6' class='DMA_S' offset="0x00A0" size="0x018" />
   <block name='DMAx_S7' class='DMA_S' offset="0x00B8" size="0x018" />
-</memory-dma>
+</memory>
 

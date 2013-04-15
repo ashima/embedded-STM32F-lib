@@ -1,1 +1,1 @@
--name DCMI -i docs/DM00031020.pdf -p 351:0:12 -p 352:3:12 -white 0:0:7.5:5.0:351
+-name DCMI -i docs/DM00031020.pdf -p 351:1:12 -p 352:3:12 -white 0:0:7.5:5.0:351

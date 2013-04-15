@@ -10,13 +10,13 @@
 <xsl:import href="utils.xsl"/>
 
 <xsl:output method="xml" omit-xml-declaration="yes" indent="yes" />
-
+<!--
   <xsl:template match="all">
 <all>
     <xsl:apply-templates select="guide/section[@name='memory']"/>
 </all>
   </xsl:template>
-
+-->
   <xsl:template match="section[@name='memory']" >
     <memory-map>
       <xsl:apply-templates select="/all/memory-overview/block" >
@@ -61,8 +61,21 @@
     </xsl:choose></xsl:variable>
 
     <xsl:variable name="end"   select="($start+$size)"/> 
+
+    <xsl:variable name="c"><xsl:choose>
+      <xsl:when test="@class"><xsl:value-of select="@class"/></xsl:when>
+      <xsl:when test="u:lowercase(@name)=@name"></xsl:when>
+      <xsl:when test="starts-with(@name,'I2C')">I2C</xsl:when>
+      <xsl:when test="starts-with(@name,'I2S')">SPI</xsl:when>
+      <xsl:when test="starts-with(@name,'GPIO')">GPIO</xsl:when>
+      <xsl:otherwise><xsl:value-of select="str:tokenize(@name,'0123456789')[1]/text()"/></xsl:otherwise>
+    </xsl:choose></xsl:variable>
+
     <block name="{$n}">
-      <xsl:copy-of select="@class|@bb"/>
+      <xsl:copy-of select="@bb"/>
+      <xsl:if test="$c!=''">
+        <xsl:attribute name="class"><xsl:value-of select="$c"/></xsl:attribute>
+      </xsl:if>
       <xsl:attribute name="offset">0x<xsl:value-of select="u:toHex($o)"/></xsl:attribute>
       <xsl:attribute name="first">0x<xsl:value-of select="u:toHex($start)"/></xsl:attribute>
       <xsl:if test="@size">
@@ -91,7 +104,8 @@
           <xsl:otherwise><xsl:value-of select="$w"/></xsl:otherwise>
         </xsl:choose></xsl:variable> 
 <!-- blocks that match on location -->
-        <xsl:apply-templates select="/all/*[name()=$guidename]/block[
+      <!--  <xsl:apply-templates select="/all/*[name()=$guidename]/block[ -->
+        <xsl:apply-templates select="/all/memory[@name=$guidename]/block[
           @name != $n and
           u:toNum(@first) &gt;= $start and 
           u:toNum(@last) &lt; $end and
@@ -103,7 +117,8 @@
         </xsl:apply-templates>
 <!-- blocks that match by anchor -->
         <xsl:if test="$n = $guideanchor">
-          <xsl:apply-templates select="/all/*[name()=$guidename]/block" >
+          <!-- <xsl:apply-templates select="/all/*[name()=$guidename]/block" > -->
+          <xsl:apply-templates select="/all/memory[@name=$guidename]/block" >
             <xsl:with-param name="coff" select="0"/>
             <!--<xsl:with-param name="coff" select="$start"/>-->
             <xsl:with-param name="inst" select="."/>

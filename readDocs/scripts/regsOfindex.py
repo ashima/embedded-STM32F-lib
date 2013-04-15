@@ -19,7 +19,6 @@ l.close()
 rse = re.compile( r'(\d+.*?\s+\d+$)', re.MULTILINE | re.DOTALL )
 
 inx = re.sub( r'\n\s+(?=[A-Za-z\(])'," ",inx )
-print inx
 rs = rse.findall( inx )
 
 inxrow = re.compile( r'(\d+.*?)\s+(.*?)(\d+)$' )

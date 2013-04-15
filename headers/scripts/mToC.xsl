@@ -12,7 +12,7 @@
  */
   struct memMap {
     enum {
-<xsl:apply-templates select="/all/memory-map/block">
+<xsl:apply-templates select="/infobase/memory-map/block">
   <xsl:with-param name="indent" select="'      '"/>
   <xsl:with-param name="bb" select="0"/>
 </xsl:apply-templates>

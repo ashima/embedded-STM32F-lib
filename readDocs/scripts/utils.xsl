@@ -53,25 +53,31 @@
     </xsl:otherwise>
   </xsl:choose>
 </fn:function>
- 
 
-
-<!-- 
-  <fn:function name="u:hum">
-    <xsl:param name="s"/>
-  
-    <xsl:variable name="m">
-      <xsl:choose>
-        <xsl:when test="$l='kb' or $l='kB'">1024</xsl:when>
-        <xsl:when test="$l='Mb' or $l='MB'">1048576</xsl:when>
-        <xsl:when test="$l='Gb' or $l='GB'">1048576</xsl:when>
-        <xsl:otherwise>1</xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <fn:result 
-      select="$m*number(translate($s,translate($s,'0123456789',''),''))"/>
+  <fn:function name="u:uppercase">
+    <xsl:param name="s"/> 
+    <fn:result select="translate($s, 'abcdefghijklmnopqrstuvwxyz',
+       'ABCDEFGHIJKLMNOPQRSTUVWXYZ')" />
   </fn:function>
--->
+  
+  <fn:function name="u:lowercase">
+    <xsl:param name="s"/> 
+    <fn:result select="translate($s, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+   'abcdefghijklmnopqrstuvwxyz')" />
+  </fn:function>
+
+  <fn:function name="u:stripws">
+    <xsl:param name="s"/> 
+    <fn:result select="translate(normalize-space($s), ' ', '')" />
+  </fn:function>
+
+  <fn:function name="u:ends-with">
+    <xsl:param name="s"/> 
+    <xsl:param name="t"/> 
+    <fn:result 
+       select="$t=substring($s,string-length($s) - string-length($t) +1)" />
+  </fn:function>
+
   <fn:function name="u:test">
     <xsl:param name="nodeset"/>
     <fn:result>
@@ -81,7 +87,6 @@
 
   <fn:function name="u:toNum">
     <xsl:param name="s" />
-<!-- <xsl:message>[<xsl:value-of select="$s"/></xsl:message> -->
 
     <xsl:variable name="t" select="substring($s, string-length($s)-1 )" />
     <xsl:variable name="h" select="substring($s, 1, string-length($s)-2 )" />
@@ -99,7 +104,8 @@
       </xsl:when>
       <xsl:when test="starts-with($s,'0x')">
         <xsl:variable name="s1" select="substring-after($s,'0x')" />
-        <xsl:value-of select="u:hex( (str:tokenize($s1,concat(' ', translate($s1,'0123456789aAbBcCdDeEfF','')))[1]/text() ))" />
+        <xsl:value-of select="u:hex( (str:tokenize($s1,
+    concat(' ', translate($s1,'0123456789aAbBcCdDeEfF','')))[1]/text() ))" />
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="number($s)" />
@@ -125,17 +131,25 @@
 
   <xsl:template match="table" mode="group-to-row">
     <head>
-      <xsl:copy-of select="cell[ generate-id() = generate-id(key('rows',@p*10000+@y)[1]) and position()=1]"/>
+      <xsl:for-each 
+        select="cell[generate-id()=generate-id(key('rows',@p*10000+@y)[1])
+          and position()=1]">
+        <xsl:variable name="i" select="@p*10000+@y"/>
+        <row p="{@p}" y="{@y}" >
+          <xsl:copy-of select="key('rows',$i)" />
+        </row>
+      </xsl:for-each>
     </head>
     <body>
-    <xsl:for-each select="cell[ generate-id() = generate-id(key('rows',@p*10000+@y)[1]) and position()>1]">
-      <xsl:sort select="@p*10000+@y"/>
-      <xsl:variable name="i" select="@p*10000+@y"/>
-      <row p="{@p}" y="{@y}" >
-        <xsl:copy-of select="key('rows',$i)" />
-      </row>
-    </xsl:for-each>
+      <xsl:for-each select="cell[ generate-id() = generate-id(key('rows',@p*10000+@y)[1]) and position()>1]">
+        <xsl:sort select="@p*10000+@y"/>
+        <xsl:variable name="i" select="@p*10000+@y"/>
+        <row p="{@p}" y="{@y}" >
+          <xsl:copy-of select="key('rows',$i)" />
+        </row>
+      </xsl:for-each>
     </body>
   </xsl:template>
+
  
 </xsl:stylesheet>

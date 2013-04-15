@@ -8,10 +8,10 @@ ENR has :
   ETH MAC EN
 -->
 
-<memory-ethernet>
+<memory name="memory-eth">
   <block name='ETH_MAC' class='ETH_MAC' offset="0x0000" size="0x100" />
   <block name='ETH_MMC' class='ETH_MMC' offset="0x0100" size="0x100" />
   <block name='ETH_PTP' class='ETH_PTP' offset="0x0700" size="0x100" />
   <block name='ETH_DMA' class='ETH_DMA' offset="0x1000" size="0x100" />
-</memory-ethernet>
+</memory>
 
