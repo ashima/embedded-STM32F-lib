@@ -11,6 +11,7 @@
   <xsl:import href="utils.xsl"/>
   <xsl:import href="mergePeriph.xsl"/>
   <xsl:import href="mergeMem.xsl"/>
+  <xsl:import href="mergeRunTime.xsl"/>
 
   <xsl:output method="xml" omit-xml-declaration="no" indent="yes" />
 
@@ -19,7 +20,8 @@
      <peripherals>
        <xsl:apply-templates select="permap"/>
      </peripherals>
-     <xsl:apply-templates select="guide/section[@name='memory']"/>
+     <xsl:call-template name="memorymap"/>
+     <xsl:call-template name="runtime"/>
    </infobase>
   </xsl:template>
 

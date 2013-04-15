@@ -54,12 +54,6 @@ $I/all.xml: $(MERGELST)
 infobase.xml: intermediates/all.xml
 	xsltproc -o $@ scripts/merge.xsl $^
 
-#infobase/memory.xml: intermediates/all.xml
-#	xsltproc -o $@ scripts/mergeMem.xsl $^
-
-#infobase/peripherals.xml: $I/all.xml
-#	xsltproc -o $@ scripts/mergePeriph.xsl $^
-
 # registers
 $(REGOFINX): DM00031020_0002-0032.txt
 	$(PY) scripts/regsOfindex.py -i $^ -o $@ 
@@ -83,6 +77,11 @@ $I/IRQ-branchtable.xml: $I/table-IRQ.xml
 clean:
 	rm intermediates/*.xml intermediates/*.txt infobase/*.xml
 
+#infobase/memory.xml: intermediates/all.xml
+#	xsltproc -o $@ scripts/mergeMem.xsl $^
+
+#infobase/peripherals.xml: $I/all.xml
+#	xsltproc -o $@ scripts/mergePeriph.xsl $^
 #$I/DM00031020_0002-0032.txt: DM00031020.pdf
 #	pdftotext -y 80 -H 655 -x 0 -W 600 -layout -f 2 -l 32 -nopgbrk $^ $@
 

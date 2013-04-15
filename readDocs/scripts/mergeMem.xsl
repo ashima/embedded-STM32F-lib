@@ -10,13 +10,11 @@
 <xsl:import href="utils.xsl"/>
 
 <xsl:output method="xml" omit-xml-declaration="yes" indent="yes" />
-<!--
-  <xsl:template match="all">
-<all>
+
+  <xsl:template name="memorymap" >
     <xsl:apply-templates select="guide/section[@name='memory']"/>
-</all>
   </xsl:template>
--->
+
   <xsl:template match="section[@name='memory']" >
     <memory-map>
       <xsl:apply-templates select="/all/memory-overview/block" >

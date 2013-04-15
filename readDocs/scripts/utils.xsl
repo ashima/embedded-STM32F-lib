@@ -127,7 +127,22 @@
     </xsl:choose>
     </fn:result>
   </fn:function>
- 
+
+   <fn:function name="u:range">
+    <xsl:param name="acc" />
+    <xsl:param name="i" />
+    <xsl:param name="l" />
+    <xsl:param name="s" />
+    <xsl:choose>
+      <xsl:when test="$i &gt; $l">
+        <fn:result select="str:split($acc)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <fn:result 
+         select="u:range(concat($acc,' ',string($i)),$i + $s, $l , $s)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </fn:function>
 
   <xsl:template match="table" mode="group-to-row">
     <head>
@@ -151,5 +166,16 @@
     </body>
   </xsl:template>
 
- 
+  <xsl:template name="boilerplate">
+    <xsl:param name="desc"/>
+  /**
+   \brief      <xsl:value-of select="$desc"/>
+   \copyright  Copyright (C) 2013 Ashima Research. All rights reserved.
+               Distributed under the MIT Expat License. See LICENSE file.
+               https://github.com/ashima/embedded-STM32F-lib
+
+   \remark     Auto-generated file. Do not edit.
+
+  */
+  </xsl:template> 
 </xsl:stylesheet>
