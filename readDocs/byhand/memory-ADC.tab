@@ -1,0 +1,2 @@
+-name memory-adc -i docs/DM00031020.pdf -p 307:1:8 -r 200 -c 0.0:5.9:7.5:10.0
+

@@ -1,0 +1,5 @@
+<errata>
+  <replace p="307" x="0" y="1"><was>Offset</was><to>Offset Address</to></replace>
+  <replace p="307" x="1" y="1"><was>Register</was><to>Register Name</to></replace>
+  <replace p="307" x="1" y="8"><was>Common registers</was><to>ADCCR</to></replace>
+</errata>

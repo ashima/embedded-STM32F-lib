@@ -1,0 +1,11 @@
+<errata>
+  <replace p="64" x="2" y="1" ><was>Peripheral</was>                     <to>Peripheral Name</to></replace>
+  <replace p="64" x="2" y="3" ><was>Cortex-M4 internal peripherals</was> <to>CIP</to></replace>
+  <replace p="64" x="2" y="5" ><was>FSMC control register</was>          <to>FSMCCR</to></replace>
+  <replace p="65" x="2" y="4" ><was>ETHERNET MAC</was>                   <to>eth_bus</to></replace>
+  <replace p="65" x="2" y="10"><was>DMA2</was>                           <to>dma1_bus</to></replace>
+  <replace p="65" x="2" y="11"><was>DMA1</was>                           <to>dma2_bus</to></replace>
+  <replace p="65" x="2" y="14"><was>Flash interface register</was>       <to>FLASH</to></replace>
+  <replace p="66" x="2" y="12"><was>ADC1 - ADC2 - ADC3</was>             <to>adc_bus</to></replace>
+  <replace p="67" x="2" y="22"><was>RTC &amp; BKP Registers</was>        <to>RTC</to></replace>
+</errata>
