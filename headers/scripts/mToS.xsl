@@ -17,7 +17,7 @@
 #define DECLARE_PERIPH(NAME,CLASS,INTS,BUS) \
   typedef CLASS##_st&lt;INTS, memMap::NAME&gt; NAME ; \
   typedef CLASS##_rt&lt;INTS, memMap::NAME&gt; NAME##_t ; \
-  NAME##_t &amp;NAME##_s = *(NAME##_t*)(NAME##_t::loc) ;
+  static NAME##_t &amp;NAME##_s = *(NAME##_t*)(NAME##_t::loc) ;
 
 <xsl:apply-templates select="/infobase/memory-map/block">
   <xsl:with-param name="indent" select="'      '"/>
