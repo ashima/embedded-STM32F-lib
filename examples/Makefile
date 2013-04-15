@@ -22,7 +22,7 @@ all: blinkPin-Ashima.bin blinkPin-Discovery.bin
 
 %.elf: %.o
 	$(ARMCPP) $(CFLAGS) $(LIBDIR) -nostartfiles -nostdlib \
-	-T mem.ld -T sections.ld -u isr_vector \
+	-T stm32F407.ld -T sections.ld -u isr_vector \
 	-Wl,--print-map  \
 	-o $@ $^ -lstm32F407 > $*.mapfile
 # -T mem.ld -T sections.ld 
