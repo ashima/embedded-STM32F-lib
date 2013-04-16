@@ -9,7 +9,7 @@ export CFLAGS= -O3 -mthumb -mthumb-interwork -mcpu=cortex-m4
 VPATH=src ../headers
 INCS=-I ../headers
 
-OBJS= obj/stm32F4_rt.o obj/stm32F4_isrbt.o
+OBJS= obj/stm32F4_rt.o obj/stm32F4_isrbt.o obj/stubs.o
 
 all: libstm32F407.a
 

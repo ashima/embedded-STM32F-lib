@@ -31,13 +31,6 @@
 #endif
 
 #define DELAY 1000000
-int main();
-
-extern
-void Reset_Handler()
-  {
-  main();
-  }
 
 int main()
   {
@@ -62,8 +55,4 @@ int main()
   return 0;
   }
 
-void exit(int x)
-  {
-  while(1) {}
-  }
 
