@@ -1,10 +1,7 @@
+from __future__ import print_function
 import sys
 import re
 import argparse
-try:
-  from __future__ import print_function
-except ImportError as e:
-  raise ImportError("Python >=2.6 required, uses print_function")
 
 p = argparse.ArgumentParser( description="Read ascii index "
    "and output a list of registers and descriptions." )

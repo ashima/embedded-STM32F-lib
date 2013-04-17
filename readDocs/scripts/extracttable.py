@@ -5,15 +5,12 @@
 #     License : Copyright (C) 2011 Ashima Research. All rights reserved.
 #               Distributed under the MIT Expat License. See LICENSE file.
 #               https://github.com/ashima/pdf-table-extract
+from __future__ import print_function
 
 import sys, argparse, subprocess, re, csv, json
 from numpy import *
 from pipes import quote
 from xml.dom.minidom import getDOMImplementation
-try:
-  from __future__ import print_function
-except ImportError as e:
-  raise ImportError("Python >=2.6 required, uses print_function")
 
 #-----------------------------------------------------------------------
 

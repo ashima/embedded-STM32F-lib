@@ -1,12 +1,9 @@
+from __future__ import print_function
 import argparse
 import sys
 from xml.dom.minidom import parse, parseString, getDOMImplementation
 import xml.etree.ElementTree as ET
 import re
-try:
-  from __future__ import print_function
-except ImportError as e:
-  raise ImportError("Python >=2.6 required, uses print_function")
 
 def procargs() :
   """Add arguments to the argument parser and parse the standard input"""
