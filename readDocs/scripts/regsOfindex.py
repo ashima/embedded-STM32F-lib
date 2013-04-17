@@ -33,7 +33,7 @@ for reg in rs :
 
   if m == None :
     print("Couldn't fit {0}".format(reg))
-    continute
+    continue
 
   s = m.group(1)  
   t = m.group(2)  
