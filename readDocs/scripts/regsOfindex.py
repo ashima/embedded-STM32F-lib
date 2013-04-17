@@ -31,7 +31,7 @@ for reg in rs :
   m = inxrow.match(reg)
 
   if m == None :
-    print "Couldn't fit ", reg
+    print("Couldn't fit {0}".format(reg))
     continute
 
   s = m.group(1)  

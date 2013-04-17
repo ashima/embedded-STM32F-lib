@@ -3,6 +3,10 @@ import sys
 from xml.dom.minidom import parse, parseString, getDOMImplementation
 import xml.etree.ElementTree as ET
 import re
+try:
+  from __future__ import print_function
+except ImportError as e:
+  raise ImportError("Python >=2.6 required, uses print_function")
 
 def procargs() :
   p = argparse.ArgumentParser( description="Merge XML files together.")
@@ -16,7 +20,7 @@ args = procargs()
 root = ET.Element(args.name)
 
 for f in args.infile :
-  print "file :",f
+  print("file :{0}".format(f))
   root.append( ET.parse(f).getroot() )
 
 ws = re.compile("[\n\s]+")

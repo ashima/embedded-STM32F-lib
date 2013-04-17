@@ -10,6 +10,10 @@ import sys, argparse, subprocess, re, csv, json
 from numpy import *
 from pipes import quote
 from xml.dom.minidom import getDOMImplementation
+try:
+  from __future__ import print_function
+except ImportError as e:
+  raise ImportError("Python >=2.6 required, uses print_function")
 
 #-----------------------------------------------------------------------
 
@@ -99,7 +103,7 @@ def readPNM(fd):
   m = int(m)
 
   if m != 255 :
-    print "Just want 8 bit pgms for now!"
+    print("Just want 8 bit pgms for now!")
   
   d = fromstring(data,dtype=uint8)
   d = reshape(d, (height,width) )
@@ -132,7 +136,7 @@ def dumpImage(args,bmp,img) :
 # Proccessing function.
 
 def process_page(pgs) :
-  (pg,frow,lrow) = (map(int,(pgs.split(":")))+[None,None])[0:3]
+  (pg,frow,lrow) = ([int(x) for x in pgs.split(":")]+[None,None])[0:3]
 
   p = subprocess.Popen( ("pdftoppm -gray -r %d -f %d -l %d %s " %
       (args.r,pg,pg,quote(args.infile))),
@@ -370,7 +374,8 @@ def process_page(pgs) :
 
   whitespace = re.compile( r'\s+')
    
-  def getCell( (i,j,u,v) ):
+  def getCell( in_tuple ):
+    (i,j,u,v) = in_tuple
     (l,r,t,b) = ( vd[2*i+1] , vd[ 2*(i+u) ], hd[2*j+1], hd[2*(j+v)] )
     p = subprocess.Popen(
     ("pdftotext -r %d -x %d -y %d -W %d -H %d -layout -nopgbrk -f %d -l %d %s -"
@@ -420,7 +425,9 @@ def o_cells_xml(cells,pgs) :
     root.setAttribute("name",args.name)
   for cl in cells :
     x = doc.createElement("cell")
-    map(lambda(a): x.setAttribute(*a), zip("xywhp",map(str,cl)))
+    for key, val in zip("xywhp",[str(v) for v in cl]):
+        x.setAttribute(key, val)
+#    map(lambda(a): x.setAttribute(*a), zip("xywhp",map(str,cl)))
     if cl[5] != "" :
       x.appendChild( doc.createTextNode(cl[5]) )
     root.appendChild(x)
