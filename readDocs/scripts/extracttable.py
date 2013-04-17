@@ -11,6 +11,7 @@ import sys, argparse, subprocess, re, csv, json
 from numpy import *
 from pipes import quote
 from xml.dom.minidom import getDOMImplementation
+import six
 
 #-----------------------------------------------------------------------
 
@@ -88,8 +89,8 @@ def noncomment(fd):
   """Read lines from the fd filehandle. Ignore lines starting with 
   a comment character (#), otherwise return the line """
   while True:
-    x = fd.readline() 
-    if x.startswith('#') :
+    x = fd.readline()
+    if x.startswith(six.b('#')) :
       continue
     else:
       return x
@@ -99,7 +100,7 @@ def readPNM(fd):
   and height from the header, and the 2D shaped data """
   t = noncomment(fd)
   s = noncomment(fd)
-  m = noncomment(fd) if not (t.startswith('P1') or t.startswith('P4')) else '1'
+  m = noncomment(fd) if not (t.startswith(six.b('P1')) or t.startswith(six.b('P4'))) else '1'
   data = fd.read()
 
   xs, ys = s.split()
@@ -383,7 +384,7 @@ def process_page(pgs) :
 #-----------------------------------------------------------------------
 # fork out to extract text for each cell.
 
-  whitespace = re.compile( r'\s+')
+  whitespace = re.compile( b'\s+')
    
   def getCell( in_tuple ):
     (i,j,u,v) = in_tuple
@@ -395,7 +396,7 @@ def process_page(pgs) :
     
     ret = p.communicate()[0]
     if args.w != 'raw' :
-      ret = whitespace.sub( "" if args.w == "none" else " ", ret )
+      ret = whitespace.sub( six.b("") if args.w == six.b("none") else six.b(" "), ret )
       if len(ret) > 0 :
         ret = ret[ (1 if ret[0]==' ' else 0) : 
                    len(ret) - (1 if ret[-1]==' ' else 0) ]
@@ -439,8 +440,8 @@ def o_cells_xml(cells,pgs) :
     for key, val in zip("xywhp",[str(v) for v in cl]):
         x.setAttribute(key, val)
 #    map(lambda(a): x.setAttribute(*a), zip("xywhp",map(str,cl)))
-    if cl[5] != "" :
-      x.appendChild( doc.createTextNode(cl[5]) )
+    if len(cl[5]):# != "" :
+      x.appendChild( (doc.createTextNode(cl[5].strip().decode("utf-8")) ) )
     root.appendChild(x)
   args.outfile.write( doc.toprettyxml() )
   

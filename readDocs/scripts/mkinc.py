@@ -1,6 +1,7 @@
 import argparse
 import sys
 import xml.etree.ElementTree as ET
+import six
 
 p = argparse.ArgumentParser(
     description="make an xinclude structure from a list of filenames.")
@@ -17,5 +18,5 @@ root = ET.Element(args.name, { "xmlns:xi":"http://www.w3.org/2001/XInclude" })
 for f in args.infile :
   root.append( ET.Element("xi:include", { "href": f } ) )
 
-args.outfile.write( ET.tostring(root) )
+args.outfile.write( ET.tostring(root).decode("utf-8") )
 

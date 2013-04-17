@@ -142,7 +142,7 @@ for k in sorted(ks) :
     
 #    reg = ET.Element('reg', { "y":y, "p":p, "name": 
     
-args.outfile.write(ET.tostring(root))
+args.outfile.write(ET.tostring(root).decode("utf-8"))
 
 #root = ET.Element('pmap', { name: table.attrib['name'], src: table.attrib['src'] } )
 
