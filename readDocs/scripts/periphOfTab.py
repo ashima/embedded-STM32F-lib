@@ -6,6 +6,7 @@ import numpy
 import re
 
 def procargs() :
+  """Add arguments to the parser and parse the command line"""
   p = argparse.ArgumentParser( description="Merge XML files together.")
   p.add_argument("-o", dest='outfile', help="output file", default=sys.stdout,
      type=argparse.FileType('w') )
@@ -47,6 +48,8 @@ for i in inx[hrowi] :
 #equiv to xpath : 'ns[starts-with(text(),$t][0]'
 
 def txtInNodes(ns,txt):
+  """iterate through the node list, searching for the 'txt' string. If found, store the node
+  in the list. If the list is empty return None, else return the first element."""
   l = [ x for x in inx[hrowi] 
                 if x.text and x.text.lower().find(txt) !=-1 ]
   return None if len(l) == 0 else l[0]

@@ -9,6 +9,7 @@ except ImportError as e:
   raise ImportError("Python >=2.6 required, uses print_function")
 
 def procargs() :
+  """Add arguments to the argument parser and parse the standard input"""
   p = argparse.ArgumentParser( description="Merge XML files together.")
   p.add_argument("-o", dest='outfile', help="output file", default=sys.stdout,
      type=argparse.FileType('w') )

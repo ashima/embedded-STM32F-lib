@@ -18,6 +18,7 @@ except ImportError as e:
 #-----------------------------------------------------------------------
 
 def procargs() :
+  """ Adds parser arguments and parses the command line arguments. """
   p = argparse.ArgumentParser( description="Finds tables in a PDF page.")
   p.add_argument("-i", dest='infile',  help="input file" )
   p.add_argument("-o", dest='outfile', help="output file", default=sys.stdout,
@@ -70,6 +71,7 @@ def procargs() :
 
 #-----------------------------------------------------------------------
 def colinterp(a,x) :
+  """Interpolates colors from the pre-defined 'colarr' color map"""
   l = len(a)-1
   i = min(l, max(0, int (x * l)))
   (u,v) = a[i:i+2,:]
@@ -84,6 +86,8 @@ def col(x) :
 # PNM stuff.
 
 def noncomment(fd):
+  """Read lines from the fd filehandle. Ignore lines starting with a comment character (#), 
+  otherwise return the line """
   while True:
     x = fd.readline() 
     if x.startswith('#') :
@@ -92,6 +96,8 @@ def noncomment(fd):
       return x
 
 def readPNM(fd):
+  """ Read the PNM file, returning the PNM type, width, and height from the header, and the 
+  2D shaped data """
   t = noncomment(fd)
   s = noncomment(fd)
   m = noncomment(fd) if not (t.startswith('P1') or t.startswith('P4')) else '1'
@@ -110,6 +116,8 @@ def readPNM(fd):
   return (m,width,height, d)
 
 def writePNM(fd,img):
+  """Write a PNG file to the filehandle fd, using image data img. The file type is derived
+  from the data type of img, and the width and height are derived from the data."""
   s = img.shape
   m = 255
   if img.dtype == bool :
@@ -126,11 +134,13 @@ def writePNM(fd,img):
 
 
 def dumpImage(args,bmp,img) :
-    oi = bmp if args.bitmap else img
-    pad = args.pad
-    (height,width) = bmp.shape
-    writePNM(args.outfile, oi[pad:height-pad, pad:width-pad])
-    args.outfile.close()
+  """Dump a segment of the bitmap image bmp or img. If args.bitmap is set, use the bmp variable.
+    writes to args.outfile . """
+  oi = bmp if args.bitmap else img
+  pad = args.pad
+  (height,width) = bmp.shape
+  writePNM(args.outfile, oi[pad:height-pad, pad:width-pad])
+  args.outfile.close()
 
 #-----------------------------------------------------------------------
 # Proccessing function.
@@ -163,6 +173,8 @@ def process_page(pgs) :
 
 
   def boxOfString(x,p) :
+    """Convert the string 'left:top:right:bottom' into a box by scaling 
+    with args.r and adding args.pad"""
     s = x.split(":")
     if len(s) < 4 :
       raise Exception("boxes have format left:top:right:bottom[:page]")
