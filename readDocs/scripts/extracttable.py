@@ -74,7 +74,9 @@ def colinterp(a,x) :
   (u,v) = a[i:i+2,:]
   return u - (u-v) * ((x * l) % 1.0)
 
-colarr = array([ [255,0,0],[255,255,0],[0,255,0],[0,255,255],[0,0,255] ])
+colarr = array([ [255,0,0],[255,255,0],
+                 [0,255,0],[0,255,255],
+                 [0,0,255] ])
 
 def col(x) :
   return colinterp(colarr,(args.colmult * x)% 1.0) / 2
@@ -83,8 +85,8 @@ def col(x) :
 # PNM stuff.
 
 def noncomment(fd):
-  """Read lines from the fd filehandle. Ignore lines starting with a comment character (#), 
-  otherwise return the line """
+  """Read lines from the fd filehandle. Ignore lines starting with 
+  a comment character (#), otherwise return the line """
   while True:
     x = fd.readline() 
     if x.startswith('#') :
@@ -93,8 +95,8 @@ def noncomment(fd):
       return x
 
 def readPNM(fd):
-  """ Read the PNM file, returning the PNM type, width, and height from the header, and the 
-  2D shaped data """
+  """ Read the PNM file, returning the PNM type, width, 
+  and height from the header, and the 2D shaped data """
   t = noncomment(fd)
   s = noncomment(fd)
   m = noncomment(fd) if not (t.startswith('P1') or t.startswith('P4')) else '1'
@@ -406,10 +408,10 @@ def process_page(pgs) :
   
   if args.boxes :
     cells = [ x + (pg,"",) for x in cells if 
-              ( frow == None or (x[1] >= frow and x[1] <= lrow)) ]
+              ( frow is None or (x[1] >= frow and x[1] <= lrow)) ]
   else :
     cells = [ getCell(x)   for x in cells if 
-              ( frow == None or (x[1] >= frow and x[1] <= lrow)) ]
+              ( frow is None or (x[1] >= frow and x[1] <= lrow)) ]
   return cells
 
 #-----------------------------------------------------------------------
@@ -428,7 +430,7 @@ def o_cells_json(cells,pgs) :
  
 def o_cells_xml(cells,pgs) : 
   doc = getDOMImplementation().createDocument(None,"table", None)
-  root = doc.documentElement;
+  root = doc.documentElement
   root.setAttribute("src",args.infile)
   if args.name :
     root.setAttribute("name",args.name)
@@ -456,7 +458,7 @@ def o_table_html(cells,pgs) :
   oj = 0 
   opg = 0
   doc = getDOMImplementation().createDocument(None,"table", None)
-  root = doc.documentElement;
+  root = doc.documentElement
   if (args.t == "table_chtml" ):
     root.setAttribute("border","1")
     root.setAttribute("cellspaceing","0")
@@ -469,7 +471,7 @@ def o_table_html(cells,pgs) :
       if pg > opg:
         s = "Name: " + args.name + ", " if args.name else ""
         root.appendChild( doc.createComment( s + 
-          ("Source: %s page %d." % (args.infile, pg) )));
+          ("Source: %s page %d." % (args.infile, pg) )))
       if tr :
         root.appendChild(tr)
       tr = doc.createElement("tr")

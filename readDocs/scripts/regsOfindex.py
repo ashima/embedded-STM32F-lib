@@ -31,7 +31,7 @@ for reg in rs :
   reg = re.sub( r'[\s\n]+', " ", reg )
   m = inxrow.match(reg)
 
-  if m == None :
+  if m is None :
     print("Couldn't fit {0}".format(reg))
     continue
 
@@ -49,7 +49,7 @@ for reg in rs :
   regline = re.compile( r'register.*\(([A-Za-z0-9_]+)\)' )
 
   m = regline.search(t)
-  if m == None :
+  if m is None :
     sections.append ("<section name='%s' page='%s'>%s</section>" %(s,p,t))  
   else:
     r = m.group(1)
@@ -62,7 +62,7 @@ for reg in rs :
     sections.append( "<section name='%s' page='%s' reg='%s'>%s</section>" %
       ( s, p, r,t) )
 
-with (sys.stdout if a.outf==None or a.outf=='-' else open(a.outf,'w')) as o:
+with (sys.stdout if a.outf is None or a.outf=='-' else open(a.outf,'w')) as o:
   o.write ("<index>\n  <sections>\n")
   for s in sections :
     o.write("    %s\n" % s)

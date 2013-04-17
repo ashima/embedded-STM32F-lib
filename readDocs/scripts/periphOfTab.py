@@ -2,7 +2,6 @@ import argparse
 import sys
 #from xml.dom.minidom import parse, getDOMImplementation
 import xml.etree.ElementTree as ET
-import numpy
 import re
 
 def procargs() :
@@ -32,9 +31,9 @@ hrowi = int(fst.attrib.get('y')) + 10000*int(fst.attrib.get('p'))
 # Group by row.
 inx = {}
 for x in table :
-  if x.text != None and ws.sub('', x.text) != "Reserved" :
+  if x.text is not None and ws.sub('', x.text) != "Reserved" :
     i = int(x.attrib.get('y')) + 10000*int(x.attrib.get('p'))
-    if inx.get(i)  == None : 
+    if inx.get(i)  is None : 
       inx[i] = []
     inx[i].append(x)
 
@@ -48,29 +47,32 @@ for i in inx[hrowi] :
 #equiv to xpath : 'ns[starts-with(text(),$t][0]'
 
 def txtInNodes(ns,txt):
-  """iterate through the node list, searching for the 'txt' string. If found, store the node
-  in the list. If the list is empty return None, else return the first element."""
+  """iterate through the node list, searching for the 'txt' string. 
+  If found, store the node in the list. If the list is empty return 
+  None, else return the first element."""
   l = [ x for x in inx[hrowi] 
                 if x.text and x.text.lower().find(txt) !=-1 ]
   return None if len(l) == 0 else l[0]
 
 
 n = txtInNodes(inx[hrowi], "off")
-if n != None and n.get("x") != None :
+if n is not None and n.get("x") is not None :
   offCol = int(n.get("x"))
 else:
   raise Exception("Couldn't find Offset column?!")
 
 n = txtInNodes(inx[hrowi], "reg")
 
-if n != None and n.get("x") != None :
+if n is not None and n.get("x") is not None :
   regCol = int(n.get("x"))
 else:
   raise Exception("Couldn't find register column?!")
 
 # make keys for register name rows
 ks = [ int(x.attrib.get('y')) + 10000*int(x.attrib.get('p'))
-       for x in table if int(x.get('x'))==regCol and x.text and x.text.startswith(tabname) ]
+       for x in table if int(x.get('x'))==regCol and\
+                         x.text and\
+                         x.text.startswith(tabname) ]
 
 # Reshape by regname
 root = ET.Element('permap',table.attrib)
@@ -88,10 +90,10 @@ for k in sorted(ks) :
   root.append(reg)
   for j in r:
     x = int(j.get("x"))
-    if x > int(regCol) and j.text != None:
+    if x > int(regCol) and j.text is not None:
       w = j.get("w")
       txt = n1.match( j.text )
-      if txt == None :
+      if txt is None :
         bit = ET.Element("bit", { 
           "name"  : ws.sub("", j.text) , 
           "w"     : w,
@@ -102,7 +104,7 @@ for k in sorted(ks) :
         reg.append( bit )
       else:
         n = txt.group(1)
-        if d_n.get( n ) == None :
+        if d_n.get( n ) is None :
           d_n[n] = ET.Element("bit", { 
             "name"  : ws.sub("", n ) ,
             "last" : "0",
@@ -119,13 +121,13 @@ for k in sorted(ks) :
         b.attrib["w"] = str( int(b.attrib["last"]) - int(b.attrib["first"])+1)
     d_x[ x ] = j
   n = d_x.get(regCol)
-  if n != None :
+  if n is not None :
     n = ws.sub("",d_x[regCol].text)
-  if n != None :
+  if n is not None :
     n = ns.match(n)
-    if n != None :
+    if n is not None :
       n = n.group(1)
-  if n == None :
+  if n is None :
     n = "Unknown!?"
 #  c = comments.findall("registers/register[@name='%s']" % n)
 #  if len(c) > 0 and c[0].text != None:

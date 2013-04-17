@@ -24,9 +24,9 @@ for f in args.infile :
 ws = re.compile("[\n\s]+")
 
 for x in root.iter():
-  if (x.text != None and ws.match(x.text) != None) :
+  if (x.text is not None and ws.match(x.text) is not None) :
     x.text = None
-  if (x.tail != None and ws.match(x.tail) != None) :
+  if (x.tail is not None and ws.match(x.tail) is not None) :
     x.tail = None
 
 doc = parseString( ET.tostring(root) )
