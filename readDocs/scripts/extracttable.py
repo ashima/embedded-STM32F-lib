@@ -11,7 +11,11 @@ import sys, argparse, subprocess, re, csv, json
 from numpy import *
 from pipes import quote
 from xml.dom.minidom import getDOMImplementation
-import six
+
+if sys.version_info[0] == 3:
+    def bs(s): return s.encode('latin-1')
+else:
+    def bs(s): return s
 
 #-----------------------------------------------------------------------
 
@@ -90,7 +94,7 @@ def noncomment(fd):
   a comment character (#), otherwise return the line """
   while True:
     x = fd.readline()
-    if x.startswith(six.b('#')) :
+    if x.startswith(bs('#')) :
       continue
     else:
       return x
@@ -100,7 +104,7 @@ def readPNM(fd):
   and height from the header, and the 2D shaped data """
   t = noncomment(fd)
   s = noncomment(fd)
-  m = noncomment(fd) if not (t.startswith(six.b('P1')) or t.startswith(six.b('P4'))) else '1'
+  m = noncomment(fd) if not (t.startswith(bs('P1')) or t.startswith(bs('P4'))) else '1'
   data = fd.read()
 
   xs, ys = s.split()
@@ -396,7 +400,7 @@ def process_page(pgs) :
     
     ret = p.communicate()[0]
     if args.w != 'raw' :
-      ret = whitespace.sub( six.b("") if args.w == six.b("none") else six.b(" "), ret )
+      ret = whitespace.sub( bs("") if args.w == bs("none") else bs(" "), ret )
       if len(ret) > 0 :
         ret = ret[ (1 if ret[0]==' ' else 0) : 
                    len(ret) - (1 if ret[-1]==' ' else 0) ]

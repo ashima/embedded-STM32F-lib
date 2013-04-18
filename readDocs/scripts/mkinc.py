@@ -1,7 +1,6 @@
 import argparse
 import sys
 import xml.etree.ElementTree as ET
-import six
 
 p = argparse.ArgumentParser(
     description="make an xinclude structure from a list of filenames.")
