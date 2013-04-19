@@ -71,6 +71,12 @@ $I/memory-%.xml: $I/table-memory-%.xml
 $I/IRQ-branchtable.xml: $I/table-IRQ.xml
 	xsltproc -o $@ scripts/btOfTab.xsl $^
 
+$I/clk_v_ws_data.xml: $I/table-clkWs.xml
+	xsltproc -o $@ scripts/wsOfTab.xsl $^
+
+$I/clk_v_ws.xml: $I/clk_v_ws_data.xml
+	python2.7 scripts/wsClk.py -i $^ -o $@
+
 clean:
 	rm intermediates/*.xml intermediates/*.txt \
 	intermediates/*.raw infobase.xml

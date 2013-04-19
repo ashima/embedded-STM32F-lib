@@ -145,10 +145,11 @@
   </fn:function>
 
   <xsl:template match="table" mode="group-to-row">
+  <xsl:param name="numhead" select="1"/>
     <head>
       <xsl:for-each 
         select="cell[generate-id()=generate-id(key('rows',@p*10000+@y)[1])
-          and position()=1]">
+          and position()&lt;=$numhead]">
         <xsl:variable name="i" select="@p*10000+@y"/>
         <row p="{@p}" y="{@y}" >
           <xsl:copy-of select="key('rows',$i)" />
@@ -156,7 +157,7 @@
       </xsl:for-each>
     </head>
     <body>
-      <xsl:for-each select="cell[ generate-id() = generate-id(key('rows',@p*10000+@y)[1]) and position()>1]">
+      <xsl:for-each select="cell[ generate-id() = generate-id(key('rows',@p*10000+@y)[1]) and position() &gt; $numhead]">
         <xsl:sort select="@p*10000+@y"/>
         <xsl:variable name="i" select="@p*10000+@y"/>
         <row p="{@p}" y="{@y}" >
