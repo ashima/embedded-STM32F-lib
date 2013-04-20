@@ -1,41 +1,48 @@
 .SECONDARY:
+.SUFFIXES:
 
-TARGETS = memory.h instances.h structures.h \
-  stm32F4_rt.h stm32F4_isrbt.c \
-  mToCtest mToCtest.out mToCtest.c
+B=./built
+H=./byhand
+T=./tests
+S=./scripts
+INFOBASE=../readDocs/infobase.xml
 
-all: $(TARGETS)
+CCC=g++
+CCFLAGS=-O3
+INCS=-I $B -I $H
 
-VPATH=../readDocs
+VPATH=$H $S
 
-memory.h: infobase.xml
-	xsltproc -o $@ scripts/mToC.xsl $^
+TARGETS= \
+  $B/memory.h        $B/instances.h \
+  $B/structures.h    $B/stm32F4_rt.h  \
+  $B/stm32F4_isrbt.c
 
-instances.h: infobase.xml 
-	xsltproc -o $@ scripts/mToS.xsl $^
+TESTS= \
+  $T/memory.rslt 
 
-structures.h: infobase.xml
-	xsltproc -o $@ scripts/periphToH.xsl $^
+all: $(TARGETS) $(TESTS) 
 
-stm32F4_rt.h: infobase.xml
-	xsltproc -o $@ scripts/startupH.xsl $^
+$B $T:
+	-mkdir $@
 
-stm32F4_isrbt.c: infobase.xml
-	xsltproc -o $@ scripts/startupC.xsl $^
+$(TARGETS): $(INFOBASE)
 
+$B/%: %.xsl | $B
+	xsltproc -o $@ $< $(INFOBASE)
 
-mToCtest.c: infobase.xml
-	xsltproc -o $@ scripts/mToCtest.xsl $^
+$T/%: %.xsl | $T
+	xsltproc -o $@ $< $(INFOBASE)
 
-%.o : %.c
-	g++ -o $Q $^
+%.o: %.cc
+	$(CCC) $(CCFLAGS) $(INCS) -c -o $@ $^
 
-mToCtest: mToCtest.c
-	g++ -o $@ $^
+$T/%_test: $T/%_test.o
+	$(CCC) -o $@ $^
 
-mToCtest.out: mToCtest
-	./mToCtest > $@
-	diff $@ mToCtest.good
+$T/%.rslt: $T/%_test
+	./$< > $@
 
 clean:
-	rm $(TARGETS)
+	-rm $B/* $T/*
+	-rmdir $B $T
