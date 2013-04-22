@@ -1,26 +1,98 @@
 .SECONDARY:
 .SUFFIXES:
 
-export ARMCPP=arm-none-eabi-g++
-export ARMCC=arm-none-eabi-gcc
-export ARMAR=arm-none-eabi-ar
-export CFLAGS= -O3 -mthumb -mthumb-interwork -mcpu=cortex-m4
+I=../install
 
-VPATH=src ../headers
-INCS=-I ../headers
+H=./byhand
+S=./scripts
+O=./obj
+B=./built
+T=./tests
+INFOBASE=../readDocs/infobase.xml
 
-OBJS= obj/stm32F4_rt.o obj/stm32F4_isrbt.o obj/stubs.o
+CPP=g++
+CCFLAGS=-O3
 
-all: libstm32F407.a
+ARMCPP=arm-none-eabi-g++
+ARMCC=arm-none-eabi-gcc
+ARMAR=arm-none-eabi-ar
+ARMCFLAGS= -O3 -mthumb -mthumb-interwork -mcpu=cortex-m4
 
-obj/%.o: %.cc
-	$(ARMCPP) $(CFLAGS) $(INCS) -o $@ -c $^
+INCS=-I $B -I $H
+#VPATH=$B $H $S $O
+#VPATH=$H $S
 
-obj/%.o: %.c
-	$(ARMCC) $(CFLAGS) $(INCS) -o $@ -c $^
+TARGETS=stm32F407
+L_stm32F407=stm32F4_rt.o stm32F4_isrbt.o stubs.o
 
-libstm32F407.a: $(OBJS)
-	$(ARMAR) rcs $@ $^
+LIBE=stm32F407.ld sections.ld 
+
+HDRSE=clk_helper.h  meta_script.h  st_base.h  sys.h 
+HDRS=instances.h  memory.h  stm32F4_rt.h  structures.h
+
+TESTS=memory.rslt
+
+OBJ_stm32F407:=$(L_stm32F407:%=$O/%)
+
+LIBNAMES:=$(TARGETS:%=lib%.a) $(LIBE)
+INSTLIBS:=$(LIBNAMES:%=$I/lib/%)
+BUILTLIBS:=$(TARGETS:%=$O/lib%.a)
+
+HDRNAMES:=$(HDRS) $(HDRSE)
+INSTHDRS:=$(HDRNAMES:%=$I/include/%)
+BUILTHDRS:=$(HDRS:%=$B/%)
+
+BUILTTSTS:=$(TESTS:%=$T/%)
+
+.PHONY: all install clean
+
+all: $(BUILTHDRS) $(BUILTLIBS) $(BUILTTSTS)
+
+install: $(INSTHDRS) $(INSTLIBS) | all
 
 clean:
-	rm obj/*.o *.a
+	-rm $O/* $B/* $T/*
+	-rmdir $O $B $T
+
+$B/%: $S/%.xsl | $B
+	xsltproc -o $@ $< $(INFOBASE)
+
+$T/%: $S/%.xsl | $T
+	xsltproc -o $@ $< $(INFOBASE)
+
+$O/%.o: $B/%.c | $O
+	$(ARMCC) $(ARMCFLAGS) $(INCS) -c -o $@ $^
+
+$O/%.o: $H/%.c | $O
+	$(ARMCC) $(ARMCFLAGS) $(INCS) -c -o $@ $^
+
+$O/%.o: $B/%.cc | $O
+	$(ARMCCC) $(ARMCFLAGS) $(INCS) -c -o $@ $^
+
+$T/%.o: $T/%.cc | $T
+	$(CPP) $(CFLAGS) $(INCS) -c -o $@ $^
+
+$T/%_test: $T/%_test.o
+	$(CPP) -o $@ $^
+
+$O/libstm32F407.a: $(OBJ_stm32F407) | $O
+	$(ARMAR) rcs $@ $^
+
+$T/%.rslt: $T/%_test | $T
+	./$< > $@
+
+$I/lib $I/include $B $T $O:
+	-mkdir -p $@
+
+$I/lib/%: $O/% | $I/lib
+	cp $< $@
+
+$I/lib/%: $H/% | $I/lib
+	cp $< $@
+
+$I/include/%: $H/% | $I/include
+	cp $< $@
+
+$I/include/%: $B/% | $I/include
+	cp $< $@
+
