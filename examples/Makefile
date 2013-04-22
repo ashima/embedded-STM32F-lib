@@ -11,7 +11,7 @@ INCS=-I ../headers
 CFLAGS=-O3 -mthumb -mthumb-interwork -mcpu=cortex-m4 
 LIBDIR=-L ../library
 
-all: blinkPin-Ashima.bin blinkPin-Discovery.bin
+all: blinkPin-Ashima.bin blinkPin-Discovery.bin ex.bin
 
 %.bin: %.elf
 	$(ARMOBJCOPY) -O binary $^ $@

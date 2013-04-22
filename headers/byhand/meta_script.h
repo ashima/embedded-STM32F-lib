@@ -179,10 +179,11 @@ template<class L, class M >         struct product
   };
 
 //let rec range = function
-//  | b,e when b = e -> []
-//  | b,e            -> b::(range (b+1,e))
-template<int I, int J>              struct range          { typedef cons< Int<I>, typename range< I+1, J>::l> l; };
-template<int I>                     struct range<I,I>     { typedef nil l; };
+//  | b,e,i when b >= e -> []
+//  | b,e,i            -> b::(range (b+i,e,i))
+template<int B, int E,int I = 1,
+  bool when1 = (B >= E) >           struct range          { typedef cons< Int<B>, typename range< B+I, E, I>::l> l; };
+template<int B, int E,int I>        struct range<B,E,I,true>     { typedef nil l; };
 
 
 // Functions that generate code ...
