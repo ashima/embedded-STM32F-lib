@@ -28,21 +28,30 @@ template &lt;typename T,uint32_t L&gt;
 struct <xsl:value-of select="@name"/>_rt {
   typedef T inttypes;
   enum { loc = L } ;
-  <xsl:apply-templates select="register"/>
+  <xsl:apply-templates select="register" mode="struct"/>
   };
 <xsl:text>
 </xsl:text>
 template &lt;typename TYP,uint32_t LOC&gt;
 struct <xsl:value-of select="@name"/>_st {
+  typedef <xsl:value-of select="@name"/>_st t;
   typedef TYP inttypes;
   enum { loc = LOC } ;
+  enum { <xsl:apply-templates select="register" mode="offsets"/>
+  };
 <xsl:apply-templates select="subregister"/>
   };
   </xsl:template>
 
-  <xsl:template match="register">
+  <xsl:template match="register" mode="struct">
   _V typename T::uint32_t <xsl:value-of 
 select="@short"/>; <xsl:if test="description"
+> //?!&lt; <xsl:copy-of select="description/text()"/>
+</xsl:if>
+  </xsl:template>
+
+  <xsl:template match="register" mode="offsets">
+  o<xsl:value-of select="@short"/> = <xsl:value-of select="@offset"/>, //<xsl:if test="description"
 > //?!&lt; <xsl:copy-of select="description/text()"/>
 </xsl:if>
   </xsl:template>
