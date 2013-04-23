@@ -1,0 +1,5 @@
+<errata>
+  <replace p="182" x="19" y="20"><was>PLLI2SNx</was><to>PLLI2SN</to></replace>
+  <replace p="182" x="3" y="20"><was>PLLI2SRx</was><to>PLLI2SR</to></replace>
+</errata>
+
