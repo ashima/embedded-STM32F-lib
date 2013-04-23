@@ -2,9 +2,13 @@ This Library is a work in progress!! There is much to do, and much that
 might change!
 
 LIBRARY:
+ * include file guards should auto generate.
  * strip defined symbols out of sections.ld and make a header for them.
  * generate mem.ld from infobase.xml
+ * update and reinstate the unit tests for headers that are not likely
+   to change much any more.
 
+ * Maybe: breakout instance.h into seperate bits.
  * Maybe: subregisters are each a unique type, maybe they should derive
           from a base type with virtual access functions. Maybe function
           object wrappers are sufficient.
