@@ -1,0 +1,17 @@
+This Library is a work in progress!! There is much to do, and much that
+might change!
+
+LIBRARY:
+ * strip defined symbols out of sections.ld and make a header for them.
+ * generate mem.ld from infobase.xml
+
+ * Maybe: subregisters are each a unique type, maybe they should derive
+          from a base type with virtual access functions. Maybe function
+          object wrappers are sufficient.
+
+BUGS:
+ * reserved members are not being output to register structures.
+
+DOC edits:
+ * typo: the GPIO table p204,DM00031020 has OSPEEDER, it should be OSPEEDR
+

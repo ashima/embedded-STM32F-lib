@@ -1,3 +1,0 @@
-
- * strip defined symbols out of sections.ld and make a header for them.
- * generate mem.ld from infobase.xml
