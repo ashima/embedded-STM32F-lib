@@ -7,6 +7,10 @@
   <xsl:output method="text" omit-xml-declaration="yes" indent="no" />
 
   <xsl:template match="/">
+#ifndef MEMORY_H
+#define MEMORY_H
+#pragma once
+
 /* Memory map for <xsl:value-of select="@name"/>.
    Auto generated, do not edit.
  */
@@ -18,6 +22,7 @@
 </xsl:apply-templates>
     };
   };
+#endif
   </xsl:template>
 
   <xsl:template match="block|instance">

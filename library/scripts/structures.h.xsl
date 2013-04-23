@@ -14,9 +14,13 @@
 /* 
    Auto generated, do not edit.
  */
+#ifndef STRUCTURES_H
+#define STRUCTURES_H
+
 #include "st_base.h"
 
   <xsl:apply-templates select="peripheral"/>
+#endif
   </xsl:template>
 
   <xsl:template match="peripheral">

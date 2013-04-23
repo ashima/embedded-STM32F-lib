@@ -1,17 +1,26 @@
+#pragma once
+#ifndef CLOCK_HELPERS_H
+#define CLOCK_HELPERS_H
 
 #include "meta_script.h"
 
-
 namespace MS = meta_script;
 
-template<int XTAL, int HCLK>
-struct mk_PLL
+template<int XTAL, int HCLK, int mV>
+struct calc_PLL
   {
   enum 
     { 
+    HSI     = 16000000,  // HSI frequency
+    clk48   = 48000000,  // USB 48 MHz frequency
     vco_max = 432000000,
     vco_min = 192000000,
-    clk48   = 48000000
+    };
+
+  enum
+    {
+    XCLK = (XTAL == 0 ? HSI : XTAL) ,
+    SRC  = (XTAL != 0 ),  // use HSI (0) if XTAL==0 else use HSE(0).
     };
 
   //  let testp p = t*p < vco_max && t*p > vco_min
@@ -37,9 +46,9 @@ struct mk_PLL
   //  and calcn (p,m) = let n = t*p*m/x in (n,p,m,t-x*n/m/p,x/m)
   template<class A> struct calcn {
     struct r { enum {
-      t     = HCLK     >> 6,  // lose some precision to fit in 32bits.
-      x     = XTAL     >> 6,
-      u     = clk48    >> 6,
+      t     = HCLK  >> 6,  // lose some precision to fit in 32bits.
+      x     = XCLK  >> 6,
+      u     = clk48 >> 6,
       P     = A::a::i,
       M     = A::b::i,
       p_in  = x/M,           // PLL input
@@ -80,18 +89,12 @@ struct mk_PLL
     Q     = result::Q,
     s     = result::s,
     delta = result::delta,
-    BYP   = false, // no bypass.
-    SRC   = 1      // HSE on.
     };
-  };
 
 /*
  * calculate the number of Wait states needed for the flash controler
  * given the HCLK (Hz) and supply voltage (mV).
  */
-template<int HCLK, int mV>
-struct mk_flash
-  {
    enum {
     IC = true,
     DC = true,
@@ -100,3 +103,4 @@ struct mk_flash
   };
 
 
+#endif

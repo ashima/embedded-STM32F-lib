@@ -10,6 +10,9 @@
 /* Memory map for <xsl:value-of select="@name"/>.
    Auto generated, do not edit.
  */
+#ifndef INSTANCES_H
+#define INSTANCES_H
+#pragma once
 
 #include "memory.h"
 #include "structures.h"
@@ -23,6 +26,7 @@
   <xsl:with-param name="indent" select="'      '"/>
   <xsl:with-param name="bb" select="0"/>
 </xsl:apply-templates>
+#endif
   </xsl:template>
 
   <xsl:template match="block"><xsl:param 

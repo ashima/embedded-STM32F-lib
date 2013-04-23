@@ -1,4 +1,3 @@
-
 /**
   * @brief       C++ Templates that implement an ML like structure to 
   *              allow scripting of constance and functions directly.
@@ -9,6 +8,10 @@
   * I started this years ago and fuctions get updated or writen as I 
   * need them :). Really need better and more test cases.
  */
+
+#ifndef META_SCRIPT_H
+#define META_SCRTIP_H
+#pragma once
 
 namespace meta_script {
 // Boolean Adapters.
@@ -201,5 +204,5 @@ template<template<class> class F>   struct iter<F,nil>    { static void go() { }
 
 } // namespace
 
-
+#endif
 

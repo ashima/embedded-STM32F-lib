@@ -33,6 +33,10 @@
 
   <xsl:variable name="last" select="u:toNum(IRQBranchTable/row[position()=last()]/@address)" />
   <xsl:variable name="rows" select="IRQBranchTable" />
+#ifndef STM32F4_RT_H
+#define STM32F4_RT_H
+#pragma once
+
 #include &lt;inttypes.h&gt;
 
 typedef void (*isr_fp)();
@@ -65,7 +69,7 @@ typedef struct isr_vector_s  {
     <xsl:with-param name="npc" select="1"/>
     <xsl:with-param name="addrs" select="u:range('',4,$last,4)" />
   </xsl:call-template>
-
+#endif
   </xsl:template>
 
 

@@ -1,3 +1,7 @@
+#ifndef ST_BASE_H
+#define ST_BASE_H
+#pragma once
+
 #include <inttypes.h>
 #include <assert.h>
 
@@ -55,3 +59,4 @@ struct subregister {
 
 #define _V volatile
 
+#endif
