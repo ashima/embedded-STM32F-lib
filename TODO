@@ -13,6 +13,4 @@ LIBRARY:
           from a base type with virtual access functions. Maybe function
           object wrappers are sufficient.
 
-DOC edits:
- * typo: the GPIO table p204,DM00031020 has OSPEEDER, it should be OSPEEDR
 

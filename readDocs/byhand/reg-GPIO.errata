@@ -1,0 +1,4 @@
+<errata>
+  <replace p="204" x="1" y="9"><was>GPIOx_OSPEED ER (where x = A..I/ except B)</was>
+    <to>GPIOx_OSPEEDR</to></replace>
+</errata>
