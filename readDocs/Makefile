@@ -28,6 +28,8 @@ MERGELST = $B/guide.xml \
            $I/periph-DCMI.xml \
            $I/periph-WWDG.xml \
            $I/periph-SPI.xml \
+           $I/periph-USART.xml \
+           $I/periph-I2C.xml \
            $I/parts.xml \
            $I/IRQ-branchtable.xml
 
