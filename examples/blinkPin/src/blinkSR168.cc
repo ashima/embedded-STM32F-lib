@@ -7,29 +7,41 @@
 #ifdef DISCOVERY
 enum { pinA=14, pinB = 15 };
 typedef GPIOD::t t;
+#define EN RCC::GPIODEN
 #else
 enum { pinA=0, pinB = 1 };
 typedef GPIOE::t t;
+#define EN RCC::GPIOEEN
 #endif
 
-subregister<t,t::oMODER,   pinA,pinB> moder;
-subregister<t,t::oOTYPER,  pinA,pinB> otr;
-subregister<t,t::oOSPEEDER,pinA,pinB> ospeedr;
-subregister<t,t::oPUPDR,   pinA,pinB> pupdr;
-subregister<t,t::oODR,     pinA,pinB> odr;
+//Example of setting up subregisters.
+// subregister< parent_type, offset, first-bit, last-bit >
 
-SysClock<20000000> clk;
+subregister<t, t::oMODER,   pinA*2, pinB*2> moder;
+subregister<t, t::oOTYPER,  pinA  , pinB  > otr;
+subregister<t, t::oOSPEEDER,pinA*2, pinB*2> ospeedr;
+subregister<t, t::oPUPDR,   pinA*2, pinB*2> pupdr;
+subregister<t, t::oODR,     pinA  , pinB  > odr;
+
+enum {
+  XTALFreq = 20000000,   // Hz
+  SysFreq  = 168000000,  // Hz
+  supVoltage = 3300,   // mVolt.
+  };
+
+SysClock<XTALFreq>  clk;
 
 int main()
   {
-  clk.enablePLL( calc_PLL<20000000, 168000000, 3300>(), mk_PRE<1,2,4>() );
+  clk.enablePLL( calc_PLL<XTALFreq, SysFreq, supVoltage>(), mk_PRE<1,2,4>() );
 
-  *RCC::GPIODEN = true;
+  *EN = true;
+  *GPIOE::ODR0  = true;
 
-  *moder   = 3; // Both Output
-  *otr     = 0; // Both PullPull
-  *ospeedr = 3; // Both 2MHz
-  *pupdr   = 0; // Both no up/down
+  *moder   = 0x05; // Both Output
+  *otr     = 0x00; // Both PullPull
+  *ospeedr = 0x05; // Both 2MHz
+  *pupdr   = 0x00; // Both no up/down
 
   *odr = 1;  // 14 = 1, 15 = 0
 

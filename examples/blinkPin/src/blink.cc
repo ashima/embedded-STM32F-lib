@@ -1,5 +1,9 @@
 #include <instances.h>
 
+#ifdef DISCOVERY
+#error This file is Not for the DISCOVERY board, but DISCOVERY macro defined.
+#endif
+
 #define DELAY 1000000
 
 int main()

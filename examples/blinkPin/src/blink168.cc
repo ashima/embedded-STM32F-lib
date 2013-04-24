@@ -2,6 +2,10 @@
 #include <clocks.h>
 #include <clock_helpers.h>
 
+#ifdef DISCOVERY
+#error This file is Not for the DISCOVERY board, but DISCOVERY macro defined.
+#endif
+
 #define DELAY 1000000
 
 SysClock<20000000> clk;

@@ -30,10 +30,11 @@ LIBDIR=-L ../../install/lib
 # -T mem.ld -T sections.ld 
 #	-o $@ $^ -lstm32F407 > $*.mapfile
 
-
 obj/%.o: src/%.cc | obj
 	$(ARMCPP) $(CFLAGS) $(INCS) -o $@ -c $^
 
+obj/%-disc.o: src/%.cc | obj
+	$(ARMCPP) $(CFLAGS) $(INCS) -DDISCOVERY -o $@ -c $^
 
 clean:
 	rm obj/*.o obj/*.elf *.bin *.lst *.hex

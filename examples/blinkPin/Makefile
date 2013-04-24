@@ -1,5 +1,5 @@
-blinkPin: blinkPinAshima.bin blinkPinDisc.bin \
-          blinkPinAshima168.bin blinkPinDisc168.bin \
-          blinkPinSR168.bin
+blinkPin: blink.bin blink-disc.bin \
+          blink168.bin blink168-disc.bin \
+          blinkSR168.bin blinkSR168-disc.bin
 
 include ../Makefile.inc
