@@ -35,7 +35,10 @@ MINC=$(PY) scripts/mkinc.py
 EXT=$(PY) scripts/extracttable.py
 EXTARGS=-r 200 -t cells_xml
 
-$I/parts.xml: docs/STM-partlisttable.html
+$I $R:
+	-mkdir -p $@
+
+$I/parts.xml: docs/STM-partlisttable.html | $I
 	xsltproc --html -o $@ scripts/partsFromXHtml.xsl $^
 
 $I/all.xml: $(MERGELST) 
@@ -45,14 +48,14 @@ infobase.xml: $I/all.xml
 	xsltproc -o $@ scripts/merge.xsl $^
 
 # registers
-$I/DM00031020_0002-0032.txt: $D/DM00031020.pdf
+$I/DM00031020_0002-0032.txt: $D/DM00031020.pdf | $I
 	pdftotext -y 80 -H 655 -x 0 -W 600 -layout -f 2 -l 32 -nopgbrk $^ $@
 
 $I/regsFromIndex.xml: $I/DM00031020_0002-0032.txt
 	$(PY) scripts/regsOfindex.py -i $^ -o $@ 
 
 # table stuff...
-$I/table-%.xml: $H/%.tab
+$I/table-%.xml: $H/%.tab | $I
 	$(EXT) $(EXTARGS) -o $@ `cat $^`
 	if [ -e byhand/$*.errata ] ; then mv $@ $@.raw ; \
 	$(MINC) $@.raw byhand/$*.errata |\
@@ -74,7 +77,8 @@ $R/clk_v_ws.xml: $I/clk_v_ws_data.xml
 	python2.7 scripts/wsClk.py -i $^ -o $@
 
 clean:
-	rm $I/*.xml $I/*.txt $I/*.raw infobase.xml
+	-rm $I/*.xml $I/*.txt $I/*.raw infobase.xml
+	-rmdir $I
 
 #infobase/memory.xml: intermediates/all.xml
 #	xsltproc -o $@ scripts/mergeMem.xsl $^
