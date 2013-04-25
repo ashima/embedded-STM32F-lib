@@ -4,40 +4,34 @@
 PY=/opt/local/bin/python2.7
 
 # keep everything around for now.
-I=intermediates
-B=byhand
-
+I=./intermediates
+R=./irritating
+H=./byhand
+S=./scripts
+D=./docs
 # what goes into the outbound database.
               #memory-adc.xml 
 
-MERGELST = $B/guide.xml \
-           $B/reg-Ranges.xml \
-           $B/memory-overview-STM32F407.xml  \
-           $B/memory-dma.xml  \
-           $B/memory-ethernet.xml \
-           $I/memory-boundries.xml \
-           $I/memory-ADC.xml \
-           $I/regsFromIndex.xml\
-           $I/periph-RCC.xml \
-           $I/periph-GPIO.xml \
-           $I/periph-SYSCFG.xml \
-           $I/periph-FLASH.xml \
-           $I/periph-DMA.xml \
-           $I/periph-ADC.xml \
-           $I/periph-DAC.xml \
-           $I/periph-DCMI.xml \
-           $I/periph-WWDG.xml \
-           $I/periph-SPI.xml \
-           $I/periph-USART.xml \
-           $I/periph-I2C.xml \
-           $I/parts.xml \
-           $I/IRQ-branchtable.xml
+MERGELST = $H/guide.xml              $H/reg-Ranges.xml \
+           $H/memory-overview-STM32F407.xml  \
+           $H/memory-dma.xml         $H/memory-ethernet.xml \
+           $I/memory-boundries.xml   $I/memory-ADC.xml \
+           $I/regsFromIndex.xml      $I/periph-RCC.xml \
+           $I/periph-GPIO.xml        $I/periph-SYSCFG.xml \
+           $I/periph-FLASH.xml       $I/periph-DMA.xml \
+           $I/periph-ADC.xml         $I/periph-DAC.xml \
+           $I/periph-DCMI.xml        $I/periph-WWDG.xml \
+           $I/periph-SPI.xml         $I/periph-USART.xml \
+           $I/periph-I2C.xml         $I/parts.xml \
+           $I/IRQ-branchtable.xml \
+           $R/clk_v_ws.xml
 
 all: infobase.xml
 
+VPATH=$H $D
+
 WRAP=$(PY) scripts/wrap.py
 MINC=$(PY) scripts/mkinc.py
-VPATH=$I byhand docs intermediates
 EXT=$(PY) scripts/extracttable.py
 EXTARGS=-r 200 -t cells_xml
 
@@ -47,18 +41,18 @@ $I/parts.xml: docs/STM-partlisttable.html
 $I/all.xml: $(MERGELST) 
 	$(MINC) $^ | xsltproc -xinclude -o $@ scripts/nop.xsl -
 
-infobase.xml: intermediates/all.xml
+infobase.xml: $I/all.xml
 	xsltproc -o $@ scripts/merge.xsl $^
 
 # registers
-$I/DM00031020_0002-0032.txt: DM00031020.pdf
+$I/DM00031020_0002-0032.txt: $D/DM00031020.pdf
 	pdftotext -y 80 -H 655 -x 0 -W 600 -layout -f 2 -l 32 -nopgbrk $^ $@
 
-$I/regsFromIndex.xml: DM00031020_0002-0032.txt
+$I/regsFromIndex.xml: $I/DM00031020_0002-0032.txt
 	$(PY) scripts/regsOfindex.py -i $^ -o $@ 
 
 # table stuff...
-$I/table-%.xml: byhand/%.tab
+$I/table-%.xml: $H/%.tab
 	$(EXT) $(EXTARGS) -o $@ `cat $^`
 	if [ -e byhand/$*.errata ] ; then mv $@ $@.raw ; \
 	$(MINC) $@.raw byhand/$*.errata |\
@@ -76,12 +70,11 @@ $I/IRQ-branchtable.xml: $I/table-IRQ.xml
 $I/clk_v_ws_data.xml: $I/table-clkWs.xml
 	xsltproc -o $@ scripts/wsOfTab.xsl $^
 
-$I/clk_v_ws.xml: $I/clk_v_ws_data.xml
+$R/clk_v_ws.xml: $I/clk_v_ws_data.xml
 	python2.7 scripts/wsClk.py -i $^ -o $@
 
 clean:
-	rm intermediates/*.xml intermediates/*.txt \
-	intermediates/*.raw infobase.xml
+	rm $I/*.xml $I/*.txt $I/*.raw infobase.xml
 
 #infobase/memory.xml: intermediates/all.xml
 #	xsltproc -o $@ scripts/mergeMem.xsl $^

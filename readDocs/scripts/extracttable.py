@@ -447,7 +447,7 @@ def o_cells_xml(cells,pgs) :
     if len(cl[5]):# != "" :
       x.appendChild( (doc.createTextNode(cl[5].strip().decode("utf-8")) ) )
     root.appendChild(x)
-  args.outfile.write( doc.toprettyxml() )
+  args.outfile.write( doc.toprettyxml(encoding="utf8",indent=" ") )
   
 def o_table_csv(cells,pgs) : 
   tab = [ [ [ "" for x in range(len(vd)/2 +1)

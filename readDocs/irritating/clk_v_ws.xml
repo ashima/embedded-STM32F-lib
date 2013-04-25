@@ -1,0 +1,1 @@
+<clk_V_to_WS c="-4.663e-01" m="1.006e-04"><desc>Fitting for m,c in ws = round(m * (freq/volt) + c)</desc><covariance><row><cell>1.00630410355e-12</cell><cell>-1.19201772962e-08</cell></row><row><cell>-1.19201772962e-08</cell><cell>0.000292302503329</cell></row></covariance></clk_V_to_WS>
