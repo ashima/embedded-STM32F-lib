@@ -41,7 +41,8 @@
     name="bb"/><xsl:choose>
 <xsl:when test="@class='RCC'  or @class='DMA'   or @class='DMA_S' or
                 @class='GPIO' or @class='FLASH' or @class='DAC'   or 
-                @class='ADC'  or @class='WWDG'  or @class='SPI' "
+                @class='ADC'  or @class='WWDG'  or @class='SPI'  or
+                @class='USART'  or @class='I2C'  "
 >DECLARE_PERIPH(<xsl:value-of 
 select="@name"/><xsl:if test="$bb=1">_BB</xsl:if>, <xsl:value-of 
 select="@class"/>, <xsl:choose>

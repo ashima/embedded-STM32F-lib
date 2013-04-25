@@ -90,9 +90,9 @@ select="u:toHex($i)"/> ;</xsl:otherwise>
 select="../@name"/>_st,<xsl:value-of
 select="../register[@short=$s]/@offset"/>,<xsl:value-of 
 select="@first"/>,<xsl:value-of 
-select="@last"/><xsl:if test="@min">,<xsl:value-of 
+select="@last"/><xsl:if test="@min">,range32&lt;<xsl:value-of 
 select="@min"/>,<xsl:value-of 
-select="@max"/></xsl:if>&gt; <xsl:value-of select="@name"/> ;
+select="@max"/>&gt; </xsl:if>&gt; <xsl:value-of select="@name"/> ;
 </xsl:template>
 
 </xsl:stylesheet>
