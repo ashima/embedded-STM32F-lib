@@ -1,0 +1,4 @@
+<errata>
+  <replace p="741" x="24" y="6"><was>ADD0 ADD[9:8] ADD[7:1]</was><to>ADD</to></replace>
+  <replace p="741" x="18" y="14"><was>PEC[7:0]</was><to>PECR</to></replace>
+</errata>

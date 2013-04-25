@@ -64,6 +64,7 @@
       <xsl:when test="@class"><xsl:value-of select="@class"/></xsl:when>
       <xsl:when test="u:lowercase(@name)=@name"></xsl:when>
       <xsl:when test="starts-with(@name,'I2C')">I2C</xsl:when>
+      <xsl:when test="starts-with(@name,'UART')">USART</xsl:when>
       <xsl:when test="starts-with(@name,'I2S')">SPI</xsl:when>
       <xsl:when test="starts-with(@name,'GPIO')">GPIO</xsl:when>
       <xsl:otherwise><xsl:value-of select="str:tokenize(@name,'0123456789')[1]/text()"/></xsl:otherwise>

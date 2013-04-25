@@ -17,7 +17,8 @@ def procargs() :
 args = procargs()
 
 ws = re.compile( r'\s+' )
-ns= re.compile(r'(\w+)' )
+ns = re.compile( r'(\w+)' )
+ss = re.compile( r'[^\w_\[\]]+' )
 
 tableTree = ET.parse(args.infile)
 table = tableTree.getroot()
@@ -95,7 +96,7 @@ for k in sorted(ks) :
       txt = n1.match( j.text )
       if txt is None :
         bit = ET.Element("bit", { 
-          "name"  : ws.sub("", j.text) , 
+          "name"  : ss.sub('_',ws.sub("", j.text)) , 
           "w"     : w,
           "x"     : str(x),
           "last"  : hrow[str(x)].text,
@@ -106,7 +107,7 @@ for k in sorted(ks) :
         n = txt.group(1)
         if d_n.get( n ) is None :
           d_n[n] = ET.Element("bit", { 
-            "name"  : ws.sub("", n ) ,
+            "name"  : ss.sub('_', ws.sub("", n )) ,
             "last" : "0",
             "first" : "1000",
             } )
@@ -129,6 +130,8 @@ for k in sorted(ks) :
       n = n.group(1)
   if n is None :
     n = "Unknown!?"
+  else:
+    n = ss.sub('',n);
 #  c = comments.findall("registers/register[@name='%s']" % n)
 #  if len(c) > 0 and c[0].text != None:
 #    desc = ET.Element("description")
