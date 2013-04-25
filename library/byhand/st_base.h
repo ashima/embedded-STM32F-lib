@@ -58,10 +58,9 @@ struct subregister {
   static const int_t mask = ((int_t)2 << (L-F))-1 ;
 
   struct t {
-    int_t operator=(int_t x) {
-      x &= mask;
-      assert( x >= R::MIN && x <= R::MAX );
-      (*(int_t*)r) = ((*(int_t*)r) & (~(mask << F))) | (x << F);
+    int_t operator=(int_t const & x) {
+      assert( (x&mask) >= R::MIN && x <= R::MAX );
+      (*(int_t*)r) = ((*(int_t*)r) & (~(mask << F))) | ((x&mask) << F);
       return x; 
       };
     operator const int_t () {

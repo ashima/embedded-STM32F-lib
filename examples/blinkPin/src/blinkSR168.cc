@@ -27,10 +27,10 @@ int main()
 
   *EN = true;
 
-  *leds::mode   = 5; //rep32x2 * GPIO_mode_OUT ;        // Both Output
-  *leds::otype  = 0; //rep32x1 * GPIO_otype_PUSHPULL ;  // Both PullPull
-  *leds::ospeed = 5; // rep32x2 * GPIO_ospeed_2MHZ ;     // Both 2MHz
-  *leds::pupd   = 0; //rep32x2 * GPIO_pupd_NONE ;       // Both no up/down
+  *leds::mode   = rep32x2 * GPIO_mode_OUT ;        // Both Output
+  *leds::otype  = rep32x1 * GPIO_otype_PUSHPULL ;  // Both PullPull
+  *leds::ospeed = rep32x2 * GPIO_ospeed_2MHZ ;     // Both 2MHz
+  *leds::pupd   = rep32x2 * GPIO_pupd_NONE ;       // Both no up/down
 //  *leds::af     = rep64x4 * GPIO_af_SYSTEM ;       // pins are gpio.
 
   *leds::od = 2;  // 14 = 1, 15 = 0
