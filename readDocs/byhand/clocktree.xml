@@ -1,0 +1,125 @@
+<clocks>
+<comment>
+Clock tree for the STM23F407 family
+</comment>
+
+<clk name="LSI" value="32 000"/>
+<clk name="HSI" value="16 000 000"/>
+
+<clk name="PLLIN">
+  <div by="RCC::PLLM">
+    <select on="RCC::PLLSRC">
+      <when v="0" src="HSI"/>
+      <when v="1" src="HSE"/>
+    </select>
+  </div>
+</clk>
+<clk name="PLLVCO" >  <mul by="RCC::PLLN"    src="PLLIN"  /></clk>
+<clk name="PLLCLK" >  <div by="RCC::PLLP"    src="PLLVCO" /></clk>
+<clk name="PLL48CK">  <div by="RCC::PLLQ"    src="PLLVCO" /></clk>
+<clk name="I2SVCO">   <mul by="RCC::PLLI2SN" src="PLLIN"  /></clk>
+<clk name="PLLI2SCLK"><div by="RCC::PLLI2SR" src="I2SVCO" /></clk>
+
+<clk name="I2S_CLK">
+  <select on="RCC::I2SSRC">
+      <when v="0" src="PLLI2SCLK"/>
+      <when v="1" src="I2S_CKIN"/>
+  </select>
+</clk>
+
+<clk name="SYSCLK">
+  <select on="RCC::SW">
+      <when v="0" src="HSI"/>
+      <when v="1" src="HSE"/>
+      <when v="2" src="PLLCLK"/>
+      <otherwise value="-1"/>
+  </select>
+</clk>
+
+<clk name="PLLI2SCLK"><div by="RCC::PLLI2SR" src="I2SVCO"/></clk>
+<clk name="HSE_RTC"><div by="RCC::RTCPRE" src="HSE"/></clk>
+<clk name="RTC_CLK">
+  <select on="RCC::RTCSEL">
+      <when v="1" src="LSE"/>
+      <when v="2" src="LSI"/>
+      <when v="3" src="HSE_RTC"/>
+      <otherwise value="-1"/>
+  </select>
+</clk>
+
+<define name="mco">
+  <clk name="$N$_1">
+    <select on="$R1">
+        <when v="0" src="$A"/>
+        <when v="1" src="$B"/>
+        <when v="2" src="HSE"/>
+        <when v="3" src="PLLCLK"/>
+    </select>
+  </clk>
+  <clktree name="$N$_" by="1,2,3,4,5" src="$N$_1"/>
+  <clk name="$N">
+    <select on="$R2">
+        <when v="4" src="$N$_2"/>
+        <when v="5" src="$N$_3"/>
+        <when v="6" src="$N$_4"/>
+        <when v="7" src="$N$_5"/>
+        <otherwise src="$N$_1"/>
+    </select>
+  </clk>
+</define>
+
+<use name="mco" N="MCO1" R1="RCC:MCO1" R2="RCC::MCO1PRE" A="HSI" B="LSE"/>
+<use name="mco" N="MCO2" R1="RCC:MCO2" R2="RCC::MCO2PRE" A="SYSCLK" B="PLLI2S"/>
+
+<clktree name="SYSCLK_" by="2,4,5,16,64,128,256,512" src="SYSCLK"/>
+<clk name="HCLK">
+  <select on="RCC:HPRE" >
+      <when v="8"  src="SYSCLK_2"/>
+      <when v="9"  src="SYSCLK_4"/>
+      <when v="10" src="SYSCLK_8"/>
+      <when v="11" src="SYSCLK_16"/>
+      <when v="12" src="SYSCLK_64"/>
+      <when v="13" src="SYSCLK_128"/>
+      <when v="14" src="SYSCLK_256"/>
+      <when v="15" src="SYSCLK_512"/>
+      <otherwise src="SYSCLK"/>
+  </select>
+</clk>
+
+<clktree name="HCLK_" by="2,4,8,16" src="HCLK"/>
+
+<define name="pclk">
+  <clk name="$PCLKx">
+    <select on="$PREx">
+      <when v="4" src="HCLK_2"/>
+      <when v="5" src="HCLK_4"/>
+      <when v="6" src="HCLK_8"/>
+      <when v="7" src="HCLK_16"/>
+      <otherwise src="HCLK"/>
+    </select>
+  </clk>
+  <clk name="$TIM_CLKx">
+    <select on="RCC::TIMPRE">
+        <when v="0">
+          <select on="$PREx">
+            <when v="5" src="HCLK_2"/>
+            <when v="6" src="HCLK_4"/>
+            <when v="7" src="HCLK_8"/>
+            <otherwise src="HCLK"/>
+          </select>
+        </when>
+        <when v="1">
+          <select on="$PREx">
+            <when v="6" src="HCLK_2"/>
+            <when v="7" src="HCLK_4"/>
+            <otherwise src="HCLK"/>
+          </select>
+        </when>
+    </select>
+  </clk>
+</define>
+
+<use name="pclk" PCLKx="PCLK1" PREx="RCC::PRE1" TIM_CLKx="TIM_CLK1" H="hi"/>
+<use name="pclk" PCLKx="PCLK2" PREx="RCC::PRE2" TIM_CLKx="TIM_CLK2" H="bye"/>
+
+</clocks>
