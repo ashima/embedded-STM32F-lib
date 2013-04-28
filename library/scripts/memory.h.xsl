@@ -1,19 +1,11 @@
 <?xml version="1.0"?>
-
-<xsl:stylesheet version="1.0"
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:str="http://exslt.org/strings" >
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:import href="boilerplate.xsl"/>
 
   <xsl:output method="text" omit-xml-declaration="yes" indent="no" />
+  <xsl:variable name="file-desc"> Memory map.</xsl:variable>
 
-  <xsl:template match="/">
-#ifndef MEMORY_H
-#define MEMORY_H
-#pragma once
-
-/* Memory map for <xsl:value-of select="@name"/>.
-   Auto generated, do not edit.
- */
+  <xsl:template match="infobase">
   struct memMap {
     enum {
 <xsl:apply-templates select="/infobase/memory-map/block">
@@ -22,7 +14,6 @@
 </xsl:apply-templates>
     };
   };
-#endif
   </xsl:template>
 
   <xsl:template match="block|instance">
@@ -49,5 +40,4 @@
 </xsl:apply-templates>
 </xsl:if>
 </xsl:template>
-  
 </xsl:stylesheet>

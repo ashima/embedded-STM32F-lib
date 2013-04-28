@@ -28,7 +28,7 @@ L_stm32F407=stm32F4_rt.o stm32F4_isrbt.o stubs.o
 LIBE=stm32F407.ld sections.ld 
 
 HDRSE=clock_helpers.h clocks.h meta_script.h  st_base.h  system.h  gpio.h
-HDRS=instances.h  memory.h  stm32F4_rt.h  structures.h
+HDRS=instances.h  memory.h  stm32F4_rt.h  structures.h clktree.h
 
 TESTS=memory.rslt
 
@@ -53,11 +53,13 @@ install: $(INSTHDRS) $(INSTLIBS) | all
 clean:
 	-rm $O/* $B/* $T/*
 	-rmdir $O $B $T
+XSLTCMD=xsltproc --stringparam target $* -o $@ $< $(INFOBASE)
+#	xsltproc -o $@ $< $(INFOBASE)
 
-$B/%: $S/%.xsl | $B
-	xsltproc -o $@ $< $(INFOBASE)
+$B/%: $S/%.xsl $(INFOBASE) | $B
+	$(XSLTCMD)
 
-$T/%: $S/%.xsl | $T
+$T/%: $S/%.xsl $(INFOBASE) | $T
 	xsltproc -o $@ $< $(INFOBASE)
 
 $O/%.o: $B/%.c | $O

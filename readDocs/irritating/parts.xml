@@ -1,0 +1,288 @@
+<?xml version="1.0"?>
+<parts xmlns:ext="thing">
+  <part name="" package="" core="" speed="" flash="" sram=""/>
+  <part name="STM32F050C4" package="LQFP 48 7x7x1.4" core="ARM Cortex-M0" speed="48" flash="16" sram="4"/>
+  <part name="STM32F050C6" package="LQFP 48 7x7x1.4" core="ARM Cortex-M0" speed="48" flash="32" sram="4"/>
+  <part name="STM32F050F4" package="TSSOP 20" core="ARM Cortex-M0" speed="48" flash="16" sram="4"/>
+  <part name="STM32F050F6" package="TSSOP 20" core="ARM Cortex-M0" speed="48" flash="32" sram="4"/>
+  <part name="STM32F050G4" package="UFQFPN 28 4x4x0.55" core="ARM Cortex-M0" speed="48" flash="16" sram="4"/>
+  <part name="STM32F050G6" package="UFQFPN 28 4x4x0.55" core="ARM Cortex-M0" speed="48" flash="32" sram="4"/>
+  <part name="STM32F050K4" package="UFQFPN 32 5x5x0.55" core="ARM Cortex-M0" speed="48" flash="16" sram="4"/>
+  <part name="STM32F050K6" package="UFQFPN 32 5x5x0.55" core="ARM Cortex-M0" speed="48" flash="32" sram="4"/>
+  <part name="STM32F051C4" package="LQFP 48 7x7x1.4" core="ARM Cortex-M0" speed="48" flash="16" sram="4"/>
+  <part name="STM32F051C6" package="LQFP 48 7x7x1.4" core="ARM Cortex-M0" speed="48" flash="32" sram="4"/>
+  <part name="STM32F051C8" package="LQFP 48 7x7x1.4" core="ARM Cortex-M0" speed="48" flash="64" sram="8"/>
+  <part name="STM32F051K4" package="LQFP 32 7x7x1.4; UFQFPN 32 5x5x0.55" core="ARM Cortex-M0" speed="48" flash="16" sram="4"/>
+  <part name="STM32F051K6" package="LQFP 32 7x7x1.4; UFQFPN 32 5x5x0.55" core="ARM Cortex-M0" speed="48" flash="32" sram="4"/>
+  <part name="STM32F051K8" package="LQFP 32 7x7x1.4; UFQFPN 32 5x5x0.55" core="ARM Cortex-M0" speed="48" flash="64" sram="8"/>
+  <part name="STM32F051R4" package="LQFP 64 10x10x1.4" core="ARM Cortex-M0" speed="48" flash="16" sram="4"/>
+  <part name="STM32F051R6" package="LQFP 64 10x10x1.4" core="ARM Cortex-M0" speed="48" flash="32" sram="4"/>
+  <part name="STM32F051R8" package="LQFP 64 10x10x1.4" core="ARM Cortex-M0" speed="48" flash="64" sram="8"/>
+  <part name="STM32F100C4" package="LQFP 48 7x7x1.4" core="ARM Cortex-M3" speed="24" flash="16" sram="4"/>
+  <part name="STM32F100C6" package="LQFP 48 7x7x1.4" core="ARM Cortex-M3" speed="24" flash="32" sram="4"/>
+  <part name="STM32F100C8" package="LQFP 48 7x7x1.4" core="ARM Cortex-M3" speed="24" flash="64" sram="8"/>
+  <part name="STM32F100CB" package="LQFP 48 7x7x1.4" core="ARM Cortex-M3" speed="24" flash="128" sram="8"/>
+  <part name="STM32F100R4" package="LQFP 64 10x10x1.4; TFBGA 64 5x5x1.2" core="ARM Cortex-M3" speed="24" flash="16" sram="4"/>
+  <part name="STM32F100R6" package="LQFP 64 10x10x1.4; TFBGA 64 5x5x1.2" core="ARM Cortex-M3" speed="24" flash="32" sram="4"/>
+  <part name="STM32F100R8" package="LQFP 64 10x10x1.4; TFBGA 64 5x5x1.2" core="ARM Cortex-M3" speed="24" flash="64" sram="8"/>
+  <part name="STM32F100RB" package="LQFP 64 10x10x1.4; TFBGA 64 5x5x1.2" core="ARM Cortex-M3" speed="24" flash="128" sram="8"/>
+  <part name="STM32F100RC" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="24" flash="256" sram="24"/>
+  <part name="STM32F100RD" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="24" flash="384" sram="32"/>
+  <part name="STM32F100RE" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="24" flash="512" sram="32"/>
+  <part name="STM32F100V8" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="24" flash="64" sram="8"/>
+  <part name="STM32F100VB" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="24" flash="128" sram="8"/>
+  <part name="STM32F100VC" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="24" flash="256" sram="24"/>
+  <part name="STM32F100VD" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="24" flash="384" sram="32"/>
+  <part name="STM32F100VE" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="24" flash="512" sram="32"/>
+  <part name="STM32F100ZC" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="24" flash="256" sram="24"/>
+  <part name="STM32F100ZD" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="24" flash="384" sram="32"/>
+  <part name="STM32F100ZE" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="24" flash="512" sram="32"/>
+  <part name="STM32F101C4" package="LQFP 48 7x7x1.4" core="ARM Cortex-M3" speed="36" flash="16" sram="4"/>
+  <part name="STM32F101C6" package="LQFP 48 7x7x1.4" core="ARM Cortex-M3" speed="36" flash="32" sram="6"/>
+  <part name="STM32F101C8" package="LQFP 48 7x7x1.4" core="ARM Cortex-M3" speed="36" flash="64" sram="10"/>
+  <part name="STM32F101CB" package="LQFP 48 7x7x1.4; VFQFPN 48 7x7x1.0" core="ARM Cortex-M3" speed="36" flash="128" sram="16"/>
+  <part name="STM32F101R4" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="36" flash="16" sram="4"/>
+  <part name="STM32F101R6" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="36" flash="32" sram="6"/>
+  <part name="STM32F101R8" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="36" flash="64" sram="10"/>
+  <part name="STM32F101RB" package="LQFP 64 10x10x1.4; TFBGA 64 5x5x1.2" core="ARM Cortex-M3" speed="36" flash="128" sram="16"/>
+  <part name="STM32F101RC" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="36" flash="256" sram="32"/>
+  <part name="STM32F101RD" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="36" flash="384" sram="48"/>
+  <part name="STM32F101RE" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="36" flash="512" sram="48"/>
+  <part name="STM32F101RF" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="36" flash="768" sram="80"/>
+  <part name="STM32F101RG" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="36" flash="1024" sram="80"/>
+  <part name="STM32F101T4" package="VFQFPN 36 6x6x1-0" core="ARM Cortex-M3" speed="36" flash="16" sram="4"/>
+  <part name="STM32F101T6" package="VFQFPN 36 6x6x1-0" core="ARM Cortex-M3" speed="36" flash="32" sram="6"/>
+  <part name="STM32F101T8" package="VFQFPN 36 6x6x1-0" core="ARM Cortex-M3" speed="36" flash="64" sram="10"/>
+  <part name="STM32F101TB" package="VFQFPN 36 6x6x1-0" core="ARM Cortex-M3" speed="36" flash="128" sram="16"/>
+  <part name="STM32F101V8" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="36" flash="64" sram="10"/>
+  <part name="STM32F101VB" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="36" flash="128" sram="16"/>
+  <part name="STM32F101VC" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="36" flash="256" sram="32"/>
+  <part name="STM32F101VD" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="36" flash="384" sram="48"/>
+  <part name="STM32F101VE" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="36" flash="512" sram="48"/>
+  <part name="STM32F101VF" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="36" flash="768" sram="80"/>
+  <part name="STM32F101VG" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="36" flash="1024" sram="80"/>
+  <part name="STM32F101ZC" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="36" flash="256" sram="32"/>
+  <part name="STM32F101ZD" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="36" flash="384" sram="48"/>
+  <part name="STM32F101ZE" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="36" flash="512" sram="48"/>
+  <part name="STM32F101ZF" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="36" flash="768" sram="80"/>
+  <part name="STM32F101ZG" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="36" flash="1024" sram="80"/>
+  <part name="STM32F102C4" package="LQFP 48 7x7x1.4" core="ARM Cortex-M3" speed="48" flash="16" sram="4"/>
+  <part name="STM32F102C6" package="LQFP 48 7x7x1.4" core="ARM Cortex-M3" speed="48" flash="32" sram="6"/>
+  <part name="STM32F102C8" package="LQFP 48 7x7x1.4" core="ARM Cortex-M3" speed="48" flash="64" sram="10"/>
+  <part name="STM32F102CB" package="LQFP 48 7x7x1.4" core="ARM Cortex-M3" speed="48" flash="128" sram="16"/>
+  <part name="STM32F102R4" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="48" flash="16" sram="4"/>
+  <part name="STM32F102R6" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="48" flash="32" sram="6"/>
+  <part name="STM32F102R8" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="48" flash="64" sram="10"/>
+  <part name="STM32F102RB" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="48" flash="128" sram="16"/>
+  <part name="STM32F103C4" package="LQFP 48 7x7x1.4" core="ARM Cortex-M3" speed="72" flash="16" sram="6"/>
+  <part name="STM32F103C6" package="LQFP 48 7x7x1.4; VFQFPN 48 7x7x1.0" core="ARM Cortex-M3" speed="72" flash="32" sram="10"/>
+  <part name="STM32F103C8" package="LQFP 48 7x7x1.4" core="ARM Cortex-M3" speed="72" flash="64" sram="20"/>
+  <part name="STM32F103CB" package="LQFP 48 7x7x1.4; VFQFPN 48 7x7x1.0" core="ARM Cortex-M3" speed="72" flash="128" sram="20"/>
+  <part name="STM32F103R4" package="LQFP 64 10x10x1.4; TFBGA 64 5x5x1.2" core="ARM Cortex-M3" speed="72" flash="16" sram="6"/>
+  <part name="STM32F103R6" package="LQFP 64 10x10x1.4; TFBGA 64 5x5x1.2" core="ARM Cortex-M3" speed="72" flash="32" sram="10"/>
+  <part name="STM32F103R8" package="LQFP 64 10x10x1.4; TFBGA 64 5x5x1.2" core="ARM Cortex-M3" speed="72" flash="64" sram="20"/>
+  <part name="STM32F103RB" package="TFBGA 64 5x5x1.2" core="ARM Cortex-M3" speed="72" flash="128" sram="20"/>
+  <part name="STM32F103RC" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="72" flash="256" sram="48"/>
+  <part name="STM32F103RD" package="LQFP 64 10x10x1.4; WLCSP 64" core="ARM Cortex-M3" speed="72" flash="384" sram="64"/>
+  <part name="STM32F103RE" package="LQFP 64 10x10x1.4; WLCSP 64" core="ARM Cortex-M3" speed="72" flash="512" sram="64"/>
+  <part name="STM32F103RF" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="72" flash="768" sram="96"/>
+  <part name="STM32F103RG" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="72" flash="1024" sram="96"/>
+  <part name="STM32F103T4" package="VFQFPN 36 6x6x1-0" core="ARM Cortex-M3" speed="72" flash="16" sram="6"/>
+  <part name="STM32F103T6" package="VFQFPN 36 6x6x1-0" core="ARM Cortex-M3" speed="72" flash="32" sram="10"/>
+  <part name="STM32F103T8" package="VFQFPN 36 6x6x1-0" core="ARM Cortex-M3" speed="72" flash="64" sram="20"/>
+  <part name="STM32F103TB" package="VFQFPN 36 6x6x1-0" core="ARM Cortex-M3" speed="72" flash="128" sram="20"/>
+  <part name="STM32F103V8" package="LFBGA 100 10x10x1.7; LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="72" flash="64" sram="20"/>
+  <part name="STM32F103VB" package="LFBGA 100 10x10x1.7; LQFP 100 14x14x1.4; UFBGA 100 7x7x0.6" core="ARM Cortex-M3" speed="72" flash="128" sram="20"/>
+  <part name="STM32F103VC" package="LFBGA 100 10x10x1.7; LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="72" flash="256" sram="48"/>
+  <part name="STM32F103VD" package="LFBGA 100 10x10x1.7; LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="72" flash="384" sram="64"/>
+  <part name="STM32F103VE" package="LFBGA 100 10x10x1.7; LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="72" flash="512" sram="64"/>
+  <part name="STM32F103VF" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="72" flash="768" sram="96"/>
+  <part name="STM32F103VG" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="72" flash="1024" sram="96"/>
+  <part name="STM32F103ZC" package="LFBGA 144 10x10x1.7; LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="72" flash="256" sram="48"/>
+  <part name="STM32F103ZD" package="LFBGA 144 10x10x1.7; LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="72" flash="384" sram="64"/>
+  <part name="STM32F103ZE" package="LFBGA 144 10x10x1.7; LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="72" flash="512" sram="64"/>
+  <part name="STM32F103ZF" package="LFBGA 144 10x10x1.7; LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="72" flash="768" sram="96"/>
+  <part name="STM32F103ZG" package="LFBGA 144 10x10x1.7; LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="72" flash="1024" sram="96"/>
+  <part name="STM32F105R8" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="72" flash="64" sram="64"/>
+  <part name="STM32F105RB" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="72" flash="128" sram="64"/>
+  <part name="STM32F105RC" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="72" flash="256" sram="64"/>
+  <part name="STM32F105V8" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="72" flash="64" sram="64"/>
+  <part name="STM32F105VB" package="LFBGA 100 10x10x1.7; LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="72" flash="128" sram="64"/>
+  <part name="STM32F105VC" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="72" flash="256" sram="64"/>
+  <part name="STM32F107RB" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="72" flash="128" sram="64"/>
+  <part name="STM32F107RC" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="72" flash="256" sram="64"/>
+  <part name="STM32F107VB" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="72" flash="128" sram="64"/>
+  <part name="STM32F107VC" package="LFBGA 100 10x10x1.7; LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="72" flash="256" sram="64"/>
+  <part name="STM32F205RB" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="120" flash="128" sram="64"/>
+  <part name="STM32F205RC" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="120" flash="256" sram="96"/>
+  <part name="STM32F205RE" package="LQFP 64 10x10x1.4; WLCSP 66L R9X9 PITCH 0.4 MM" core="ARM Cortex-M3" speed="120" flash="512" sram="128"/>
+  <part name="STM32F205RF" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="120" flash="768" sram="128"/>
+  <part name="STM32F205RG" package="LQFP 64 10x10x1.4; WLCSP 66L R9X9 PITCH 0.4 MM" core="ARM Cortex-M3" speed="120" flash="1024" sram="128"/>
+  <part name="STM32F205VB" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="120" flash="128" sram="64"/>
+  <part name="STM32F205VC" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="120" flash="256" sram="96"/>
+  <part name="STM32F205VE" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="120" flash="512" sram="128"/>
+  <part name="STM32F205VF" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="120" flash="768" sram="128"/>
+  <part name="STM32F205VG" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="120" flash="1024" sram="128"/>
+  <part name="STM32F205ZC" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="120" flash="256" sram="96"/>
+  <part name="STM32F205ZE" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="120" flash="512" sram="128"/>
+  <part name="STM32F205ZF" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="120" flash="768" sram="128"/>
+  <part name="STM32F205ZG" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="120" flash="1024" sram="128"/>
+  <part name="STM32F207IC" package="BGA 176; LQFP 176 24x24x1.4" core="ARM Cortex-M3" speed="120" flash="256" sram="128"/>
+  <part name="STM32F207IE" package="BGA 176; LQFP 176 24x24x1.4" core="ARM Cortex-M3" speed="120" flash="512" sram="128"/>
+  <part name="STM32F207IF" package="BGA 176; LQFP 176 24x24x1.4" core="ARM Cortex-M3" speed="120" flash="768" sram="128"/>
+  <part name="STM32F207IG" package="BGA 176; LQFP 176 24x24x1.4" core="ARM Cortex-M3" speed="120" flash="1024" sram="128"/>
+  <part name="STM32F207VC" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="120" flash="256" sram="128"/>
+  <part name="STM32F207VE" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="120" flash="512" sram="128"/>
+  <part name="STM32F207VF" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="120" flash="768" sram="128"/>
+  <part name="STM32F207VG" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="120" flash="1024" sram="128"/>
+  <part name="STM32F207ZC" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="120" flash="256" sram="128"/>
+  <part name="STM32F207ZE" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="120" flash="512" sram="128"/>
+  <part name="STM32F207ZF" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="120" flash="768" sram="128"/>
+  <part name="STM32F207ZG" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="120" flash="1024" sram="128"/>
+  <part name="STM32F215RE" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="120" flash="512" sram="128"/>
+  <part name="STM32F215RG" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="120" flash="1024" sram="128"/>
+  <part name="STM32F215VE" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="120" flash="512" sram="128"/>
+  <part name="STM32F215VG" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="120" flash="1024" sram="128"/>
+  <part name="STM32F215ZE" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="120" flash="512" sram="128"/>
+  <part name="STM32F215ZG" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="120" flash="1024" sram="128"/>
+  <part name="STM32F217IE" package="BGA 176; LQFP 176 24x24x1.4" core="ARM Cortex-M3" speed="120" flash="512" sram="128"/>
+  <part name="STM32F217IG" package="BGA 176; LQFP 176 24x24x1.4" core="ARM Cortex-M3" speed="120" flash="1024" sram="128"/>
+  <part name="STM32F217VE" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="120" flash="512" sram="128"/>
+  <part name="STM32F217VG" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="120" flash="1024" sram="128"/>
+  <part name="STM32F217ZE" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="120" flash="512" sram="128"/>
+  <part name="STM32F217ZG" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="120" flash="1024" sram="128"/>
+  <part name="STM32F302CB" package="LQFP 48 7x7x1.4" core="ARM Cortex-M4" speed="72" flash="128" sram="32"/>
+  <part name="STM32F302CC" package="LQFP 48 7x7x1.4" core="ARM Cortex-M4" speed="72" flash="256" sram="40"/>
+  <part name="STM32F302RB" package="LQFP 64 10x10x1.4" core="ARM Cortex-M4" speed="72" flash="128" sram="32"/>
+  <part name="STM32F302RC" package="LQFP 64 10x10x1.4" core="ARM Cortex-M4" speed="72" flash="256" sram="40"/>
+  <part name="STM32F302VB" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="72" flash="128" sram="32"/>
+  <part name="STM32F302VC" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="72" flash="256" sram="40"/>
+  <part name="STM32F303CB" package="LQFP 48 7x7x1.4" core="ARM Cortex-M4" speed="72" flash="128" sram="40"/>
+  <part name="STM32F303CC" package="LQFP 48 7x7x1.4" core="ARM Cortex-M4" speed="72" flash="256" sram="48"/>
+  <part name="STM32F303RB" package="LQFP 64 10x10x1.4" core="ARM Cortex-M4" speed="72" flash="128" sram="40"/>
+  <part name="STM32F303RC" package="LQFP 64 10x10x1.4" core="ARM Cortex-M4" speed="72" flash="256" sram="48"/>
+  <part name="STM32F303VB" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="72" flash="128" sram="40"/>
+  <part name="STM32F303VC" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="72" flash="256" sram="48"/>
+  <part name="STM32F313CC" package="LQFP 48 7x7x1.4" core="ARM Cortex-M4" speed="72" flash="256" sram="48"/>
+  <part name="STM32F313RC" package="LQFP 64 10x10x1.4" core="ARM Cortex-M4" speed="72" flash="256" sram="48"/>
+  <part name="STM32F313VC" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="72" flash="256" sram="48"/>
+  <part name="STM32F372C8" package="LQFP 48 7x7x1.4" core="ARM Cortex-M4" speed="72" flash="64" sram="16"/>
+  <part name="STM32F372CB" package="LQFP 48 7x7x1.4" core="ARM Cortex-M4" speed="72" flash="128" sram="24"/>
+  <part name="STM32F372CC" package="LQFP 48 7x7x1.4" core="ARM Cortex-M4" speed="72" flash="256" sram="32"/>
+  <part name="STM32F372R8" package="LQFP 64 10x10x1.4" core="ARM Cortex-M4" speed="72" flash="64" sram="16"/>
+  <part name="STM32F372RB" package="LQFP 64 10x10x1.4" core="ARM Cortex-M4" speed="72" flash="128" sram="24"/>
+  <part name="STM32F372RC" package="LQFP 64 10x10x1.4" core="ARM Cortex-M4" speed="72" flash="256" sram="32"/>
+  <part name="STM32F372V8" package="LQFP 100 14x14x1.4; UFBGA 100 7x7x0.6" core="ARM Cortex-M4" speed="72" flash="64" sram="16"/>
+  <part name="STM32F372VB" package="LQFP 100 14x14x1.4; UFBGA 100 7x7x0.6" core="ARM Cortex-M4" speed="72" flash="128" sram="24"/>
+  <part name="STM32F372VC" package="LQFP 100 14x14x1.4; UFBGA 100 7x7x0.6" core="ARM Cortex-M4" speed="72" flash="256" sram="32"/>
+  <part name="STM32F373C8" package="LQFP 48 7x7x1.4" core="ARM Cortex-M4" speed="72" flash="64" sram="16"/>
+  <part name="STM32F373CB" package="LQFP 48 7x7x1.4" core="ARM Cortex-M4" speed="72" flash="128" sram="24"/>
+  <part name="STM32F373CC" package="LQFP 48 7x7x1.4" core="ARM Cortex-M4" speed="72" flash="256" sram="32"/>
+  <part name="STM32F373R8" package="LQFP 64 10x10x1.4" core="ARM Cortex-M4" speed="72" flash="64" sram="16"/>
+  <part name="STM32F373RB" package="LQFP 64 10x10x1.4" core="ARM Cortex-M4" speed="72" flash="128" sram="24"/>
+  <part name="STM32F373RC" package="LQFP 64 10x10x1.4" core="ARM Cortex-M4" speed="72" flash="256" sram="32"/>
+  <part name="STM32F373V8" package="LQFP 100 14x14x1.4; UFBGA 100 7x7x0.6" core="ARM Cortex-M4" speed="72" flash="64" sram="16"/>
+  <part name="STM32F373VB" package="LQFP 100 14x14x1.4; UFBGA 100 7x7x0.6" core="ARM Cortex-M4" speed="72" flash="128" sram="24"/>
+  <part name="STM32F373VC" package="LQFP 100 14x14x1.4; UFBGA 100 7x7x0.6" core="ARM Cortex-M4" speed="72" flash="256" sram="32"/>
+  <part name="STM32F383CC" package="LQFP 48 7x7x1.4" core="ARM Cortex-M4" speed="72" flash="256" sram="32"/>
+  <part name="STM32F383RC" package="LQFP 64 10x10x1.4; WLCSP 66L DIE 432 R 8X8 0.4 MM P" core="ARM Cortex-M4" speed="72" flash="256" sram="32"/>
+  <part name="STM32F383VC" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="72" flash="256" sram="32"/>
+  <part name="STM32F405OE" package="WLSCP 90 BALLS DIE 413 P 0.4 MM" core="ARM Cortex-M4" speed="168" flash="512" sram="192"/>
+  <part name="STM32F405OG" package="WLSCP 90 BALLS DIE 413 P 0.4 MM" core="ARM Cortex-M4" speed="168" flash="1024" sram="192"/>
+  <part name="STM32F405RG" package="LQFP 64 10x10x1.4" core="ARM Cortex-M4" speed="168" flash="1024" sram="192"/>
+  <part name="STM32F405VG" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="168" flash="1024" sram="192"/>
+  <part name="STM32F405ZG" package="LQFP 144 20x20x1.4" core="ARM Cortex-M4" speed="168" flash="1024" sram="192"/>
+  <part name="STM32F407IE" package="BGA 176; LQFP 176 24x24x1.4" core="ARM Cortex-M4" speed="168" flash="512" sram="192"/>
+  <part name="STM32F407IG" package="BGA 176; LQFP 176 24x24x1.4" core="ARM Cortex-M4" speed="168" flash="1024" sram="192"/>
+  <part name="STM32F407VE" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="168" flash="512" sram="192"/>
+  <part name="STM32F407VG" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="168" flash="1024" sram="192"/>
+  <part name="STM32F407ZE" package="LQFP 144 20x20x1.4" core="ARM Cortex-M4" speed="168" flash="512" sram="192"/>
+  <part name="STM32F407ZG" package="LQFP 144 20x20x1.4" core="ARM Cortex-M4" speed="168" flash="1024" sram="192"/>
+  <part name="STM32F415OG" package="WLSCP 90 BALLS DIE 413 P 0.4 MM" core="ARM Cortex-M4" speed="168" flash="1024" sram="192"/>
+  <part name="STM32F415RG" package="LQFP 64 10x10x1.4" core="ARM Cortex-M4" speed="168" flash="1024" sram="192"/>
+  <part name="STM32F415VG" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="168" flash="1024" sram="192"/>
+  <part name="STM32F415ZG" package="LQFP 144 20x20x1.4" core="ARM Cortex-M4" speed="168" flash="1024" sram="192"/>
+  <part name="STM32F417IE" package="BGA 176; LQFP 176 24x24x1.4" core="ARM Cortex-M4" speed="168" flash="512" sram="192"/>
+  <part name="STM32F417IG" package="BGA 176; LQFP 176 24x24x1.4" core="ARM Cortex-M4" speed="168" flash="1024" sram="192"/>
+  <part name="STM32F417VE" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="168" flash="512" sram="192"/>
+  <part name="STM32F417VG" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="168" flash="1024" sram="192"/>
+  <part name="STM32F417ZE" package="LQFP 144 20x20x1.4" core="ARM Cortex-M4" speed="168" flash="512" sram="192"/>
+  <part name="STM32F417ZG" package="LQFP 144 20x20x1.4" core="ARM Cortex-M4" speed="168" flash="1024" sram="192"/>
+  <part name="STM32F427IG" package="BGA 176; LQFP 176 24x24x1.4" core="ARM Cortex-M4" speed="168" flash="1024" sram="256"/>
+  <part name="STM32F427II" package="BGA 176; LQFP 176 24x24x1.4" core="ARM Cortex-M4" speed="168" flash="2048" sram="256"/>
+  <part name="STM32F427VG" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="168" flash="1024" sram="256"/>
+  <part name="STM32F427VI" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="168" flash="2048" sram="256"/>
+  <part name="STM32F427ZG" package="LQFP 144 20x20x1.4" core="ARM Cortex-M4" speed="168" flash="1024" sram="256"/>
+  <part name="STM32F427ZI" package="LQFP 144 20x20x1.4" core="ARM Cortex-M4" speed="168" flash="2048" sram="256"/>
+  <part name="STM32F429BG" package="LQFP 208 28x28x1.4" core="ARM Cortex-M4" speed="180" flash="1024" sram="256"/>
+  <part name="STM32F429BI" package="LQFP 208 28x28x1.4" core="ARM Cortex-M4" speed="180" flash="2048" sram="256"/>
+  <part name="STM32F429IG" package="BGA 176; LQFP 176 24x24x1.4" core="ARM Cortex-M4" speed="180" flash="1024" sram="256"/>
+  <part name="STM32F429II" package="BGA 176; LQFP 176 24x24x1.4" core="ARM Cortex-M4" speed="180" flash="2048" sram="256"/>
+  <part name="STM32F429NG" package="TFBGA 13X13X1.2 216L P 0.8 MM" core="ARM Cortex-M4" speed="180" flash="1024" sram="256"/>
+  <part name="STM32F429NI" package="TFBGA 13X13X1.2 216L P 0.8 MM" core="ARM Cortex-M4" speed="180" flash="2048" sram="256"/>
+  <part name="STM32F429VG" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="180" flash="1024" sram="256"/>
+  <part name="STM32F429VI" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="180" flash="2048" sram="256"/>
+  <part name="STM32F429ZG" package="LQFP 144 20x20x1.4" core="ARM Cortex-M4" speed="180" flash="1024" sram="256"/>
+  <part name="STM32F429ZI" package="LQFP 144 20x20x1.4" core="ARM Cortex-M4" speed="180" flash="2048" sram="256"/>
+  <part name="STM32F437IG" package="BGA 176; LQFP 176 24x24x1.4" core="ARM Cortex-M4" speed="168" flash="1024" sram="256"/>
+  <part name="STM32F437II" package="BGA 176; LQFP 176 24x24x1.4" core="ARM Cortex-M4" speed="168" flash="2048" sram="256"/>
+  <part name="STM32F437VG" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="168" flash="1024" sram="256"/>
+  <part name="STM32F437VI" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="168" flash="2048" sram="256"/>
+  <part name="STM32F437ZG" package="LQFP 144 20x20x1.4" core="ARM Cortex-M4" speed="168" flash="1024" sram="256"/>
+  <part name="STM32F437ZI" package="LQFP 144 20x20x1.4" core="ARM Cortex-M4" speed="168" flash="2048" sram="256"/>
+  <part name="STM32F439BG" package="LQFP 208 28x28x1.4" core="ARM Cortex-M4" speed="180" flash="1024" sram="256"/>
+  <part name="STM32F439BI" package="LQFP 208 28x28x1.4" core="ARM Cortex-M4" speed="180" flash="2048" sram="256"/>
+  <part name="STM32F439IG" package="BGA 176; LQFP 176 24x24x1.4" core="ARM Cortex-M4" speed="180" flash="1024" sram="256"/>
+  <part name="STM32F439II" package="BGA 176; LQFP 176 24x24x1.4" core="ARM Cortex-M4" speed="180" flash="2048" sram="256"/>
+  <part name="STM32F439NG" package="TFBGA 13X13X1.2 216L P 0.8 MM" core="ARM Cortex-M4" speed="180" flash="1024" sram="256"/>
+  <part name="STM32F439NI" package="TFBGA 13X13X1.2 216L P 0.8 MM" core="ARM Cortex-M4" speed="180" flash="2048" sram="256"/>
+  <part name="STM32F439VG" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="180" flash="1024" sram="256"/>
+  <part name="STM32F439VI" package="LQFP 100 14x14x1.4" core="ARM Cortex-M4" speed="180" flash="2048" sram="256"/>
+  <part name="STM32F439ZG" package="LQFP 144 20x20x1.4" core="ARM Cortex-M4" speed="180" flash="1024" sram="256"/>
+  <part name="STM32F439ZI" package="LQFP 144 20x20x1.4" core="ARM Cortex-M4" speed="180" flash="2048" sram="256"/>
+  <part name="STM32L100C6" package="UFQFPN 48 7x7x0.55" core="ARM Cortex-M3" speed="32" flash="32" sram="4"/>
+  <part name="STM32L100R8" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="32" flash="64" sram="8"/>
+  <part name="STM32L100RB" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="32" flash="128" sram="10"/>
+  <part name="STM32L151C6" package="LQFP 48 7x7x1.4; UFQFPN 48 7x7x0.55" core="ARM Cortex-M3" speed="32" flash="32" sram="10"/>
+  <part name="STM32L151C8" package="LQFP 48 7x7x1.4; UFQFPN 48 7x7x0.55" core="ARM Cortex-M3" speed="32" flash="64" sram="10"/>
+  <part name="STM32L151CB" package="LQFP 48 7x7x1.4; UFQFPN 48 7x7x0.55" core="ARM Cortex-M3" speed="32" flash="128" sram="16"/>
+  <part name="STM32L151QC" package="UFBGA 7X7X0.6 132L P 0.5 R 12X12" core="ARM Cortex-M3" speed="32" flash="256" sram="32"/>
+  <part name="STM32L151QD" package="UFBGA 7X7X0.6 132L P 0.5 R 12X12" core="ARM Cortex-M3" speed="32" flash="384" sram="48"/>
+  <part name="STM32L151R6" package="LQFP 64 10x10x1.4; TFBGA 64 5x5x1.2" core="ARM Cortex-M3" speed="32" flash="32" sram="10"/>
+  <part name="STM32L151R8" package="LQFP 64 10x10x1.4; TFBGA 64 5x5x1.2" core="ARM Cortex-M3" speed="32" flash="64" sram="10"/>
+  <part name="STM32L151RB" package="LQFP 64 10x10x1.4; TFBGA 64 5x5x1.2" core="ARM Cortex-M3" speed="32" flash="128" sram="16"/>
+  <part name="STM32L151RC" package="LQFP 64 10x10x1.4; WLCSP 64 BALLS DIE 436 P 0.4 MM" core="ARM Cortex-M3" speed="32" flash="256" sram="32"/>
+  <part name="STM32L151RD" package="LQFP 64 10x10x1.4; WLCSP 64 BALLS DIE 436 P 0.4 MM" core="ARM Cortex-M3" speed="32" flash="384" sram="48"/>
+  <part name="STM32L151V8" package="LQFP 100 14x14x1.4; UFBGA 100 7x7x0.6" core="ARM Cortex-M3" speed="32" flash="64" sram="10"/>
+  <part name="STM32L151VB" package="LQFP 100 14x14x1.4; UFBGA 100 7x7x0.6" core="ARM Cortex-M3" speed="32" flash="128" sram="16"/>
+  <part name="STM32L151VC" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="32" flash="256" sram="32"/>
+  <part name="STM32L151VD" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="32" flash="384" sram="48"/>
+  <part name="STM32L151ZC" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="32" flash="256" sram="32"/>
+  <part name="STM32L151ZD" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="32" flash="384" sram="48"/>
+  <part name="STM32L152C6" package="LQFP 48 7x7x1.4; UFQFPN 48 7x7x0.55" core="ARM Cortex-M3" speed="32" flash="32" sram="10"/>
+  <part name="STM32L152C8" package="LQFP 48 7x7x1.4; UFQFPN 48 7x7x0.55" core="ARM Cortex-M3" speed="32" flash="64" sram="10"/>
+  <part name="STM32L152CB" package="LQFP 48 7x7x1.4; UFQFPN 48 7x7x0.55" core="ARM Cortex-M3" speed="32" flash="128" sram="16"/>
+  <part name="STM32L152QC" package="UFBGA 7X7X0.6 132L P 0.5 R 12X12" core="ARM Cortex-M3" speed="32" flash="256" sram="32"/>
+  <part name="STM32L152QD" package="UFBGA 7X7X0.6 132L P 0.5 R 12X12" core="ARM Cortex-M3" speed="32" flash="384" sram="48"/>
+  <part name="STM32L152R6" package="LQFP 64 10x10x1.4; TFBGA 64 5x5x1.2" core="ARM Cortex-M3" speed="32" flash="32" sram="10"/>
+  <part name="STM32L152R8" package="LQFP 64 10x10x1.4; TFBGA 64 5x5x1.2" core="ARM Cortex-M3" speed="32" flash="64" sram="10"/>
+  <part name="STM32L152RB" package="LQFP 64 10x10x1.4; TFBGA 64 5x5x1.2" core="ARM Cortex-M3" speed="32" flash="128" sram="16"/>
+  <part name="STM32L152RC" package="LQFP 64 10x10x1.4" core="ARM Cortex-M3" speed="32" flash="256" sram="32"/>
+  <part name="STM32L152RD" package="LQFP 64 10x10x1.4; WLCSP 64 BALLS DIE 436 P 0.4 MM" core="ARM Cortex-M3" speed="32" flash="384" sram="48"/>
+  <part name="STM32L152V8" package="LQFP 100 14x14x1.4; UFBGA 100 7x7x0.6" core="ARM Cortex-M3" speed="32" flash="64" sram="10"/>
+  <part name="STM32L152VB" package="LQFP 100 14x14x1.4; UFBGA 100 7x7x0.6" core="ARM Cortex-M3" speed="32" flash="128" sram="16"/>
+  <part name="STM32L152VC" package="LQFP 100 14x14x1.4; UFBGA 100 7x7x0.6" core="ARM Cortex-M3" speed="32" flash="256" sram="32"/>
+  <part name="STM32L152VD" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="32" flash="384" sram="48"/>
+  <part name="STM32L152ZC" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="32" flash="256" sram="32"/>
+  <part name="STM32L152ZD" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="32" flash="384" sram="48"/>
+  <part name="STM32L162QD" package="UFBGA 7X7X0.6 132L P 0.5 R 12X12" core="ARM Cortex-M3" speed="32" flash="384" sram="48"/>
+  <part name="STM32L162RD" package="LQFP 64 10x10x1.4; WLCSP 64 BALLS DIE 436 P 0.4 MM" core="ARM Cortex-M3" speed="32" flash="384" sram="48"/>
+  <part name="STM32L162VD" package="LQFP 100 14x14x1.4" core="ARM Cortex-M3" speed="32" flash="384" sram="48"/>
+  <part name="STM32L162ZD" package="LQFP 144 20x20x1.4" core="ARM Cortex-M3" speed="32" flash="384" sram="48"/>
+  <part name="STM32TS60" package="UFBGA 144 7x7x0.6" core="-" speed="-" flash="-" sram="-"/>
+  <part name="STM32W108C8" package="VFQFPN 48 7x7x1.0" core="ARM Cortex-M3" speed="24" flash="64" sram="8"/>
+  <part name="STM32W108CB" package="VFQFPN 48 7x7x1.0" core="ARM Cortex-M3" speed="24" flash="128" sram="8"/>
+  <part name="STM32W108CC" package="UFQFPN 48 7x7x0.55" core="ARM Cortex-M3" speed="24" flash="256" sram="16"/>
+  <part name="STM32W108CZ" package="UFQFPN 48 7x7x0.55" core="ARM Cortex-M3" speed="24" flash="192" sram="12"/>
+  <part name="STM32W108HB" package="VFQFPN 40 6x6x1.0" core="ARM Cortex-M3" speed="24" flash="128" sram="8"/>
+</parts>

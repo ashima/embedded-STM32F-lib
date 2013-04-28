@@ -8,24 +8,19 @@
   extension-element-prefixes="str u exsl"
  >
   <xsl:import href="utils.xsl"/>
+  <xsl:import href="boilerplate.xsl"/>
 
   <xsl:output method="text" omit-xml-declaration="no" indent="no" />
+  <xsl:variable name="file-desc">Register structures</xsl:variable>
 
-  <xsl:template match="/">
-  <xsl:apply-templates select="infobase/peripherals"/>
+  <xsl:template match="infobase">
+  <xsl:apply-templates select="peripherals"/>
   </xsl:template>
 
   <xsl:template match="peripherals">
-/* 
-   Auto generated, do not edit.
- */
-#ifndef STRUCTURES_H
-#define STRUCTURES_H
-
 #include "st_base.h"
 
   <xsl:apply-templates select="peripheral"/>
-#endif
   </xsl:template>
 
   <xsl:template match="peripheral">

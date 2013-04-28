@@ -3,37 +3,37 @@
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:str="http://exslt.org/strings" >
+  <xsl:import href="boilerplate.xsl"/>
 
   <xsl:output method="text" omit-xml-declaration="yes" indent="no" />
+  <xsl:variable name="file-desc">Instanciate peripherals.</xsl:variable>
 
-  <xsl:template match="/">
-/* Memory map for <xsl:value-of select="@name"/>.
-   Auto generated, do not edit.
- */
-#ifndef INSTANCES_H
-#define INSTANCES_H
-#pragma once
-
+  <xsl:template match="infobase">
 #include "memory.h"
 #include "structures.h"
 
 #define DECLARE_PERIPH(NAME,CLASS,INTS,BUS) \
-  typedef CLASS##_st&lt;INTS, memMap::NAME&gt; NAME ; \
+  typedef CLASS##_st&lt;INTS, memMap::NAME,BUS&gt; NAME ; \
   typedef CLASS##_rt&lt;INTS, memMap::NAME&gt; NAME##_t ; \
   static NAME##_t &amp;NAME##_s = *(NAME##_t*)(NAME##_t::loc) ;
 
+//  types for bus variants.
+<xsl:for-each select="/infobase/memory-map//block[block[@class]]">struct <xsl:value-of 
+select="@name"/> { typdef <xsl:value-of select="../@name"/> parent; };
+</xsl:for-each>
+
+// Instanciate peripherals.
 <xsl:apply-templates select="/infobase/memory-map/block">
   <xsl:with-param name="indent" select="'      '"/>
   <xsl:with-param name="bb" select="0"/>
 </xsl:apply-templates>
-#endif
   </xsl:template>
 
   <xsl:template match="block"><xsl:param 
-    name="bb"/><xsl:apply-templates select="block|instance">
+    name="bb"/><xsl:apply-templates select="block">
       <xsl:with-param name="bb" select="$bb"/>
     </xsl:apply-templates><xsl:if test="@bb"><xsl:apply-templates 
-      select="block|instance">
+      select="block">
       <xsl:with-param name="bb" select="1"/>
     </xsl:apply-templates></xsl:if></xsl:template>
 
