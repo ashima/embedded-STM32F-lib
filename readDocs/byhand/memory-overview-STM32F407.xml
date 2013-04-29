@@ -21,7 +21,7 @@ of the chip. Could be wrong though!!
 -->
 
 <memory-overview chip="stm32f407vg">
-  <block name="root" offset="0x00000000" size="4Gb">
+  <block name="root" offset="0x00000000" size="4Gb" clk="HCLK" >
     <block name="block0"    offset="0x00000000" size="512Mb" >
       <block name="bootalias" offset="0x00000000" size="1Mb" />
       <block name="flash"     offset="0x08000000" size="1Mb" />
@@ -38,8 +38,8 @@ of the chip. Could be wrong though!!
     </block>
     <block name="block2"   offset="0x40000000" size="512Mb" >
       <block name="bus1"     offset="0x00000000" bb="0x02000000" size="1Mb" width="64kb" >
-        <block name="apb1"     offset="0x00000000" size="64kb" width="1kb" />
-        <block name="apb2"     offset="0x00010000" size="64kb" width="1kb"/>
+        <block name="apb1"     offset="0x00000000" size="64kb" width="1kb" clk="PCLK1" />
+        <block name="apb2"     offset="0x00010000" size="64kb" width="1kb" clk="PCLK2" />
         <block name="ahb1"     offset="0x00020000" size="896kb" width="1kb" >
         </block>
       </block>

@@ -6,6 +6,8 @@
   <xsl:strip-space elements="*" />
   <xsl:output method="text" omit-xml-declaration="no" indent="yes" />
 
+  <xsl:key name="sels" match="select" use="concat(ancestor::clk/@name,@on)"/>
+
   <xsl:template match="/">
     <xsl:apply-templates select="/infobase/clocks"/>
   </xsl:template>
@@ -13,6 +15,7 @@
   <xsl:template match="/infobase/clocks">
 #include &lt;structures.h&gt;
 #include &lt;instances.h&gt;
+#include &lt;busses.h&gt;
 
 template&lt;uint32_t Hse,uint32_t Lse=0, uint32_t I2s=0&gt;
 struct clkReadTree
@@ -26,9 +29,12 @@ struct clkReadTree
   </xsl:template>
 
   <xsl:template match="clk">
-  int <xsl:value-of select="@name"/>() {
-<xsl:for-each select="descendant::select">  int t_<xsl:value-of 
-  select="generate-id(.)"/> ;
+  <xsl:variable name="n" select="@name"/>
+  static const int <xsl:value-of select="$n"/>() __attribute__((noinline)) {
+<xsl:for-each select="descendant::select"><xsl:variable name="k" 
+  select="generate-id(key('sels',concat($n,@on))[1])"/><xsl:if test="$k=generate-id()">  int t_<xsl:value-of 
+  select="$k"/> = *<xsl:value-of select="@on"/> ;
+</xsl:if>
 </xsl:for-each>  return <xsl:apply-templates select="node()"/> ;
 };
   </xsl:template>
@@ -50,9 +56,8 @@ struct clkReadTree
        select="@by"/></xsl:template>
 
   <xsl:template match="when[following-sibling::*]">
-    ((t_<xsl:value-of select="generate-id(..)"/><xsl:if 
-    test="generate-id(.) = generate-id(../when[1])">=*<xsl:value-of 
-    select="../@on"/></xsl:if>) == <xsl:value-of
+    (t_<xsl:value-of select="generate-id(key('sels',
+              concat(ancestor::clk/@name,../@on))[1])"/> == <xsl:value-of
     select="@v"/> ? <xsl:apply-templates/> : <xsl:apply-templates 
     select="following-sibling::*[1]"/> )</xsl:template>
 

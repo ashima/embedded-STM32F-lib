@@ -20,12 +20,9 @@ inline bool waitFor(T reg, uint32_t timeout)
   return r;
   }
 
-//template<uint32_t Hse,uint32_t Lse=0, uint32_t I2s=0>
-
 template<uint32_t Hse, uint32_t Lse=0, uint32_t I2s=0>
 class SysClock : public clkReadTree<Hse, Lse, I2s>
   {
-
   private:
   enum 
     { 
@@ -136,5 +133,17 @@ struct mk_PRE<H,P1,P2,0>
 // Need to throguh a more useful error here.
 //  Invalid_value_for_H_P1_or_P2 ;
   };
+
+template<typename T>
+struct busClock
+  {
+template<class S>
+  static int clk(S &c) { return busClock<typename T::parent>::clk(c); }
+  };
+
+template<> struct busClock<busMap::root> { template<class S> static int clk(S &c) { return S::HCLK(); } };
+template<> struct busClock<busMap::apb1> { template<class S> static int clk(S &c) { return S::PCLK1(); } };
+template<> struct busClock<busMap::apb2> { template<class S> static int clk(S &c) { return S::PCLK2(); } };
+
 
 #endif

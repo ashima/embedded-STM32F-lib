@@ -8,6 +8,8 @@ LIBRARY:
    the cortex M4 registers cover STM32F3* and STM32F4*, the USART device, and
    TIM devices seem to be universal across STM32F* and DM00031020 covers only
    STM32F4[0-3]*.
+ * Need to improve the language of clocktree.*.xml to reduce amount of
+   code overhead in the generated code. (which is currently alot!)
  * strip defined symbols out of sections.ld and make a header for them.
  * generate mem.ld from infobase.xml
  * update and reinstate the unit tests for headers that are not likely
