@@ -2,11 +2,21 @@ This Library is a work in progress!! There is much to do, and much that
 might change!
 
 LIBRARY:
- * include file guards should auto generate.
+ * The lib has always had the potential to grow to more devices. I need
+   to get the part numbers into some of the filenames correctly, and
+   into the types of the classes. Inheritable Typelists FTW. (for example
+   the cortex M4 registers cover STM32F3* and STM32F4*, the USART device, and
+   TIM devices seem to be universal across STM32F* and DM00031020 covers only
+   STM32F4[0-3]*.
  * strip defined symbols out of sections.ld and make a header for them.
  * generate mem.ld from infobase.xml
  * update and reinstate the unit tests for headers that are not likely
    to change much any more.
+ * None of the classes really use proper patterns. Really ought to
+   have a small object allocator, rather than avoiding the problem and 
+   really ought to actulay make singletons singletons for example, 
+   rather than just being static access to registers. For now the extra
+   'safty' isn't that helpful, but still.
 
  * Maybe: breakout instance.h into seperate bits.
  * Maybe: subregisters are each a unique type, maybe they should derive
