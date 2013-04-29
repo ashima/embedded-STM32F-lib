@@ -30,7 +30,7 @@ struct clkReadTree
 
   <xsl:template match="clk">
   <xsl:variable name="n" select="@name"/>
-  static const int <xsl:value-of select="$n"/>() __attribute__((noinline)) {
+  static const int <xsl:value-of select="$n"/>() <xsl:if test="descendant::select">__attribute__((noinline))</xsl:if> {
 <xsl:for-each select="descendant::select"><xsl:variable name="k" 
   select="generate-id(key('sels',concat($n,@on))[1])"/><xsl:if test="$k=generate-id()">  int t_<xsl:value-of 
   select="$k"/> = *<xsl:value-of select="@on"/> ;
