@@ -23,7 +23,7 @@ MERGELST = $H/guide.xml              $H/reg-Ranges.xml \
            $I/periph-DCMI.xml        $I/periph-WWDG.xml \
            $I/periph-SPI.xml         $I/periph-USART.xml \
            $I/periph-I2C.xml         \
-           $I/IRQ-branchtable.xml    $I/clocks.xml \
+           $I/IRQ-branchtable.xml    $I/clocks.F4xxxx.xml \
            $R/clk_v_ws.xml           $R/parts.xml 
 
 all: infobase.xml
@@ -70,7 +70,7 @@ $I/memory-%.xml: $I/table-memory-%.xml
 $I/IRQ-branchtable.xml: $I/table-IRQ.xml
 	xsltproc -o $@ scripts/btOfTab.xsl $^
 
-$I/clocks.xml: $H/clocktree.xml
+$I/clocks.%.xml: $H/clocktree.%.xml
 	xsltproc -o $@ scripts/expandClkTree.xsl $^
 	
 $I/clk_v_ws_data.xml: $I/table-clkWs.xml
