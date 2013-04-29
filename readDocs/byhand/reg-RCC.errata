@@ -1,5 +1,12 @@
 <errata>
-  <replace p="182" x="19" y="20"><was>PLLI2SNx</was><to>PLLI2SN</to></replace>
-  <replace p="182" x="3" y="20"><was>PLLI2SRx</was><to>PLLI2SR</to></replace>
+  <replace p="183" x="4" y="5"><was>MCO2PRE2</was><to>MCO2PRE 2</to></replace>
+  <replace p="183" x="5" y="5"><was>MCO2PRE1</was><to>MCO2PRE 1</to></replace>
+  <replace p="183" x="6" y="5"><was>MCO2PRE0</was><to>MCO2PRE 0</to></replace>
+  <replace p="183" x="7" y="5"><was>MCO1PRE2</was><to>MCO1PRE 2</to></replace>
+  <replace p="183" x="8" y="5"><was>MCO1PRE1</was><to>MCO1PRE 1</to></replace>
+  <replace p="183" x="9" y="5"><was>MCO1PRE0</was><to>MCO1PRE 0</to></replace>
+  <replace p="183" x="20" y="12"><was>SP45RST</was><to>SPI4RST</to></replace>
+  <replace p="184" x="19" y="19"><was>PLLI2SNx</was><to>PLLI2SN</to></replace>
+  <replace p="184" x="3" y="19"><was>PLLI2SRx</was><to>PLLI2SR</to></replace>
 </errata>
 
