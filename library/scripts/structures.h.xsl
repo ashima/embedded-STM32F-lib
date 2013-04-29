@@ -38,10 +38,11 @@ select= "u:range('',0, u:toNum(register[position()=last()]/@offset),4)" />
 <xsl:text>
 
 </xsl:text>
-template &lt;typename TYP,uint32_t LOC&gt;
+template &lt;typename TYP,uint32_t LOC, typename BUS&gt;
 struct <xsl:value-of select="@name"/>_st {
   typedef <xsl:value-of select="@name"/>_st t;
   typedef TYP inttypes;
+  typedef BUS bus;
   enum { loc = LOC } ;
   enum { <xsl:apply-templates select="register" mode="offsets"/>
   };

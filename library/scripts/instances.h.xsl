@@ -10,17 +10,13 @@
 
   <xsl:template match="infobase">
 #include "memory.h"
+#include "busses.h"
 #include "structures.h"
 
 #define DECLARE_PERIPH(NAME,CLASS,INTS,BUS) \
-  typedef CLASS##_st&lt;INTS, memMap::NAME,BUS&gt; NAME ; \
+  typedef CLASS##_st&lt;INTS, memMap::NAME,busMap::BUS&gt; NAME ; \
   typedef CLASS##_rt&lt;INTS, memMap::NAME&gt; NAME##_t ; \
   static NAME##_t &amp;NAME##_s = *(NAME##_t*)(NAME##_t::loc) ;
-
-//  types for bus variants.
-<xsl:for-each select="/infobase/memory-map//block[block[@class]]">struct <xsl:value-of 
-select="@name"/> { typdef <xsl:value-of select="../@name"/> parent; };
-</xsl:for-each>
 
 // Instanciate peripherals.
 <xsl:apply-templates select="/infobase/memory-map/block">
