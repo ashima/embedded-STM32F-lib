@@ -18,6 +18,8 @@ ARMCC=arm-none-eabi-gcc
 ARMAR=arm-none-eabi-ar
 ARMCFLAGS= -O3 -mthumb -mthumb-interwork -mcpu=cortex-m4
 
+PY=python2.7
+
 INCS=-I $B -I $H
 #VPATH=$B $H $S $O
 #VPATH=$H $S
@@ -62,6 +64,13 @@ $B/%: $S/%.xsl $(INFOBASE) | $B
 $T/%: $S/%.xsl $(INFOBASE) | $T
 	xsltproc -o $@ $< $(INFOBASE)
 
+# ld defs by hand for now.
+$B/lddefs.xml: $S/lddefs.py $H/sections.ld
+	$(PY) $S/lddefs.py -o $@ -i $H/sections.ld
+
+$B/lddefs.h: $S/lddefs.h.xsl $B/lddefs.xml
+	xsltproc --stringparam target lddefs.h -o $@ $S/lddefs.h.xsl $B/lddefs.xml
+
 $O/%.o: $B/%.c | $O
 	$(ARMCC) $(ARMCFLAGS) $(INCS) -c -o $@ $^
 
@@ -98,3 +107,4 @@ $I/include/%: $H/% | $I/include
 $I/include/%: $B/% | $I/include
 	cp $< $@
 
+$O/stubs.o: | $B/lddefs.h
