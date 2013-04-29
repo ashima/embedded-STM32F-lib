@@ -6,15 +6,27 @@
   <xsl:strip-space elements="*" />
   <xsl:output method="text" omit-xml-declaration="no" indent="yes" />
 
-  <xsl:template match="clocks">
+  <xsl:template match="/">
+    <xsl:apply-templates select="/infobase/clocks"/>
+  </xsl:template>
+
+  <xsl:template match="/infobase/clocks">
 #include &lt;structures.h&gt;
 #include &lt;instances.h&gt;
 
-    <xsl:apply-templates select="clk"/>
+template&lt;uint32_t Hse,uint32_t Lse=0, uint32_t I2s=0&gt;
+struct clkReadTree
+  {
+  static const int HSE() { return Hse; }
+  static const int LSE() { return Lse; }
+  static const int I2S_CKIN() { return I2s; }
+
+  <xsl:apply-templates select="clk"/>
+  };
   </xsl:template>
 
   <xsl:template match="clk">
-inline static const int <xsl:value-of select="@name"/>() {
+  int <xsl:value-of select="@name"/>() {
 <xsl:for-each select="descendant::select">  int t_<xsl:value-of 
   select="generate-id(.)"/> ;
 </xsl:for-each>  return <xsl:apply-templates select="node()"/> ;

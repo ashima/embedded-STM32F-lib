@@ -15,7 +15,14 @@ Clock tree for the STM23F407 family
   </div>
 </clk>
 <clk name="PLLVCO" >  <mul by="RCC::PLLN"    src="PLLIN"  /></clk>
-<clk name="PLLCLK" >  <div by="RCC::PLLP"    src="PLLVCO" /></clk>
+<clk name="PLLCLK" >
+  <select on="RCC::PLLP">
+    <when v="0"><div by="2" src="PLLVCO" /></when>
+    <when v="1"><div by="4" src="PLLVCO" /></when>
+    <when v="2"><div by="6" src="PLLVCO" /></when>
+    <when v="3"><div by="8" src="PLLVCO" /></when>
+  </select>
+</clk>
 <clk name="PLL48CK">  <div by="RCC::PLLQ"    src="PLLVCO" /></clk>
 <clk name="I2SVCO">   <mul by="RCC::PLLI2SN" src="PLLIN"  /></clk>
 <clk name="PLLI2SCLK"><div by="RCC::PLLI2SR" src="I2SVCO" /></clk>
@@ -36,7 +43,6 @@ Clock tree for the STM23F407 family
   </select>
 </clk>
 
-<clk name="PLLI2SCLK"><div by="RCC::PLLI2SR" src="I2SVCO"/></clk>
 <clk name="HSE_RTC"><div by="RCC::RTCPRE" src="HSE"/></clk>
 <clk name="RTC_CLK">
   <select on="RCC::RTCSEL">
@@ -56,7 +62,7 @@ Clock tree for the STM23F407 family
         <when v="3" src="PLLCLK"/>
     </select>
   </clk>
-  <clktree name="$N$_" by="1,2,3,4,5" src="$N$_1"/>
+  <clktree name="$N$_" by="2,3,4,5" src="$N$_1"/>
   <clk name="$N">
     <select on="$R2">
         <when v="4" src="$N$_2"/>
@@ -68,12 +74,12 @@ Clock tree for the STM23F407 family
   </clk>
 </define>
 
-<use name="mco" N="MCO1" R1="RCC:MCO1" R2="RCC::MCO1PRE" A="HSI" B="LSE"/>
-<use name="mco" N="MCO2" R1="RCC:MCO2" R2="RCC::MCO2PRE" A="SYSCLK" B="PLLI2S"/>
+<use name="mco" N="MCO1" R1="RCC::MCO1" R2="RCC::MCO1PRE" A="HSI" B="LSE"/>
+<use name="mco" N="MCO2" R1="RCC::MCO2" R2="RCC::MCO2PRE" A="SYSCLK" B="PLLI2SCLK"/>
 
-<clktree name="SYSCLK_" by="2,4,5,16,64,128,256,512" src="SYSCLK"/>
+<clktree name="SYSCLK_" by="2,4,8,16,64,128,256,512" src="SYSCLK"/>
 <clk name="HCLK">
-  <select on="RCC:HPRE" >
+  <select on="RCC::HPRE" >
       <when v="8"  src="SYSCLK_2"/>
       <when v="9"  src="SYSCLK_4"/>
       <when v="10" src="SYSCLK_8"/>
@@ -119,7 +125,7 @@ Clock tree for the STM23F407 family
   </clk>
 </define>
 
-<use name="pclk" PCLKx="PCLK1" PREx="RCC::PRE1" TIM_CLKx="TIM_CLK1" H="hi"/>
-<use name="pclk" PCLKx="PCLK2" PREx="RCC::PRE2" TIM_CLKx="TIM_CLK2" H="bye"/>
+<use name="pclk" PCLKx="PCLK1" PREx="RCC::PPRE1" TIM_CLKx="TIM_CLK1" H="hi"/>
+<use name="pclk" PCLKx="PCLK2" PREx="RCC::PPRE2" TIM_CLKx="TIM_CLK2" H="bye"/>
 
 </clocks>

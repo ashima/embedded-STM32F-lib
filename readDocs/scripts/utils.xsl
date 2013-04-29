@@ -67,6 +67,11 @@
    'abcdefghijklmnopqrstuvwxyz')" />
   </fn:function>
 
+  <fn:function name="u:nameify">
+    <xsl:param name="s"/> 
+    <fn:result select="translate($s, '. *?','____')" />
+  </fn:function>
+
   <fn:function name="u:stripws">
     <xsl:param name="s"/> 
     <fn:result select="translate(normalize-space($s), ' ', '')" />

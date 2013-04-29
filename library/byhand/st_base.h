@@ -35,8 +35,8 @@ struct range64
   {
   typedef uint64_t t;
   enum { t_lobit = 0, t_hibit = 63 };
-  static const uint32_t MIN = min;
-  static const uint32_t MAX = max;
+  static const uint64_t MIN = min;
+  static const uint64_t MAX = max;
   };
 
 typedef range32<0,UINT32_MAX> UINT32_RANGE;

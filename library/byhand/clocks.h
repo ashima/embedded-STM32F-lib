@@ -1,12 +1,13 @@
-#pragma once
 #ifndef CLOCKS_H
 #define CLOCKS_H
+#pragma once
 
 #include <inttypes.h>
 #include <system.h>
 #include <structures.h>
 #include <instances.h>
 
+#include <clktree.h>
 // Should move this to a utils. or something.
 template<class T>
 inline bool waitFor(T reg, uint32_t timeout)
@@ -19,19 +20,23 @@ inline bool waitFor(T reg, uint32_t timeout)
   return r;
   }
 
-template<uint32_t H>
-class SysClock
+//template<uint32_t Hse,uint32_t Lse=0, uint32_t I2s=0>
+
+template<uint32_t Hse, uint32_t Lse=0, uint32_t I2s=0>
+class SysClock : public clkReadTree<Hse, Lse, I2s>
   {
+
   private:
-	
-  public:
   enum 
     { 
-    HSE = H,
-    HSI = 16000000 ,
     HS_TIMEOUT  = 1<<11,
     PLL_TIMEOUT = 1<<10
     };
+  public:
+  //static const int HSE() { return Hse; }
+  //static const int LSE() { return Lse; }
+  //static const int I2S_CKIN() { return I2s; }
+
 
   void clkToInitState()
     {
@@ -90,48 +95,6 @@ class SysClock
 
     return system_err::None;
     }
-
-  uint32_t pllIn() { 
-    return (*RCC::PLLSRC ? HSE : HSI ) ; 
-    };
-
-  uint32_t PLLCLK() {
-    return pllIn() * (*RCC::PLLN) / (*RCC::PLLM) / ((*RCC::PLLP +1 )*2);
-    };
-
-  uint32_t PLL48CK() {
-    return pllIn() * (*RCC::PLLN) / (*RCC::PLLM) / *RCC::PLLQ;
-    }
-
-  uint32_t PLLI2SCLK() {
-    return pllIn() * (*RCC::PLLI2SN) / (*RCC::PLLM) / *RCC::PLLI2SR;
-    }
-    
-  uint32_t SYSCLK ()
-    {
-    switch (*RCC::SWS)
-      {
-      case 1:  return HSE ;
-      case 2:  return PLLCLK() ;
-      default: return HSI ;
-      }
-    }
-
-  uint32_t HSE_RTC()
-    { 
-    uint32_t s = *RCC::RTCPRE;
-    return (s <= 2 ? 0 : HSE / s);
-    }
-  
-  uint32_t HCLK()
-    {
-    uint32_t s = *RCC::HPRE;
-    return SYSCLK() >> (s&8 ? (s&4 ? s&3 + 1
-                                   : s&3 + 2)
-                              : 0) ;
-    }
-
-  uint32_t RTCCLK() { /* TODO */ }
 
 
   };

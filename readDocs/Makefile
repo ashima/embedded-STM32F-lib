@@ -22,9 +22,9 @@ MERGELST = $H/guide.xml              $H/reg-Ranges.xml \
            $I/periph-ADC.xml         $I/periph-DAC.xml \
            $I/periph-DCMI.xml        $I/periph-WWDG.xml \
            $I/periph-SPI.xml         $I/periph-USART.xml \
-           $I/periph-I2C.xml         $I/parts.xml \
-           $I/IRQ-branchtable.xml \
-           $R/clk_v_ws.xml
+           $I/periph-I2C.xml         \
+           $I/IRQ-branchtable.xml    $I/clocks.xml \
+           $R/clk_v_ws.xml           $R/parts.xml 
 
 all: infobase.xml
 
@@ -38,7 +38,7 @@ EXTARGS=-r 200 -t cells_xml
 $I $R:
 	-mkdir -p $@
 
-$I/parts.xml: docs/STM-partlisttable.html | $I
+$R/parts.xml: docs/STM-partlisttable.html | $I
 	xsltproc --html -o $@ scripts/partsFromXHtml.xsl $^
 
 $I/all.xml: $(MERGELST) 
@@ -70,6 +70,9 @@ $I/memory-%.xml: $I/table-memory-%.xml
 $I/IRQ-branchtable.xml: $I/table-IRQ.xml
 	xsltproc -o $@ scripts/btOfTab.xsl $^
 
+$I/clocks.xml: $H/clocktree.xml
+	xsltproc -o $@ scripts/expandClkTree.xsl $^
+	
 $I/clk_v_ws_data.xml: $I/table-clkWs.xml
 	xsltproc -o $@ scripts/wsOfTab.xsl $^
 
