@@ -23,9 +23,12 @@ LIBDIR=-L ../../install/lib
 	$(ARMCPP) $(CFLAGS) $(LIBDIR) -nostartfiles --specs=nano.specs \
 	-T stm32F407.ld -T sections.ld -u isr_vector \
 	-Wl,--print-map  \
-	-o $@ $^ -lstm32F407  > $*.mapfile
+	-o $@ $^ -lstm32F407  \
+	../../library/obj/stubs.o > $*.mapfile
 
-#../library/obj/stubs.o > $*.mapfile
+
+# > $*.mapfile
+
 
 # -T mem.ld -T sections.ld 
 #	-o $@ $^ -lstm32F407 > $*.mapfile

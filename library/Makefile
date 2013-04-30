@@ -78,7 +78,10 @@ $O/%.o: $H/%.c | $O
 	$(ARMCC) $(ARMCFLAGS) $(INCS) -c -o $@ $^
 
 $O/%.o: $B/%.cc | $O
-	$(ARMCCC) $(ARMCFLAGS) $(INCS) -c -o $@ $^
+	$(ARMCPP) $(ARMCFLAGS) $(INCS) -c -o $@ $^
+
+$O/%.o: $H/%.cc | $O
+	$(ARMCPP) $(ARMCFLAGS) $(INCS) -c -o $@ $^
 
 $T/%.o: $T/%.cc | $T
 	$(CPP) $(CFLAGS) $(INCS) -c -o $@ $^
@@ -107,4 +110,4 @@ $I/include/%: $H/% | $I/include
 $I/include/%: $B/% | $I/include
 	cp $< $@
 
-$O/stubs.o: | $B/lddefs.h
+$O/stubs.o $O/stm32F4_rt.o : | $B/lddefs.h

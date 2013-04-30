@@ -6,7 +6,9 @@
 #include <clock_helpers.h>
 #include <gpio.h>
 
-/* Using usart2 on pins PD5 and PD6 at 9600 baud 8N1, no flowcontrol.
+#include <cstdio>
+
+/* Using usart2 on pins PD5 and PD6 at 115200 baud 8N1, no flowcontrol.
  */
 
 uint16_t hexcharof(uint32_t x);
@@ -16,9 +18,10 @@ void myPutc(uint16_t c)
   {
   while( *U::TXE == 0 ) {}
   *U::DR = c;
+  *U::TE = true;
   };
 
-#define DELAY 1e7
+#define DELAY 1e6
 
 enum {
   XTALFreq   = 20000000,   // Hz
@@ -27,8 +30,9 @@ enum {
   };
 
 SysClock<XTALFreq>  clk;
+typedef mk_subport<GPIOE,0,1> leds;
 
-void main()
+int main()
   {
   volatile uint32_t i;
   uint32_t count = 0;
@@ -38,15 +42,21 @@ void main()
 
   clk.enablePLL( calc_PLL<XTALFreq, SysFreq, supVoltage>(), mk_PRE<1,2,4>() );
 
-  *RCC::USART2 = true;
-  *RCC::GPIOD  = true;
+  *RCC::USART2EN = true;
+  *RCC::GPIODEN  = true;
+  *RCC::GPIOEEN  = true;
 
   *pins::mode   = rep32x2 * GPIO_mode_ALTFUNC ;    // Both AF.
   *pins::otype  = rep32x1 * GPIO_otype_PUSHPULL ;  // Both PushPull
   *pins::ospeed = rep32x2 * GPIO_ospeed_100MHZ ;   // Both 100MHz
   *pins::pupd   = rep32x2 * GPIO_pupd_UP ;         // Both pull Up
-  *pins::af = rep64 * 7 ; 
+  *pins::af     = rep64x4 * 7 ; 
                      // GPIO_AF< USART3 >::af;
+
+  *leds::mode   = rep32x2 * GPIO_mode_OUT ;        // Both Output
+  *leds::otype  = rep32x1 * GPIO_otype_PUSHPULL ;  // Both PullPull
+  *leds::ospeed = rep32x2 * GPIO_ospeed_2MHZ ;     // Both 2MHz
+  *leds::pupd   = rep32x2 * GPIO_pupd_NONE ;       // Both no up/down
 
 // p 748
 
@@ -58,9 +68,10 @@ void main()
   *usart::RTSE = false;  // No flow cntl
 
   int over8 = 0 ;
-  int baud  = 9600 ;
+  int baud  = 115200 ;
 
-  int j = 2 * usart::bus::clk() / baud;
+
+  int j = 2 * busClock<usart::bus>::clk(clk) / baud;
   int ratio = (j >> 1) + (j & 1);
 
   *usart::OVER8        = over8;
@@ -69,19 +80,16 @@ void main()
 
   while(1)
     {
-    myPutc<usart>( hexcharof( count >> 28 ));
-    myPutc<usart>( hexcharof( count >> 24 ));
-    myPutc<usart>( hexcharof( count >> 20 ));
-    myPutc<usart>( hexcharof( count >> 16 ));
-    myPutc<usart>( hexcharof( count >> 12 ));
-    myPutc<usart>( hexcharof( count >> 8 ));
-    myPutc<usart>( hexcharof( count >> 4 ));
-    myPutc<usart>( hexcharof( count >> 0 ));
-    myPutc<usart>( (uint16_t)'\n' );
+    *leds::od = (count & 3);
+
+    printf("%d...\n", count);
+
     for (i=0; i < DELAY; ++i)
       {}
     ++count;
     }
+
+  return 0;
   }
 
 

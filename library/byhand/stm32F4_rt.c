@@ -4,16 +4,7 @@
 //extern "C" {
 // From link script:
 
-extern uint32_t __data_start__;
-extern uint32_t __StackTop;
-extern uint32_t __etext;
-extern uint32_t __bss_end__;
-extern uint32_t __HeapLimit;
-extern uint32_t __StackLimit;
-extern uint32_t __end__;
-extern uint32_t __data_end__;
-extern uint32_t __bss_start__;
-extern uint32_t __stack;
+#include <lddefs.h>
 
 extern void Reset_Handler() __attribute__ ((weak,interrupt));
 extern int main(int,char**);

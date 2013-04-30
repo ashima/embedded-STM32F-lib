@@ -10,6 +10,6 @@
   </xsl:template>
 
   <xsl:template match="def">
-    extern <xsl:value-of select="@name"/> ;</xsl:template>
+    extern uint32_t <xsl:value-of select="@name"/> ;</xsl:template>
 
 </xsl:stylesheet>
