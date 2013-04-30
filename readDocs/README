@@ -4,3 +4,23 @@ raw information base used to build the rest of the libray.
 The goal is to provide clear tracability of information encoded in the library
 to the documentation.
 
+To make, type 'make'. To rebuild 'irritating', 'rm irritating/the_one_you_want_to_rebuild; make' (deliberately not automated in the makefile)
+
+Files:
+
+- generated:
+
+-- infobase.xml: the documentation in machine-processible form
+
+Directories:
+
+- existing:
+
+-- doc: hardware documentation to be read
+-- byhand: hand-edited source material from the documents (e.g. errata, guidelines, etc.)
+-- irritating: intermediary files that are stored in the repo because they're are irritating to rebuild (e.g. require specific apps to build)
+-- scripts: the scripts!
+
+- generated:
+
+-- intermediates: all the pieces auto-built along the way
