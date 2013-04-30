@@ -1,9 +1,2 @@
-*Quick Start*
-
-cd library ; make install
-cd examples ; make
-
-To rebuild the infobase:
-cd readDocs ; make
-
+See the [wiki page](http://github.com/ashima/embedded-STM32F-lib/wiki)
 
