@@ -25,12 +25,14 @@ INCS=-I $B -I $H
 #VPATH=$H $S
 
 TARGETS=stm32F407
-L_stm32F407=stm32F4_rt.o stm32F4_isrbt.o stubs.o
+L_stm32F407=stm32F4_rt.o stm32F4_isrbt.o
 
 LIBE=stm32F407.ld sections.ld 
 
-HDRSE=clock_helpers.h clocks.h meta_script.h  st_base.h  system.h  gpio.h
-HDRS=instances.h busses.h memory.h  stm32F4_rt.h  structures.h clktree.h
+HDRSE=clock_helpers.h clocks.h meta_script.h  st_base.h  system.h  gpio.h \
+      newlibstubs.h
+HDRS=instances.h busses.h memory.h  stm32F4_rt.h  structures.h \
+     clktree.h lddefs.h
 
 TESTS=memory.rslt
 

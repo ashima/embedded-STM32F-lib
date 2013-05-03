@@ -24,10 +24,10 @@ LIBDIR=-L ../../install/lib
 	-T stm32F407.ld -T sections.ld -u isr_vector \
 	-Wl,--print-map  \
 	-o $@ $^ -lstm32F407  \
-	../../library/obj/stubs.o > $*.mapfile
+	> $*.mapfile
 
 
-# > $*.mapfile
+#	../../library/obj/stubs.o > $*.mapfile
 
 
 # -T mem.ld -T sections.ld 

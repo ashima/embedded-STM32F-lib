@@ -1,10 +1,11 @@
 #include <inttypes.h>
 
-#include <structures.h>
-#include <instances.h>
+//#include <structures.h>
+//#include <instances.h>
 #include <clocks.h>
 #include <clock_helpers.h>
 #include <gpio.h>
+#include <newlibstubs.h>
 
 #include <cstdio>
 
@@ -31,6 +32,10 @@ enum {
 
 SysClock<XTALFreq>  clk;
 typedef mk_subport<GPIOE,0,1> leds;
+
+// Using printf So need the right stubs!
+typedef newlibStubs<heapctl_simple, filectl_uartonly<USART2> > stubs;
+MK_NEWLIB_STUBS(stubs)
 
 int main()
   {
@@ -91,8 +96,6 @@ int main()
 
   return 0;
   }
-
-
 
 uint16_t hexcharof(uint32_t x)
   {
