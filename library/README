@@ -1,0 +1,12 @@
+Library Build Directory
+
+To make, type 'make; make install'
+
+Directories:
+
+byhand: hand-edited source files
+scripts: the scripts!
+
+built: code files build from the datasheet information base (primarily from the file readDocs/infobase.xml)
+obj: intermediary object code and compiled files
+tests: unit tests

@@ -1,0 +1,10 @@
+Examples
+
+To build, 'cd' into the relevant example directory and type 'make'
+
+Diretories:
+
+blinkPin - various ways to blink LEDs
+uartOut - various ways to output on a UART
+
+Makefile.inc: This is the generic makefile for all of the examples
