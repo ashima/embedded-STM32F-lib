@@ -63,7 +63,7 @@ struct subregister {
       (*(int_t*)r) = ((*(int_t*)r) & (~(mask << F))) | ((x&mask) << F);
       return x; 
       };
-    operator const int_t () {
+    operator int_t () {
       return (int_t)( (*(volatile int_t*)r >> F) & mask) ;
       };
     };
