@@ -16,7 +16,8 @@ MERGELST = $H/guide.xml              $H/reg-Ranges.xml \
            $H/memory-overview-STM32F407.xml  \
            $H/memory-dma.xml         $H/memory-ethernet.xml \
            $I/memory-boundries.xml   $I/memory-ADC.xml \
-           $I/regsFromIndex.xml      $I/periph-RCC.xml \
+           $I/regsFromIndex.xml      $I/subRegDesc.xml \
+           $I/periph-RCC.xml \
            $I/periph-GPIO.xml        $I/periph-SYSCFG.xml \
            $I/periph-FLASH.xml       $I/periph-DMA.xml \
            $I/periph-ADC.xml         $I/periph-DAC.xml \
@@ -48,11 +49,17 @@ infobase.xml: $I/all.xml
 	xsltproc -o $@ scripts/merge.xsl $^
 
 # registers
+$I/DM00031020.txt: $D/DM00031020.pdf | $I
+	pdftotext $^ $@
+	
 $I/DM00031020_0002-0032.txt: $D/DM00031020.pdf | $I
 	pdftotext -y 80 -H 655 -x 0 -W 600 -layout -f 2 -l 32 -nopgbrk $^ $@
 
 $I/regsFromIndex.xml: $I/DM00031020_0002-0032.txt
 	$(PY) scripts/regsOfindex.py -i $^ -o $@ 
+
+$I/subRegDesc.xml: $I/DM00031020.txt
+	$(PY) scripts/findBits.py -i $^ -o $@
 
 # table stuff...
 $I/table-%.xml: $H/%.tab | $I

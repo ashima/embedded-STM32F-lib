@@ -22,6 +22,7 @@
      </peripherals>
      <xsl:call-template name="memorymap"/>
      <xsl:call-template name="runtime"/>
+     <xsl:copy-of select="bitDesc"/>
      <xsl:copy-of select="parts"/>
      <xsl:copy-of select="clocks"/>
    </infobase>

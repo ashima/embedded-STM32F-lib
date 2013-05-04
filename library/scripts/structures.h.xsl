@@ -80,15 +80,21 @@ select="u:toHex($i)"/> ;</xsl:otherwise>
     > //?!&lt; <xsl:copy-of select="description/text()"/>
 </xsl:if>
   </xsl:template>
+  <xsl:key name="srs" match="/infobase/bitDesc/subreg" use="@name"/>
 
   <xsl:template match="subregister">
-<xsl:variable name="s" select="@parent"/>  static subregister&lt;<xsl:value-of 
+<xsl:variable name="s" select="@parent"/>
+<xsl:variable name="n" select="@name"/>
+  static subregister&lt;<xsl:value-of 
 select="../@name"/>_st,<xsl:value-of
 select="../register[@short=$s]/@offset"/>,<xsl:value-of 
 select="@first"/>,<xsl:value-of 
 select="@last"/><xsl:if test="@min">,range32&lt;<xsl:value-of 
 select="@min"/>,<xsl:value-of 
-select="@max"/>&gt; </xsl:if>&gt; <xsl:value-of select="@name"/> ;
+select="@max"/>&gt; </xsl:if>&gt; <xsl:value-of
+ select="@name"/>; <xsl:for-each 
+select="key('srs',@name)[1]"> //?!&lt; <xsl:copy-of 
+select="."/></xsl:for-each>
 </xsl:template>
 
 </xsl:stylesheet>
