@@ -54,6 +54,9 @@ all: $(BUILTHDRS) $(BUILTLIBS) $(BUILTTSTS)
 
 install: $(INSTHDRS) $(INSTLIBS) | all
 
+dox:
+	doxygen $S/dg.cfg
+
 clean:
 	-rm $O/* $B/* $T/*
 	-rmdir $O $B $T
