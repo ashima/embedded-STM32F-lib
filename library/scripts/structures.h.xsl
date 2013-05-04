@@ -70,7 +70,7 @@ select="u:toHex($i)"/> ;</xsl:otherwise>
   <xsl:template match="register" 
     mode="struct">_V typename T::uint32_t <xsl:value-of 
     select="@short"/>; <xsl:if test="description"
-    > //?!&lt; <xsl:copy-of select="description/text()"/>
+    > //!&lt; <xsl:copy-of select="description/text()"/>
 </xsl:if>
   </xsl:template>
 
@@ -93,7 +93,7 @@ select="@last"/><xsl:if test="@min">,range32&lt;<xsl:value-of
 select="@min"/>,<xsl:value-of 
 select="@max"/>&gt; </xsl:if>&gt; <xsl:value-of
  select="@name"/>; <xsl:for-each 
-select="key('srs',@name)[1]"> //?!&lt; <xsl:copy-of 
+select="key('srs',@name)[1]"> //!&lt; <xsl:copy-of 
 select="."/></xsl:for-each>
 </xsl:template>
 
