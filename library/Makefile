@@ -29,10 +29,10 @@ L_stm32F407=stm32F4_rt.o stm32F4_isrbt.o
 
 LIBE=stm32F407.ld sections.ld 
 
-HDRSE=clock_helpers.h clocks.h meta_script.h  st_base.h  system.h  gpio.h \
-      newlibstubs.h
+HDRSE=clock_helpers.h clocks.h meta_script.h  st_base.h  system.h \
+      newlibstubs.h gpio_base.h
 HDRS=instances.h busses.h memory.h  stm32F4_rt.h  structures.h \
-     clktree.h lddefs.h
+     clktree.h lddefs.h gpio.h
 
 TESTS=memory.rslt
 

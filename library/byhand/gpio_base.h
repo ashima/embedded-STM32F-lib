@@ -52,54 +52,17 @@ enum
   rep64x32 = 0x0000000100000001,
   };
 
-enum GPIO_mode // p198 DM00031020
-  {
-  GPIO_mode_IN      = 0,
-  GPIO_mode_OUT     = 1,
-  GPIO_mode_ALTFUNC = 2,
-  GPIO_mode_ANALOG  = 3,
-  } ;
-
-enum GPIO_otype // p199 DM00031020
-  {
-  GPIO_otype_PUSHPULL = 0,
-  GPIO_otype_OPENDRAIN = 1,
-  };
-
-enum GPIO_speed // p199 DM00031020
-  {
-  GPIO_ospeed_2MHZ   = 0,
-  GPIO_ospeed_25MHZ  = 1,
-  GPIO_ospeed_50MHZ  = 2,
-  GPIO_ospeed_100MHZ = 3,
-  };
-
-enum GPIO_pupd // p200 DM00031020
-  {
-  GPIO_pupd_NONE = 0,
-  GPIO_pupd_UP   = 1,
-  GPIO_pupd_DOWN = 2,
-  };
-
-
-// Derived from Figure 18, p190 DM00031020 and others.
-enum GPIO_af
-  {
-  GPIO_af_SYSTEM   = 0,
-  GPIO_af_AF14     = 14,
-  GPIO_af_EVENTOUT = 15,
-  };
- 
 // Traits for Alternate function.
 struct GPIO_SYSTEM { };
 struct GPIO_EVENTOUT { };
 struct GPIO_AF14 { };
+struct GPIO_FSMC { };
 
 template<class T> struct GPIO_AF {};
 
-template<> struct GPIO_AF<GPIO_SYSTEM>   { enum {af = 0} ; };
-template<> struct GPIO_AF<GPIO_AF14>     { enum {af = 14} ; };
-template<> struct GPIO_AF<GPIO_EVENTOUT> { enum {af = 15} ; };
+//template<> struct GPIO_AF<GPIO_SYSTEM>   { enum {af = 0} ; };
+//template<> struct GPIO_AF<GPIO_AF14>     { enum {af = 14} ; };
+//template<> struct GPIO_AF<GPIO_EVENTOUT> { enum {af = 15} ; };
 
 
 #endif

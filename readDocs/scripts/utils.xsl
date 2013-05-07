@@ -185,4 +185,23 @@
 
   */
   </xsl:template> 
+
+  <xsl:template match="enum"><xsl:param name="indent" select="'  '"/>
+<xsl:value-of select="$indent"/>enum <xsl:value-of select="@name"/> {
+<xsl:for-each select="val">
+<xsl:value-of select="concat($indent,'  ')"/><xsl:value-of 
+select="@name"/> = <xsl:value-of select="@value"/>,
+</xsl:for-each>
+<xsl:value-of select="$indent"/>  };
+</xsl:template>
+
+  <xsl:template match="trait-enum"><xsl:param name="indent" select="'  '"/>
+<xsl:variable name="n" select="@name"/>
+<xsl:for-each select="val">
+<xsl:value-of select="$indent"/>template&lt;&gt; struct <xsl:value-of 
+select="$n"/>&lt;<xsl:value-of select="@name"/>&gt; { enum { AF = <xsl:value-of
+select="@value"/> } ; } ;
+</xsl:for-each>
+</xsl:template>
+
 </xsl:stylesheet>

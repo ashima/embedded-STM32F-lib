@@ -47,7 +47,7 @@ select="@class"/>, <xsl:choose>
 </xsl:choose>, <xsl:value-of 
 select="../@name"/>);<xsl:text>
 </xsl:text></xsl:when>
-<xsl:otherwise>// <xsl:value-of select="@class" />,<xsl:value-of select="@name"/>
+<xsl:otherwise>struct <xsl:value-of select="@name"/><xsl:if test="$bb=1">_BB</xsl:if> {}; // <xsl:value-of select="@class" />,<xsl:value-of select="@name"/>
 <xsl:text>
 </xsl:text>
 </xsl:otherwise>

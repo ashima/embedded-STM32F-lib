@@ -23,7 +23,7 @@ MERGELST = $H/guide.xml              $H/reg-Ranges.xml \
            $I/periph-ADC.xml         $I/periph-DAC.xml \
            $I/periph-DCMI.xml        $I/periph-WWDG.xml \
            $I/periph-SPI.xml         $I/periph-USART.xml \
-           $I/periph-I2C.xml         \
+           $I/periph-I2C.xml         $I/left-GPIO.xml \
            $I/IRQ-branchtable.xml    $I/clocks.F4xxxx.xml \
            $R/clk_v_ws.xml           $R/parts.xml 
 
@@ -85,6 +85,9 @@ $I/clk_v_ws_data.xml: $I/table-clkWs.xml
 
 $R/clk_v_ws.xml: $I/clk_v_ws_data.xml
 	python2.7 scripts/wsClk.py -i $^ -o $@
+
+$I/left-GPIO.xml: $H/left-GPIO.xml
+	xsltproc -o $@ scripts/left-GPIO.xsl $^
 
 clean:
 	-rm $I/*.xml $I/*.txt $I/*.raw infobase.xml

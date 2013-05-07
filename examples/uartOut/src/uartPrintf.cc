@@ -55,8 +55,7 @@ int main()
   *pins::otype  = rep32x1 * GPIO_otype_PUSHPULL ;  // Both PushPull
   *pins::ospeed = rep32x2 * GPIO_ospeed_100MHZ ;   // Both 100MHz
   *pins::pupd   = rep32x2 * GPIO_pupd_UP ;         // Both pull Up
-  *pins::af     = rep64x4 * 7 ; 
-                     // GPIO_AF< USART3 >::af;
+  *pins::af     = rep64x4 * GPIO_AF< USART3 >::AF;
 
   *leds::mode   = rep32x2 * GPIO_mode_OUT ;        // Both Output
   *leds::otype  = rep32x1 * GPIO_otype_PUSHPULL ;  // Both PullPull
