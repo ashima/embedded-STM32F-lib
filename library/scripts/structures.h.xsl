@@ -86,8 +86,8 @@ select="u:toHex($i)"/> ;</xsl:otherwise>
 <xsl:variable name="s" select="@parent"/>
 <xsl:variable name="n" select="@name"/>
   static subregister&lt;<xsl:value-of 
-select="../@name"/>_st,<xsl:value-of
-select="../register[@short=$s]/@offset"/>,<xsl:value-of 
+select="../@name"/>_st,o<xsl:value-of
+select="../register[@short=$s]/@short"/>,<xsl:value-of 
 select="@first"/>,<xsl:value-of 
 select="@last"/><xsl:if test="@min">,range32&lt;<xsl:value-of 
 select="@min"/>,<xsl:value-of 
