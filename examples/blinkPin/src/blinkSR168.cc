@@ -37,8 +37,8 @@ int main()
 
   while(1)
     {
-    *leds::od = ~ *leds::od ;
-
+//    *leds::od = ~ *leds::od ;
+    (*leds::od) ^= 3;
     for (volatile int i=0; i < DELAY; ++i)
       {}
     }

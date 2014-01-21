@@ -81,14 +81,34 @@ struct subregister {
     \brief helper object that does the actulay bitbanging.
   */
   struct t {
+    int_t operator=(int_t volatile & x) {
+      (*(volatile int_t*)r) = ((*(volatile int_t*)r) & (~(mask << F))) | ((x&mask) << F);
+      return x; 
+      };
     int_t operator=(int_t const & x) {
-      assert( (x&mask) >= R::MIN && x <= R::MAX );
       (*(int_t*)r) = ((*(int_t*)r) & (~(mask << F))) | ((x&mask) << F);
       return x; 
       };
     operator int_t () {
       return (int_t)( (*(volatile int_t*)r >> F) & mask) ;
       };
+
+    template<class T>
+    t& operator^=(T const &x) {
+      *this = *this ^ x;
+      return *this;
+      }
+    template<class T>
+    t& operator|=(T const &x) {
+      *this = *this | x;
+      return *this;
+      }
+    template<class T>
+    t& operator&=(T const &x) {
+      *this = *this & x;
+      return *this;
+      }
+ 
     };
 
   const t& operator*() const { return *(t*)0; };

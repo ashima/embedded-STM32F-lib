@@ -1,0 +1,45 @@
+<left-gpio>
+  <altfunc p="191" doc="DM00031020" >
+    <af name="0" for="GPIO_SYSTEM" />
+    <af name="1" for="TIM1 TIM2" />
+    <af name="2" for="TIM3 TIM4 TIM5" />
+    <af name="3" for="TIM8 TIM9 TIM10 TIM11" />
+    <af name="4" for="I2C1 I2C2 I2C3" />
+    <af name="5" for="SPI1 SPI2"/> <!-- SPI4 SPI5 SPI6 -->
+    <af name="6" for="SPI3" />
+    <af name="7" for="USART1 USART2 USART3" />
+    <af name="8" for="UART4 UART5 USART6"/> <!--  UART7 UART8"  -->
+    <af name="9" for="CAN1 CAN2 TIM12 TIM13 TIM14" />
+    <af name="10" for="USBOTGFS" />
+    <af name="11" for="ETH_MAC ETH_MMC ETH_PTP ETH_DMA" />
+    <af name="12" for="GPIO_FSMC SDIO USBOTGHS" />
+    <af name="14" for="GPIO_AF14" />
+    <af name="15" for="GPIO_EVENTOUT" />
+  </altfunc>
+
+  <enum name="GPIO_MODER" p="198" doc="DM00031020" >
+    <val name="GPIO_mode_IN" value="0">Input</val>
+    <val name="GPIO_mode_OUT" value="1">General purpose output</val>
+    <val name="GPIO_mode_ALTFUNC" value="2">Alternate function</val>
+    <val name="GPIO_mode_ANALOG" value="3">Analog</val>
+  </enum>
+
+  <enum name="GPIO_OTYPER" p="199" doc="DM00031020" >
+    <val name="GPIO_otype_PUSHPULL" value="0">Output push-pull</val>
+    <val name="GPIO_otype_OPENDRAIN" value="1">Output open-drain</val>
+  </enum>
+
+  <enum name="GPIO_OSPEEDR" p="199" doc="DM00031020" >
+    <val name="GPIO_ospeed_2MHZ" value = "0">2 MHz low speed</val>
+    <val name="GPIO_ospeed_25MHZ" value= "1">25 MHz medium speed</val>
+    <val name="GPIO_ospeed_50MHZ" value= "2">50 MHz fast speed</val>
+    <val name="GPIO_ospeed_100MHZ" value= "3">100 MHz high speed</val>
+  </enum>
+
+  <enum name="GPIO_PUPDR" p="200" doc="DM00031020" >
+    <val name="GPIO_pupd_NONE" value = "0">No pull-up or pull-down</val>
+    <val name="GPIO_pupd_UP" value = "1">pull-up</val>
+    <val name="GPIO_pupd_DOWN" value = "2">pull-down</val>
+  </enum>
+
+</left-gpio>
